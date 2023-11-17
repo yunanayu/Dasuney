@@ -8,6 +8,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
+    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='movie_like')
     title = models.CharField(max_length=50)
     id = models.IntegerField()  # movie_id
     release_date = models.DateField()
@@ -17,7 +18,6 @@ class Movie(models.Model):
     overview = models.TextField()
     poster_path = models.CharField(max_length=200)
     genres = models.ManyToManyField(Genre)
-    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 
@@ -27,20 +27,17 @@ class Score(models.Model):
     score = models.FloatField()
 
 
-# class Credit(models.Model):
-#     movie = models.OneToOneField(Movie, on_delete=models.CASCADE)
-#     actor1 = models.CharField(max_length=30)
-#     actor2 = models.CharField(max_length=30)
-#     actor3 = models.CharField(max_length=30)
-#     actor4 = models.CharField(max_length=30)
-#     actor5 = models.CharField(max_length=30)
-#     actor6 = models.CharField(max_length=30)
-    
+
 class Actor(models.Model):
     movie = models.ManyToManyField(Movie)
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='actor_like')
+    actor_name = models.CharField(max_length=100)
+    actor_id = models.IntegerField()
+
 
 
 class Director(models.Model):
-    director = models.CharField(max_length=30)
-    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    movie = models.ManyToManyField(Movie)
+    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='director_like')
+    director_name = models.CharField(max_length=30)
+    director_id = models.IntegerField()
