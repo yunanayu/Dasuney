@@ -26,3 +26,20 @@
 ## 오늘 한 일
 - 아이디어 구상 완료
 - ERD 구상 완료
+
+# 231117 
+## 계획
+- [x]  community model 작성 - 문
+- [x]  movies model 작성 - 정
+- [x]  community, movies view 작성 - 문 정
+- [ ]  Vue component구조 짜기
+## 오늘 한 일
+- community model 작성 완료
+- community view 작성 완료
+- movie model 작성 완료
+- movie view 작성 완료
+
+## 내일 해야 할일
+- movie model 수정
+- movie view 수정
+- Vue 컴포넌트 작성
