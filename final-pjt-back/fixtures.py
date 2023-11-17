@@ -2,24 +2,24 @@ import json
 import requests
 import pprint
 
-i = 1
-url = f'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page={i}'
+# i = 1
+# url = f'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page={i}'
 
-headers = {
-    "accept": "application/json",
-    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYjZlYjQ3Yjg1YzNhMjBlM2ZiOGE4OWZiNDNkZDA5MSIsInN1YiI6IjY1M2Y2MmNiMTA5Y2QwMDBhZDYzOGI0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8yLdir57DDw30YVy__5P-tkrBicDzN0cf1_LMO0quVY"
-}
+# headers = {
+#     "accept": "application/json",
+#     "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmYjZlYjQ3Yjg1YzNhMjBlM2ZiOGE4OWZiNDNkZDA5MSIsInN1YiI6IjY1M2Y2MmNiMTA5Y2QwMDBhZDYzOGI0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8yLdir57DDw30YVy__5P-tkrBicDzN0cf1_LMO0quVY"
+# }
 
-response = requests.get(url, headers=headers).json()
+# response = requests.get(url, headers=headers).json()
 
-pprint.pprint(response['results'])
-
-
+# pprint.pprint(response['results'])
 
 
 
 
-# movies = []
+
+
+movies = []
 # genres = [{"id": 28, "name": "Action"}, {"id": 12, "name": "Adventure"}, {"id": 16, "name": "Animation"}, {"id": 35, "name": "Comedy"}, {"id": 80, "name": "Crime"}, {"id": 99, "name": "Documentary"}, {"id": 18, "name": "Drama"}, {"id": 10751, "name": "Family"}, {"id": 14, "name": "Fantasy"}, {"id": 36, "name": "History"}, {
 #     "id": 27, "name": "Horror"}, {"id": 10402, "name": "Music"}, {"id": 9648, "name": "Mystery"}, {"id": 10749, "name": "Romance"}, {"id": 878, "name": "Science Fiction"}, {"id": 10770, "name": "TV Movie"}, {"id": 53, "name": "Thriller"}, {"id": 10752, "name": "War"}, {"id": 37, "name": "Western"}]
 
@@ -73,3 +73,97 @@ pprint.pprint(response['results'])
 
 # with open('movies.json', 'w', encoding="UTF-8") as make_file:
 #     json.dump(movies, make_file, indent='\t', ensure_ascii=False)
+
+
+
+genres = [
+{
+    "id": 28,
+    "name": "액션"
+},
+{
+    "id": 12,
+    "name": "모험"
+},
+{
+    "id": 16,
+    "name": "애니메이션"
+},
+{
+    "id": 35,
+    "name": "코미디"
+},
+{
+    "id": 80,
+    "name": "범죄"
+},
+{
+    "id": 99,
+    "name": "다큐멘터리"
+},
+{
+    "id": 18,
+    "name": "드라마"
+},
+{
+    "id": 10751,
+    "name": "가족"
+},
+{
+    "id": 14,
+    "name": "판타지"
+},
+{
+    "id": 36,
+    "name": "역사"
+},
+{
+    "id": 27,
+    "name": "공포"
+},
+{
+    "id": 10402,
+    "name": "음악"
+},
+{
+    "id": 9648,
+    "name": "미스터리"
+},
+{
+    "id": 10749,
+    "name": "로맨스"
+},
+{
+    "id": 878,
+    "name": "SF"
+},
+{
+    "id": 10770,
+    "name": "TV 영화"
+},
+{
+    "id": 53,
+    "name": "스릴러"
+},
+{
+    "id": 10752,
+    "name": "전쟁"
+},
+{
+    "id": 37,
+    "name": "서부"
+}
+]
+
+
+for genre in genres:
+    temp = {}
+    temp['model'] = 'movies.genre'
+    temp['pk'] = genre['id']
+    fields = {}
+    fields['name'] = genre['name']
+    temp['fields'] = fields
+    movies.append(temp)
+
+with open('genre.json', 'w', encoding="UTF-8") as make_file:
+    json.dump(movies, make_file, indent='\t', ensure_ascii=False)

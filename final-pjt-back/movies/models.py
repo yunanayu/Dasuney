@@ -10,7 +10,7 @@ class Genre(models.Model):
 class Movie(models.Model):
     user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='movie_like')
     title = models.CharField(max_length=50)
-    id = models.IntegerField()  # movie_id
+    movie_id = models.IntegerField()  # movie_id
     release_date = models.DateField()
     popularity = models.FloatField()
     vote_count = models.IntegerField()
@@ -25,7 +25,9 @@ class Score(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     score = models.FloatField()
-
+     
+    class Meta:
+        unique_together =('movie', 'user')
 
 
 class Actor(models.Model):

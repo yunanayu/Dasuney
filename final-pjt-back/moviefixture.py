@@ -4,7 +4,7 @@ import pprint
 
 movies = []
 
-for i in range(1, 2):
+for i in range(1, 40):
     url = f'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page={i}'
 
     headers = {
@@ -25,6 +25,8 @@ for i in range(1, 2):
                 field['genres'] = value
             elif key in movie_field and key == 'poster_path':
                 field['poster_path'] = f'https://image.tmdb.org/t/p/w500/{value}'
+            elif key in movie_field and key == 'id':
+                field['movie_id'] = value 
             elif key in movie_field:
                 field[key] = value
 
