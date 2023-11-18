@@ -8,7 +8,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='movie_like')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
     title = models.CharField(max_length=50)
     movie_id = models.IntegerField()  # movie_id
     release_date = models.DateField()
@@ -25,14 +25,13 @@ class Score(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     score = models.FloatField()
-     
     class Meta:
         unique_together =('movie', 'user')
 
 
 class Actor(models.Model):
     movie = models.ManyToManyField(Movie)
-    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='actor_like')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actor')
     actor_name = models.CharField(max_length=100)
     actor_id = models.IntegerField()
 
@@ -40,6 +39,6 @@ class Actor(models.Model):
 
 class Director(models.Model):
     movie = models.ManyToManyField(Movie)
-    user_like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='director_like')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_director')
     director_name = models.CharField(max_length=30)
     director_id = models.IntegerField()
