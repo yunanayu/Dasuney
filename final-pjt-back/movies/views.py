@@ -36,15 +36,15 @@ def movie_detail(req, movie_pk):
 def movie_likes(req, movie_pk):
     if req.method == 'POST':
         movie = get_object_or_404(Movie, pk=movie_pk)
-        if req.user in movie.movie_like.all():
-            movie.user_like.all.remove(req.user)
+        if req.user in movie.like_users.all():
+            movie.like_users.remove(req.user)
             is_liked = False
         else:
-            movie.user_like.all.add(req.user)
+            movie.like_users.add(req.user)
             is_liked = True
         context = {
             'is_liked' : is_liked,
-            'like_count' : movie.user_like.count()
+            'like_count' : movie.like_users.count()
         }
         return JsonResponse(context)
 

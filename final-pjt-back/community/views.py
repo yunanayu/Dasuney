@@ -1,10 +1,17 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.http import JsonResponse
 from django.shortcuts import get_list_or_404, get_object_or_404
 from .models import Review, Comment
 from .serializers import ReviewSerializer, CommentSerializer
 from  rest_framework import status
 from movies.models import Movie
+
+
+# permission Decorators
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import IsAuthenticated
+
 
 @api_view(['GET', 'POST'])
 def review_list(request, movie_pk):
@@ -77,3 +84,22 @@ def comment_detail(request, review_pk, comment_pk):
     elif request.method == 'DELETE':
         comment.delete()
         return Response(status=204)
+
+
+
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def review_likes(req, review_pk):
+    if req.method == 'POST':
+        review = get_object_or_404(Review, pk=review_pk)
+        if req.user in review.user_likes.all():
+            review.like_users.remove(req.user)
+            is_liked = False
+        else:
+            review.user_likes.add(req.user)
+            is_liked = True
+        context = {
+            'is_liked' : is_liked,
+            'like_count' : review.user_likes.count()
+        }
+        return JsonResponse(context)
