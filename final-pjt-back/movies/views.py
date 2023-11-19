@@ -76,15 +76,18 @@ def score_update(req, movie_pk, score_pk):
     
 
 
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def actor_add(req, movie_pk):
     if req.method == 'POST':
         movie = get_object_or_404(Movie, pk= movie_pk)
         serializer = ActorSerializer(data=req.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save(movie=movie)
+        if serializer.is_valid(raise_exception=True):           
+            serializer.save()
             return Response(serializer.data)
-        
+    elif req.method == 'GET':
+        actors = Actor.objects.all()
+        serializer = ActorSerializer(actors, many=True)
+        return Response(serializer.data)
         
 @api_view(['PUT', 'DELETE'])     
 def actor_update(req, movie_pk, actor_pk):
@@ -112,7 +115,9 @@ def director_add(req, movie_pk):
         movie = get_object_or_404(Movie, pk= movie_pk)
         serializer = DirectorSerializer(data=req.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(movie=movie)
+            serializer.save()
+            # movie.movie.add(req.data.m)
+            # serializer.save(movie=movie)
             return Response(serializer.data)
         
         

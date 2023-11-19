@@ -8,7 +8,7 @@ class Genre(models.Model):
 
 
 class Movie(models.Model):
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies')
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movies',  blank=True)
     title = models.CharField(max_length=50)
     movie_id = models.IntegerField()  # movie_id
     release_date = models.DateField()
@@ -30,15 +30,15 @@ class Score(models.Model):
 
 
 class Actor(models.Model):
-    movie = models.ManyToManyField(Movie)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actor')
+    # movie = models.ManyToManyField(Movie)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_actor', blank=True)
     actor_name = models.CharField(max_length=100)
     actor_id = models.IntegerField()
 
 
 
 class Director(models.Model):
-    movie = models.ManyToManyField(Movie)
-    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_director')
+    # movie = models.ManyToManyField(Movie)
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_director', blank=True)
     director_name = models.CharField(max_length=30)
     director_id = models.IntegerField()

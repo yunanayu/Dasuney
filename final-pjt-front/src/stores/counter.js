@@ -1,12 +1,80 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import axios from 'axios'
+import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+  const router = useRouter()
+  const Token = ref('')
+  const TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY
+  const LogIn = function (payload) {
+    const { username, password } = payload
+    
+    axios({
+      method : 'post',
+      url : 'http://127.0.0.1:8000/accounts/login/',
+      data : {
+        username,
+        password
+      }
+    })
+    .then((res) => {
+      console.log(res)
+      console.log('로그인 성공')
+      Token.value = res.data.key
+      router.push({name:'home'})
+    })
+    .catch(err => console.log(err))
   }
 
-  return { count, doubleCount, increment }
+  const SignUp = function (payload) {
+    const { username, password1, password2 } = payload
+    axios({
+      method : 'post',
+      url : 'http://127.0.0.1:8000/accounts/signup/',
+      data : {
+        username,
+        password1,
+        password2
+      }
+    })
+    .then((res) => {
+      console.log(res)
+      console.log('회원가입 완료')
+      router.push({name:'login'})
+    })
+    .catch(err => console.log(err))
+  }
+
+  const logout = function () {
+    axios({
+      method:'post',
+      url:'http://127.0.0.1:8000/accounts/logout/'
+    })
+    .then((res)=>{
+      console.log(res.data);
+      window.alert('로그아웃 완료');
+      Token.value = ''
+      router.push({name:'home'})
+    })
+    .catch(err=>console.log(err))
+  }
+
+  const getCredits = function(movieId) {
+    axios({
+      method:'get',
+      url : `https://api.themoviedb.org/3/movie/${movieId}/credits`,
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${TMDB_KEY}`
+        }
+    })
+    .then((res)=>{
+      console.log(res.data);
+    })
+    .catch(err=>console.log(err))
+  }
+
+
+  return { LogIn, Token, SignUp, logout, getCredits}
 }, { persist:true })

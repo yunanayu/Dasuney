@@ -4,7 +4,7 @@ import pprint
 
 movies = []
 
-for i in range(1, 40):
+for i in range(1, 2):
     url = f'https://api.themoviedb.org/3/movie/top_rated?language=ko-KR&page={i}'
 
     headers = {

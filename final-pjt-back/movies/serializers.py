@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Movie,Genre, Score, Actor, Director
-
+from django.contrib.auth import get_user_model
 
 
 
@@ -11,6 +11,12 @@ class GenreSerializer(serializers.ModelSerializer):
 
 
 class MovieListSerializer(serializers.ModelSerializer):
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = get_user_model()
+            fields = ('id','username',)
+    
+    like_users = UserSerializer(many=True)
     genres = GenreSerializer(many=True)
     class Meta:
         model = Movie
