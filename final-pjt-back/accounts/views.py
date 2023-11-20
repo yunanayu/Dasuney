@@ -5,18 +5,20 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import status
+from .serializers import UserSerializer, FollowSerializer
 # Create your views here.
 
-@api_view(['POST'])
+@api_view(['GET'])
 def profile(req, username):
-    if req.method == 'POST':
-        User = get_user_model()
-        person = User.objects.get(username=username)
-        context = {
-            'person' : person
-        }
-        return JsonResponse(context)
-
+    if req.method == 'GET':
+        # User = get_user_model()
+        person = get_user_model().objects.get(username=username)
+        serializer = FollowSerializer(person)
+        # context = {
+        #     'person' : person
+        # }
+        # return JsonResponse(context)
+        return Response(serializer.data)
 @api_view(['POST'])
 def follow(req, user_pk):
     if req.method == 'POST':

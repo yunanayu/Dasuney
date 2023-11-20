@@ -55,6 +55,9 @@ onMounted(() => {
   // followingCount.value = 팔로우한 수;
   // followersCount.value = 팔로워 수;
 });
+
+
+
 </script>
 
 <style scoped>

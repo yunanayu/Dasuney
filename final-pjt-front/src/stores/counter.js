@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
+  const tempUsername = ref('')
   const Token = ref('')
   const actors = ref([])
   const isAuthenticated = computed(()=>{
@@ -30,6 +31,7 @@ export const useCounterStore = defineStore('counter', () => {
       console.log(res)
       console.log('로그인 성공')
       Token.value = res.data.key
+      tempUsername.value = username
       router.push({name:'home'})
     })
     .catch(err => console.log(err))
@@ -63,6 +65,7 @@ export const useCounterStore = defineStore('counter', () => {
       console.log(res.data);
       window.alert('로그아웃 완료');
       Token.value = ''
+      tempUsername.value = ''
       router.push({name:'home'})
     })
     .catch(err=>console.log(err))
@@ -99,5 +102,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors}
+  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
 }, { persist:true })
