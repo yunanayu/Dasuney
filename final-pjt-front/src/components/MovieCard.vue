@@ -1,6 +1,7 @@
 <template>
   <div>
     <!-- <p>영화</p> -->
+    <img :src="movieDetail.poster_path" alt="">
     {{ movieDetail }}
     <span @click="goMovieDetail(movieDetail.movie_id)">제목 : {{ movieDetail.title }}</span>
     <hr>
