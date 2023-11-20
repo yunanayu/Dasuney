@@ -143,17 +143,35 @@ def director_update(req, movie_pk, director_pk):
 
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
-def actor_likes(req, movie_pk):
+def actor_likes(req, actor_pk):
     if req.method == 'POST':
-        movie = get_object_or_404(Movie, pk=movie_pk)
-        if req.user in movie.like_users.all():
-            movie.like_users.remove(req.user)
+        actor = get_object_or_404(Actor, pk=actor_pk)
+        if req.user in actor.like_users.all():
+            actor.like_users.remove(req.user)
             is_liked = False
         else:
-            movie.like_users.add(req.user)
+            actor.like_users.add(req.user)
             is_liked = True
         context = {
             'is_liked' : is_liked,
-            'like_count' : movie.like_users.count()
+            'like_count' : actor.like_users.count()
+        }
+        return JsonResponse(context)
+    
+
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def director_likes(req, director_pk):
+    if req.method == 'POST':
+        director = get_object_or_404(Director, pk=director_pk)
+        if req.user in director.like_users.all():
+            director.like_users.remove(req.user)
+            is_liked = False
+        else:
+            director.like_users.add(req.user)
+            is_liked = True
+        context = {
+            'is_liked' : is_liked,
+            'like_count' : director.like_users.count()
         }
         return JsonResponse(context)
