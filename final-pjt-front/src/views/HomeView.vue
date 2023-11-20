@@ -14,7 +14,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 const store = useCounterStore()
 const movies = ref([])
-// console.log(store.Token);
+console.log(store.Token);
 onMounted(()=>{
   // store.getMovieList
   axios({

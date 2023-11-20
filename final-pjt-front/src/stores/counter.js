@@ -4,8 +4,15 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
-  const router = useRouter()
   const Token = ref('')
+  const isAuthenticated = computed(()=>{
+    if (Token.value === '') {
+      return false
+    } else {
+      return true
+    }
+  })
+  const router = useRouter()
   const TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY
   const LogIn = function (payload) {
     const { username, password } = payload
@@ -76,5 +83,5 @@ export const useCounterStore = defineStore('counter', () => {
   }
 
 
-  return { LogIn, Token, SignUp, logout, getCredits}
+  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated}
 }, { persist:true })

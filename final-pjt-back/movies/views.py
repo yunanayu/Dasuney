@@ -140,3 +140,20 @@ def director_update(req, movie_pk, director_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
     
+
+@permission_classes([IsAuthenticated])
+@api_view(['POST'])
+def actor_likes(req, movie_pk):
+    if req.method == 'POST':
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        if req.user in movie.like_users.all():
+            movie.like_users.remove(req.user)
+            is_liked = False
+        else:
+            movie.like_users.add(req.user)
+            is_liked = True
+        context = {
+            'is_liked' : is_liked,
+            'like_count' : movie.like_users.count()
+        }
+        return JsonResponse(context)

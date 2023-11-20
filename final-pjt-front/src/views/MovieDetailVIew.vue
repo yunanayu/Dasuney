@@ -3,32 +3,12 @@
     <h1>영화 상세 정보 페이지</h1>
     <!-- <p>{{ movieInfo }}</p> -->
     <MovieInfo :movie-info="movieInfo"/>
-    <!-- <img :src="(`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`)" alt="">
-    <p>제목 : {{ movieInfo.title }}</p>
-    <p>개봉일 : {{ movieInfo.release_date }}</p>
-    <p>러닝타임 :{{ movieInfo.runtime }} 분</p>
-    <p>TMDB 평점 : {{ movieInfo.vote_average }}</p>
-    <h4>장르</h4>
-    <p v-for="genre in movieInfo.genres">{{ genre.name }}</p>
-    <h3>줄거리</h3>
-    <p>{{ movieInfo.overview }}</p> -->
     <h3>Credits</h3>
-    <Actor v-for="cast in casts" :cast="cast"/>
     <h4>출연진</h4>
-    <!-- <h5>출연진</h5>
-    <div v-for="cast in casts">
-      <p>{{ cast.name }}</p>
-      <p>{{ cast.id }}</p>
-    </div> -->
+    <Actor v-for="cast in casts" :cast="cast"/>
     <hr>
-    <Director v-for="director in directors" :director="director"/>
     <h5>감독</h5>
-    <!-- <h5>감독</h5>
-    <div v-for="director in directors">
-      {{ director }}
-      <p>{{ director.name }}</p>
-      <p>{{ director.id }}</p>
-    </div> -->
+    <Director v-for="director in directors" :director="director"/>
   </div>
 </template>
 
