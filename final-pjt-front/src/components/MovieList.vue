@@ -1,45 +1,21 @@
 <template>
-  <div>
-    <h1>영화 리스트</h1>
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <MovieCard v-for="movie in movies" :key="movie.id" :movie-detail="movie" class="swiper-slide" />
-      </div>
-      <div class="swiper-pagination"></div>
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-    </div>
+  <h1>영화 리스트</h1>
+  <div class="array">
+    <MovieCard v-for="movie in movies" :movie-detail="movie" />
   </div>
 </template>
 
 <script setup>
 import MovieCard from '@/components/MovieCard.vue'
-import { defineProps, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
 import { ref } from 'vue';
 import axios from 'axios';
-import Swiper from 'swiper';
-
 // const movies = ref([])
 const store = useCounterStore()
 defineProps({
   movies:Array
 })
-
-onMounted(() => {
-  new Swiper('.swiper-container', {
-    slidesPerView: 4,
-    spaceBetween: 15,
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-  });
-});
 // onMounted(()=>{
 //   axios({
 //     method : 'get',
