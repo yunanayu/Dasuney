@@ -21,7 +21,7 @@
       <p>{{ cast.id }}</p>
     </div> -->
     <hr>
-    <Director v-for="director in directors"/>
+    <Director v-for="director in directors" :director="director"/>
     <h5>감독</h5>
     <!-- <h5>감독</h5>
     <div v-for="director in directors">
