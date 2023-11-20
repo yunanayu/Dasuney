@@ -7,9 +7,11 @@
     <!-- 좋아요 상세 페이지로 옮겨주세요  -->
     <!-- <button @click.prevent="likeMovie(movieDetail.id)">zz</button> -->
     <!-- <hr> -->
-    <div v-for="movie in movieDetail">
-      <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
-      <!-- <p>{{ movie.title }}</p> -->
+    <div class="array">
+      <div v-for="movie in movieDetail">
+        <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
+        <!-- <p>{{ movie.title }}</p> -->
+    </div>
     </div>
   </div>
 </template>
@@ -51,4 +53,11 @@ img {
   width: 200px;
 }
 
+.array {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 400px;
+  grid-gap: 15px;
+  padding: 100px;
+}
 </style>

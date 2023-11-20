@@ -1,8 +1,8 @@
 <template>
 <div>
-  <h1>평점 순위별 영화 추천 </h1>
   <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner" style="position: relative;">
+      <h1 style="position: absolute; top: 50px; left: 100px;">평점 순위별 영화</h1>
       <div v-for="(movie, index) in chunkedMovies" :key="index" :class="{ 'carousel-item': true, 'active': index === 0 }">
         <MovieCard :movie-detail="movie" />
       </div>
@@ -42,21 +42,16 @@ const props = defineProps({
 //   })
 // })
 const chunkedMovies = computed(() => {
-  return Array.from({length: Math.ceil(props.movies.length / 5)}, (v,i)=>
-    props.movies.slice(i * 5, i* 5 + 5)
+  return Array.from({length: Math.ceil(props.movies.length / 4)}, (v,i)=>
+    props.movies.slice(i * 4, i* 4 + 4)
   )
 })
 </script>
 
 <style scoped>
-/* .array {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 300px;
-  grid-gap: 15px;
-  padding: 15px;
-} */
+
 .carousel-inner {
   text-align: center;
 }
+
 </style>
