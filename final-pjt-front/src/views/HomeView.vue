@@ -34,7 +34,7 @@ onMounted(()=>{
   store.getActors()
 
 })
-console.log(store.actors)
+// console.log(store.actors)
 </script>
 
 
