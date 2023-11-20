@@ -21,16 +21,15 @@ const store = useCounterStore()
 </template>
 
 <style scoped>
-#app {
-  /* background-image: url('@/assets/wallpaperbetter.jpg'); */
+/* #app {
+  background-image: url('@/assets/wallpaperbetter.jpg');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 
-  /* 나머지 스타일 설정 */
   font-family: 'Arial', sans-serif;
   color: #ffffff;
-  width: 100%
+  width: 100% 
   
-}
+} */
 </style>
