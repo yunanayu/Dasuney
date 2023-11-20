@@ -45,4 +45,4 @@
 - Vue 컴포넌트 작성
 
 
-https://www.notion.so/f5148435948e42e19444c484bdd2a494?pvs=4
+https://www.notion.so/invite/9d1df993ea8139dc85eb44b22e633f0545984d9c
