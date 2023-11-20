@@ -21,7 +21,7 @@ const store = useCounterStore()
 </template>
 
 <style scoped>
-/* #app {
+#app {
   background-image: url('@/assets/wallpaperbetter.jpg');
   background-size: cover;
   background-position: center center;
@@ -31,5 +31,5 @@ const store = useCounterStore()
   color: #ffffff;
   width: 100% 
   
-} */
+}
 </style>

@@ -3,10 +3,14 @@
     <!-- <p>영화</p> -->
     
     <!-- {{ movieDetail }} -->
-    <span @click="goMovieDetail(movieDetail.movie_id)"><img :src="movieDetail.poster_path" alt=""></span>
+    <!-- <span @click="goMovieDetail(movieDetail.movie_id)"><img :src="movieDetail.poster_path" alt=""></span> -->
     <!-- 좋아요 상세 페이지로 옮겨주세요  -->
-    <button @click.prevent="likeMovie(movieDetail.id)">zz</button>
+    <!-- <button @click.prevent="likeMovie(movieDetail.id)">zz</button> -->
     <!-- <hr> -->
+    <div v-for="movie in movieDetail">
+      <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
+      <!-- <p>{{ movie.title }}</p> -->
+    </div>
   </div>
 </template>
 
@@ -16,8 +20,11 @@ import { useRouter } from 'vue-router';
 import { useCounterStore } from '../stores/counter';
 const store = useCounterStore()
 const router = useRouter()
+// const props = defineProps({
+//   movieDetail : Object
+// })
 const props = defineProps({
-  movieDetail : Object
+  movieDetail : Array
 })
 
 const goMovieDetail = function (movieId) {
