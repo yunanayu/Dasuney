@@ -3,7 +3,7 @@
     <p>{{ cast }}</p>
     <p>{{ cast.name }}</p>
     <p>{{ cast.id }}</p>
-    <button @click.prevent="likeActor(cast.name)">좋아요</button>
+    <button @click.prevent="likeActor(cast.name)">배우 좋아요</button>
   </div>
 </template>
 

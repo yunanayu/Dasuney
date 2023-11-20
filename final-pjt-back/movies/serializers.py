@@ -30,6 +30,12 @@ class ScoreSerializer(serializers.ModelSerializer):
         read_only_fields= ('movie', 'user',)
 
 class ActorSerializer(serializers.ModelSerializer):
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = get_user_model()
+            fields = ('id','username',)
+    
+    like_users = UserSerializer(many=True)
     class Meta:
         model = Actor
         fields = '__all__'
@@ -37,8 +43,12 @@ class ActorSerializer(serializers.ModelSerializer):
 
 
 class DirectorSerializer(serializers.ModelSerializer):
+    class UserSerializer(serializers.ModelSerializer):
+        class Meta:
+            model = get_user_model()
+            fields = ('id','username',)
+    
+    like_users = UserSerializer(many=True)
     class Meta:
         model = Director
         fields ='__all__'
-
-
