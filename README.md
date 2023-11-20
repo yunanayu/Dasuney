@@ -43,3 +43,6 @@
 - movie model 수정
 - movie view 수정
 - Vue 컴포넌트 작성
+
+
+https://www.notion.so/invite/9d1df993ea8139dc85eb44b22e633f0545984d9c

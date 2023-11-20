@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
   const Token = ref('')
+  const actors = ref([])
   const isAuthenticated = computed(()=>{
     if (Token.value === '') {
       return false
@@ -82,6 +83,21 @@ export const useCounterStore = defineStore('counter', () => {
     .catch(err=>console.log(err))
   }
 
+  const getActors = function () {
+    axios({
+      method:'get',
+      url:'http://127.0.0.1:8000/movies/actors/',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${TMDB_KEY}`
+        }
+    })
+    .then((res) => {
+      // console.log(res.data)
+      actors.value = res.data
+    })
+    .catch((err)=>{console.log(err);})
+  }
 
-  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated}
+  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors}
 }, { persist:true })
