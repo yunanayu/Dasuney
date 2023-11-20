@@ -1,0 +1,128 @@
+[
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 1776,
+			"director_name": "Francis Ford Coppola"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 4027,
+			"director_name": "Frank Darabont"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 488,
+			"director_name": "Steven Spielberg"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 35771,
+			"director_name": "Aditya Chopra"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 39996,
+			"director_name": "Sidney Lumet"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 608,
+			"director_name": "Hayao Miyazaki"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 21684,
+			"director_name": "Bong Joon-ho"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 525,
+			"director_name": "Christopher Nolan"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 74091,
+			"director_name": "Makoto Shinkai"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 138,
+			"director_name": "Quentin Tarantino"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 108,
+			"director_name": "Peter Jackson"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 24,
+			"director_name": "Robert Zemeckis"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 4385,
+			"director_name": "Sergio Leone"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 1032,
+			"director_name": "Martin Scorsese"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 628,
+			"director_name": "Isao Takahata"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 4818,
+			"director_name": "Roberto Benigni"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 5026,
+			"director_name": "Akira Kurosawa"
+		}
+	},
+	{
+		"model": "movies.director",
+		"fields": {
+			"director_id": 65314,
+			"director_name": "Giuseppe Tornatore"
+		}
+	}
+]
