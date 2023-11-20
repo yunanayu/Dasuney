@@ -1,11 +1,12 @@
 <template>
   <div>
     <!-- <p>영화</p> -->
-    <img :src="movieDetail.poster_path" alt="">
-    {{ movieDetail }}
-    <span @click="goMovieDetail(movieDetail.movie_id)">제목 : {{ movieDetail.title }}</span>
+    
+    <!-- {{ movieDetail }} -->
+    <span @click="goMovieDetail(movieDetail.movie_id)"><img :src="movieDetail.poster_path" alt=""></span>
+    <!-- 좋아요 상세 페이지로 옮겨주세요  -->
     <button @click.prevent="likeMovie(movieDetail.id)">zz</button>
-    <hr>
+    <!-- <hr> -->
   </div>
 </template>
 
@@ -39,5 +40,8 @@ const likeMovie = function (movieId) {
 </script>
 
 <style scoped>
+img {
+  width: 200px;
+}
 
 </style>
