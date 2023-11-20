@@ -14,7 +14,8 @@ import { ref } from 'vue';
 import axios from 'axios';
 const store = useCounterStore()
 const movies = ref([])
-console.log(store.Token);
+// console.log(store.Token);
+
 onMounted(()=>{
   // store.getMovieList
   axios({
@@ -29,8 +30,11 @@ onMounted(()=>{
         movies.value = res.data
       })
       .catch(err=>console.log(err))
-})
+    
+  store.getActors()
 
+})
+console.log(store.actors)
 </script>
 
 

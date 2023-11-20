@@ -75,6 +75,13 @@ def score_update(req, movie_pk, score_pk):
         return Response(status=status.HTTP_204_NO_CONTENT)
     
 
+@api_view(['GET','POST'])
+def actor_list(req):
+    if req.method == 'GET':
+        actors = get_list_or_404(Actor)
+        serializer = ActorSerializer(actors, many=True)
+        return Response(serializer.data)
+
 
 @api_view(['GET','POST'])
 def actor_add(req, movie_pk):
