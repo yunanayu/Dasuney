@@ -22,7 +22,7 @@ const store = useCounterStore()
 
 <style scoped>
 #app {
-  background-image: url('@/assets/wallpaperbetter.jpg');
+  /* background-image: url('@/assets/wallpaperbetter.jpg'); */
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
