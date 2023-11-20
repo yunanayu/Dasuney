@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
   const Token = ref('')
+  const actors = ref('')
   const isAuthenticated = computed(()=>{
     if (Token.value === '') {
       return false
@@ -82,6 +83,11 @@ export const useCounterStore = defineStore('counter', () => {
     .catch(err=>console.log(err))
   }
 
+  const getActors = function () {
+    axios({
+      
+    })
+  }
 
   return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated}
 }, { persist:true })
