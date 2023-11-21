@@ -1,62 +1,151 @@
 <template>
-  <h1 class="neon-effect">dasuney+</h1>
+  <main :class="color">
+    <div class="bg"></div>
+    <div class="wrapper">
+      <h1 class="font1">
+        <span>Dasuney+</span>
+        <h2 class="font2">made by @Sinwoong @Yuna</h2>
+      </h1>
+    </div>
+  </main>
 </template>
 
 <script>
 import { ref, onMounted } from 'vue'
-
 export default {
-  setup() {
-    // ref를 사용하여 타이머 상태를 저장
-    const timerFinished = ref(false)
-
-    // onMounted 훅에서 타이머 설정
-    onMounted(() => {
-      setTimeout(() => {
-        // 타이머가 끝나면 timerFinished 값을 true로 변경하고 라우터 이동
-        timerFinished.value = true
-      }, 3000)
-    })
-
+  
+  data() {
     return {
-      timerFinished
-    }
+      color: 'your-initial-class',
+      inputText: '',
+      user: {
+        name: 'WEBS',
+      },
+    };
   },
-
-  // watch를 사용하여 timerFinished 값이 변경될 때마다 라우터 이동
-  watch: {
-    timerFinished(value) {
-      if (value) {
-        this.$router.push('/intro')
-      }
-    }
-  }
-}
+  mounted() {
+    const colors = ['blue'];
+    this.changeColor(colors[Math.floor(Math.random() * colors.length)]);
+  },
+  methods: {
+    changeColor(newColor) {
+      this.color = newColor;
+    },
+  },
+};
 </script>
 
-<style>
-.neon-effect {
-  font-family: disney;
-  font-size: 200px;
-  margin-top: 200px;
+<style lang="scss" scoped>
+/* 필요한 스타일을 여기에 추가 */
+
+.wrapper {
+  position: absolute;
+  width: auto;
+  height: 150px;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   text-align: center;
-  color: #fff; /* Set initial text color */
-
-  /* Animation for the neon effect */
-  animation: neonGlow 1.5s ease-in-out infinite alternate;
-
-  /* Add a shadow to simulate the neon glow */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
-@keyframes neonGlow {
-  0% {
-    color: #fff; /* White color for glow effect */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  }
-  100% {
-    color: rgb(17, 154, 239); /* Your desired neon color */
-    text-shadow: 0 0 20px rgb(23, 108, 245), 0 0 30px rgb(24, 176, 246), 0 0 40px rgb(29, 135, 249); /* Add more glow layers */
-  }
+.wrapper h1 {
+  font-size: 200px;
+  margin: 0;
+  font-weight: normal;
 }
+
+.wrapper h2 {
+  font-size: 40px;
+  margin-top: 60px;
+  font-weight: normal;
+  line-height: 10px;
+}
+
+.font1 { 
+  font-family: disney;
+}
+.font2 { font-family: disney; }
+
+@mixin content($color, $id) {
+  
+  animation: bgNeon-#{$id} 3s infinite;
+  
+  $colorNeon: $color;
+  $colorLightNeon: lighten($colorNeon, 30%);
+  $shadowColor: adjust-hue($colorNeon, -30);
+  $bgNeon: adjust-color($shadowColor, $lightness: -40%);
+  
+  .input-text {
+    color: $colorNeon;
+  }
+  
+  .wrapper h1 {
+    animation: neon2-#{$id} 3s infinite;
+  }
+  
+  .wrapper h2 {
+    text-shadow: 0 0 10px $colorNeon, 0 0 30px $shadowColor;
+    color: $colorNeon;
+  }
+  
+  @keyframes neon2-#{$id} {
+    0% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+    80% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+    81% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px rgb(99, 74, 82), -2px 0px 4px #29121A;
+    }
+    94% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px rgb(99, 74, 82), -2px 0px 4px #29121A;
+    }
+    95% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+    96% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px rgb(99, 74, 82), -2px 0px 4px #29121A;
+    }
+    97% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+    98% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+    99% {
+      color: #222;
+      text-shadow: 0 0 10px #000, 1px 1px rgb(99, 74, 82), -2px 0px 4px #29121A;
+    }
+    100% {
+      color: $colorNeon;
+      text-shadow: 0 0 10px $colorNeon, 1px 1px $colorLightNeon, 0 0 280px $shadowColor;
+    }
+  }
+  
+  @keyframes bgNeon-#{$id} {
+    0% { background-color: $bgNeon; }
+    80% { background-color: $bgNeon; }
+    81% { background-color: #111; }
+    94% { background-color: #111; }
+    95% { background-color: $bgNeon; }
+    96% { background-color: #111; }
+    97% { background-color: $bgNeon; }
+    98% { background-color: $bgNeon; }
+    99% { background-color: #111; }
+    100% { background-color: $bgNeon; }
+  }
+  
+}
+main.blue { @include content(#03A9F4, 4); }
 </style>
