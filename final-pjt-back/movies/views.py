@@ -153,6 +153,9 @@ def director_update(req, movie_pk, director_pk):
 def actor_likes(req, actor_pk):
     if req.method == 'POST':
         actor = get_object_or_404(Actor, pk=actor_pk)
+        print(req.user)
+        print(req)
+        print(actor.pk)
         if req.user in actor.like_users.all():
             actor.like_users.remove(req.user)
             is_liked = False
