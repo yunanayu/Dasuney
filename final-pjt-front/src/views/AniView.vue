@@ -35,6 +35,9 @@ export default {
 </script>
 <script setup>
 import { useRouter } from 'vue-router';
+import { useCounterStore } from '../stores/counter';
+
+const store = useCounterStore()
 const router = useRouter()
 const goIntro = function () {
   router.push({name:'intro'})
