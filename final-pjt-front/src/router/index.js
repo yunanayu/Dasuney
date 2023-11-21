@@ -9,12 +9,17 @@ import DirectorLikeView from '@/views/Profiles/DirectorLikeView.vue'
 import HopeMovieView from '@/views/Profiles/HopeMovieView.vue'
 import StarRatingView from '@/views/Profiles/StarRatingView.vue'
 import IntroView from '@/views/accounts/IntroView.vue'
-
+import AniView from '@/views/AniView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'first',
+      component: AniView
+    },
+    {
+      path: '/intro',
       name: 'intro',
       component: IntroView
     },
