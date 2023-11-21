@@ -4,8 +4,10 @@
     <img :src="(`https://image.tmdb.org/t/p/w500/${directorInfo.profile_path}`)" alt="">
     <p> 이름 : {{ directorInfo.name }}</p>
     {{ directorInfo }}
-    <span @click.prevent="goDetail()">상세 정보 보기</span>
   </div>
+  <hr>
+  <span @click.prevent="goDetail()">상세 정보 보기</span>
+  <hr>
 </template>
 
 <script setup>
