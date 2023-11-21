@@ -101,6 +101,24 @@ export const useCounterStore = defineStore('counter', () => {
     })
     .catch((err)=>{console.log(err);})
   }
+  
+  const directors = ref([])
 
-  return {TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
+  const getDirectors = function () {
+    axios({
+      method:'get',
+      url:'http://127.0.0.1:8000/movies/directors/',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${TMDB_KEY}`
+        }
+    })
+    .then((res) => {
+      // console.log(res.data)
+      directors.value = res.data
+    })
+    .catch((err)=>{console.log(err);})
+  }
+
+  return {directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
 }, { persist:true })

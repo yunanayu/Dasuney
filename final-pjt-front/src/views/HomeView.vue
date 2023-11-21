@@ -25,15 +25,15 @@ onMounted(()=>{
       }
       })
       .then((res) => {
-        // console.log(res.data);
         movies.value = res.data
       })
       .catch(err=>console.log(err))
     
   store.getActors()
+  store.getDirectors()
 
 })
-// console.log(store.actors)
+
 </script>
 
 
