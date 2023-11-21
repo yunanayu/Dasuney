@@ -3,7 +3,7 @@
     <div class="bg"></div>
     <div class="wrapper">
       <h1 class="font1">
-        <span>Dasuney+</span>
+        <span @click="goIntro">Dasuney+</span>
         <h2 class="font2">made by @Sinwoong @Yuna</h2>
       </h1>
     </div>
@@ -33,7 +33,13 @@ export default {
   },
 };
 </script>
-
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter()
+const goIntro = function () {
+  router.push({name:'intro'})
+}
+</script>
 <style lang="scss" scoped>
 /* 필요한 스타일을 여기에 추가 */
 
