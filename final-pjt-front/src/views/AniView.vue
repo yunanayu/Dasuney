@@ -11,7 +11,31 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 
+=======
+export default {
+  
+  data() {
+    return {
+      color: 'your-initial-class',
+      inputText: '',
+      user: {
+        name: 'WEBS',
+      },
+    };
+  },
+  mounted() {
+    const colors = ['blue'];
+    this.changeColor(colors[Math.floor(Math.random() * colors.length)]);
+  },
+  methods: {
+    changeColor(newColor) {
+      this.color = newColor;
+    },
+  },
+};
+>>>>>>> 4a1d1196c80960075dd7a5e63999c6529248ae2e
 </script>
 
 <style lang="scss" scoped>
