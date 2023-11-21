@@ -8,12 +8,18 @@ import ActorLikeView from '@/views/Profiles/ActorLikeView.vue'
 import DirectorLikeView from '@/views/Profiles/DirectorLikeView.vue'
 import HopeMovieView from '@/views/Profiles/HopeMovieView.vue'
 import StarRatingView from '@/views/Profiles/StarRatingView.vue'
+import IntroView from '@/views/accounts/IntroView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
+      name: 'intro',
+      component: IntroView
+    },
+    {
+      path: '/home',
       name: 'home',
       component: HomeView
     },

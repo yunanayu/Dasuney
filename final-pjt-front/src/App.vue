@@ -13,7 +13,7 @@ const store = useCounterStore()
       <RouterLink to="/">Home</RouterLink> |
       <RouterLink to="/login" v-if="!store.isAuthenticated">LogIn |</RouterLink>
       <RouterLink to="/signup" v-if="!store.isAuthenticated"> SignUp</RouterLink>
-      <RouterLink :to="{name:'profile',params:{username:store.tempUsername}}" v-if="store.isAuthenticated">프로필 |</RouterLink> 
+      <!-- <RouterLink :to="{name:'profile',params:{username:store.tempUsername}}" v-if="store.isAuthenticated">프로필 |</RouterLink>  -->
       <button @click.prevent="store.logout()" v-if="store.isAuthenticated">로그아웃</button>
     </nav>
   <RouterView />
@@ -22,14 +22,10 @@ const store = useCounterStore()
 
 <style scoped>
 #app {
-  background-image: url('@/assets/wallpaperbetter.jpg');
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-
+  background-color: #0b1035;
   font-family: 'Arial', sans-serif;
-  color: #ffffff;
-  width: 100% 
+  color: white;
+  
   
 }
 </style>
