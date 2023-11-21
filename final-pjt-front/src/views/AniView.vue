@@ -11,9 +11,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-
-=======
 export default {
   
   data() {
@@ -35,7 +32,6 @@ export default {
     },
   },
 };
->>>>>>> 4a1d1196c80960075dd7a5e63999c6529248ae2e
 </script>
 
 <style lang="scss" scoped>
