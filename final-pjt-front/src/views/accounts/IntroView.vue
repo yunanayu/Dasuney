@@ -1,5 +1,4 @@
 <template>
-  
   <b-container style="height: 100vh">
       <div class="banner">
         <div class="bannerposition">
@@ -77,8 +76,9 @@ img {
 }
 .bannerposition {
   position: absolute ;
-  left: 100px;
+  /* left: 100px; */
   top: 250px;
+  margin-left: 100px;
 }
 .bannertext {
   margin-bottom: 20px;
@@ -155,5 +155,73 @@ img {
 
 h3 {
   color: white;
+}
+
+@media (min-width: 769px) {
+  /* 데스크탑 전용 스타일을 추가할 수 있습니다. */
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  /* 태블릿 전용 스타일을 추가할 수 있습니다. */
+  .bannerposition {
+    left: 50px; /* 태블릿용 왼쪽 위치 조정 */
+    top: 150px; /* 태블릿용 상단 위치 조정 */
+  }
+
+  .grid-list {
+    grid-gap: 50px; /* 태블릿용 그리드 간격 조정 */
+  }
+
+  .icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+  }
+
+  .email-form button {
+    padding: 0 30px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  /* 태블릿용 이미지 크기 조정 */
+  .banner {
+    height: 600px; /* 이미지 높이 조정 */
+  }
+
+  .icon {
+    width: 120px; /* 이미지 너비 조정 */
+    height: 120px; /* 이미지 높이 조정 */
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* 모바일 전용 스타일 추가 */
+  .bannerposition {
+    left: 20px; /* 모바일용 왼쪽 위치 조정 */
+    top: 100px; /* 모바일용 상단 위치 조정 */
+  }
+
+  .grid-list {
+    grid-gap: 30px; /* 모바일용 그리드 간격 조정 */
+  }
+
+  .icon {
+    width: 100px; /* 이미지 너비 조정 */
+    height: 100px; /* 이미지 높이 조정 */
+    margin-bottom: 10px;
+  }
+
+  .email-form button {
+    padding: 0 20px;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  /* 모바일용 이미지 크기 조정 */
+  .banner {
+    height: 400px; /* 이미지 높이 조정 */
+  }
 }
 </style>

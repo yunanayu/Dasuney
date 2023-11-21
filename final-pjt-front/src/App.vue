@@ -34,4 +34,5 @@ const store = useCounterStore()
   font-family: disney;
   font-size: 30px;
 }
+
 </style>
