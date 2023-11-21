@@ -34,15 +34,15 @@
             </div>
             <div class="icon-item">
               <img src="@/assets/comicon.png" alt="컴퓨터" class="icon"/>
-              <h3>컴퓨터</h3>
+              <h3>PC</h3>
             </div>
             <div class="icon-item">
               <img src="@/assets/phoneicon.png" alt="스마트폰 & 태블릿" class="icon"/>
-              <h3>스마트폰 & 태블릿</h3>
+              <h3>Mobile</h3>
             </div>
             <div class="icon-item">
               <img src="@/assets/gameicon.png" alt="게임 콘솔" class="icon"/>
-              <h3>게임 콘솔</h3>
+              <h3>Game Console</h3>
             </div>
           </div>
         </div>
