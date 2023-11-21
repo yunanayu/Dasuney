@@ -8,7 +8,6 @@
 <script setup>
 import { onMounted } from 'vue';
 import MovieList from '@/components/MovieList.vue';
-import { useMovieStore } from '../stores/movie';
 import { useCounterStore } from '../stores/counter';
 import { ref } from 'vue';
 import axios from 'axios';

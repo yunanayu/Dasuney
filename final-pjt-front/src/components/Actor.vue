@@ -11,7 +11,7 @@
 import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
-import { storeToRefs } from 'pinia';
+
 
 const store = useCounterStore()
 const props = defineProps({
