@@ -12,7 +12,7 @@
     <div class="category">
       <nav>
         <RouterLink to="/starrating">평가 ({{ ratingCount }})</RouterLink> |
-        <RouterLink to="/actorlike">배우b ({{ LikeActors.length }})</RouterLink> |
+        <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">배우b ({{ LikeActors.length }})</RouterLink> |
         <RouterLink to="/directorlike">감독b ({{ LikeDirectors.length }})</RouterLink> |
         <RouterLink to="/hopemovie">보고싶어요 ({{ HopeMovies.length }})</RouterLink>
       </nav>
@@ -78,7 +78,6 @@ const LikeDirectors = ref([])
 
 const ratingCount = ref(0);
 
-
 onMounted(() => {
   axios({
     method : 'get',
@@ -94,6 +93,7 @@ onMounted(() => {
     LikeActors.value = res.data.like_actor
     LikeDirectors.value = res.data.like_director
     HopeMovies.value = res.data.like_movies
+    // console.log(LikeActors.value);
   })
   .catch(err=>console.log(err))
   // store.getActors()

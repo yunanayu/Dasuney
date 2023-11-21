@@ -44,7 +44,7 @@ const router = createRouter({
       component: ProfileView
     },
     {
-      path: '/actorlike',
+      path: '/actorlike/:username',
       name: 'actorlike',
       component: ActorLikeView
     },

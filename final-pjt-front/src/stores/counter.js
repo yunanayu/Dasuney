@@ -102,5 +102,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return { LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
+  return {TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
 }, { persist:true })
