@@ -200,6 +200,7 @@ button {
   left: 590px;
   font-size: 20px;
 }
+
 .category nav {
   margin-top: 20px;
   text-align: center;
@@ -208,7 +209,7 @@ button {
 .category nav a {
   margin: 0 20px;
   text-decoration: none;
-  color: #333;
+  color: rgb(112, 111, 111);
   font-size: 18px;
   font-weight: bold;
   transition: color 0.3s;
@@ -216,6 +217,18 @@ button {
 
 .category nav a:hover {
   color: #4caf50;
+}
+.category {
+  margin: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: 3px solid #4caf50;
 }
 
 .profile-picture {
