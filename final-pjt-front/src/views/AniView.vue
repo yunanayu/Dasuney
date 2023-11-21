@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <h1>애니메이션 뷰 으하하 으하하 으하하하하하하으하ㅏㅎ으하하으하하하하하하</h1>
-  </div>
+  <h1>dasney+</h1>
 </template>
 
 <script>
@@ -36,6 +34,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
 
 </style>
