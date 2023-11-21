@@ -2,7 +2,7 @@
   <b-container style="height: 100vh">
       <div class="banner">
         <div class="bannerposition">
-            <h1 class="dasney">Dasney+ </h1><br>
+            <h1 class="dasney">Dasney+</h1><br>
             <h1>취향에 따라 골라보는 다양한<br>컨텐츠가 모두 한자리에</h1><br>
             <h5 style="color: gray;">지금 바로 회원이 되어보세요</h5>
           <div class="accounts">
