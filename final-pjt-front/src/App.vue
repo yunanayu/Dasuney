@@ -34,5 +34,10 @@ const store = useCounterStore()
   font-family: disney;
   font-size: 30px;
 }
-
+.navbar-brand {
+  margin-left: 15px;
+}
+.btn-outline-light {
+  margin-right: 20px;
+}
 </style>
