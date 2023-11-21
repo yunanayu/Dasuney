@@ -31,7 +31,7 @@
       <nav>
         <RouterLink to="/starrating">내 평가 ({{ ratingCount }})</RouterLink>
         <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
-        <RouterLink to="/directorlike">좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
+        <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
         <RouterLink to="/hopemovie">보고싶어요 ({{ HopeMovies.length }})</RouterLink>
       </nav>
     </div>

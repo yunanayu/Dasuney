@@ -54,7 +54,7 @@ const router = createRouter({
       component: ActorLikeView
     },
     {
-      path: '/directorlike',
+      path: '/directorlike/:username',
       name: 'directorlike',
       component: DirectorLikeView
     },
