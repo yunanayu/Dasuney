@@ -66,7 +66,7 @@ export const useCounterStore = defineStore('counter', () => {
       window.alert('로그아웃 완료');
       Token.value = ''
       tempUsername.value = ''
-      router.push({name:'home'})
+      router.push({name:'intro'})
     })
     .catch(err=>console.log(err))
   }
