@@ -1,5 +1,5 @@
 <template>
-  <h1>dasney+</h1>
+  <h1 class="neon-effect">dasuney+</h1>
 </template>
 
 <script>
@@ -35,5 +35,28 @@ export default {
 </script>
 
 <style>
+.neon-effect {
+  font-family: disney;
+  font-size: 200px;
+  margin-top: 200px;
+  text-align: center;
+  color: #fff; /* Set initial text color */
 
+  /* Animation for the neon effect */
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+
+  /* Add a shadow to simulate the neon glow */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes neonGlow {
+  0% {
+    color: #fff; /* White color for glow effect */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  }
+  100% {
+    color: rgb(17, 154, 239); /* Your desired neon color */
+    text-shadow: 0 0 20px rgb(23, 108, 245), 0 0 30px rgb(24, 176, 246), 0 0 40px rgb(29, 135, 249); /* Add more glow layers */
+  }
+}
 </style>
