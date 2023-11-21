@@ -16,14 +16,17 @@
           alt="프로필 사진"
           class="profile-picture"
         />
-        <span v-else>프로필 사진 선택</span>
-      </label>
-    </div>
-    <button @click="follow" v-show="followbutton">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
-    <div class="follow-count">
-      <p>팔로우: {{ followings.length }}</p>
-      <p>팔로워: {{ followers.length }}</p>
-    </div>
+        <span v-else="profilePicture"
+          :src="profilePicture"
+          alt="프로필 사진"
+          class="profile-nonpicture">프로필 추가</span>
+        </label>
+      </div>
+      <div class="follow-count">
+        <button @click="follow" v-show="followbutton">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
+        <p class="count-follow">팔로우: {{ followings.length }}</p>
+        <p class="count-following">팔로워: {{ followers.length }}</p>
+      </div>
     <div class="category">
       <nav>
         <RouterLink to="/starrating">내 평가 ({{ ratingCount }})</RouterLink>
@@ -137,8 +140,9 @@ onMounted(() => {
 }
 
 h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-family: disney;
+  font-size: 100px;
+  margin-bottom: 30px;
 }
 
 .myprofile {
@@ -148,11 +152,14 @@ h1 {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-bottom: 20px;
+
+  
 }
 
 .myprofile img {
-  width: 150px;
-  height: 150px;
+  /* 내 사진 */
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -172,12 +179,27 @@ button {
 button:hover {
   background-color: #45a049;
 }
-
-.follow-count p {
-  font-size: 18px;
-  margin: 5px 0;
+.follow-count {
+  position: relative;
 }
-
+.count-follow {
+  position: absolute;
+  bottom: 200px;
+  left: 600px;
+  font-size: 20px;
+}
+.count-following {
+  position: absolute;
+  bottom: 150px;
+  left: 600px;
+  font-size: 20px;
+}
+button {
+  position: absolute;
+  bottom: 260px;
+  left: 590px;
+  font-size: 20px;
+}
 .category nav {
   margin-top: 20px;
   text-align: center;
@@ -196,26 +218,38 @@ button:hover {
   color: #4caf50;
 }
 
-.profile-picture-label {
-  cursor: pointer;
-  display: inline-block;
-}
-
 .profile-picture {
-  width: 150px;
-  height: 150px;
+  /* 사진 테두리 */
+  width: 200px; 
+  height: 200px; 
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 10px;
-  border: 2px solid #4caf50; /* 이미지가 선택된 경우의 테두리 색상 */
+  border: 2px solid #4caf50; 
 }
 
+
 .profile-picture-label span {
+  /* 사진 없을 때 */
   display: inline-block;
   padding: 10px;
-  background-color: #4caf50; /* 이미지가 선택되지 않은 경우의 배경색상 */
-  color: #fff;
-  border-radius: 4px;
+  color: rgb(200, 197, 197);
   cursor: pointer;
+  width: 300px;
+  height: 300px;
+}
+.profile-nonpicture {
+  border-radius: 300px;
+  background-color: rgb(236, 231, 231);
+  width: 200px; 
+  height: 200px; 
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 4px solid #4caf50;
+  line-height: 250px;
+  text-align: center;
+  font-size: 30px;
+
 }
 </style>
