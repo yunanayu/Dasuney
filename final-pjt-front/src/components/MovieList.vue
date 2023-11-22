@@ -15,7 +15,7 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">다음</span>
     </button>
-  </div>
+  </div>``
 </div>
 </template>
 

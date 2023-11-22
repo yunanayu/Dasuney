@@ -11,7 +11,8 @@
     <h3>줄거리</h3>
     <p>{{ movieInfo.overview }}</p>
     <button @click.prevent="hopeMovie(movieInfo.title)">조하여!!!!!!!!!!!!!!!!</button> -->
-      {{ movie }}
+      <!-- {{ movie }} -->
+      {{ movieTitle }}
   </div>
 </template>
 
@@ -20,10 +21,14 @@ import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
 const store = useCounterStore()
+// const props = defineProps({
+//   movie : {
+//     type : Object
+//   }
+// })
+
 const props = defineProps({
-  movie : {
-    type : Object
-  }
+  movie : Object
 })
 const isLiked = ref(false)
 
@@ -49,7 +54,7 @@ const isLiked = ref(false)
 //   })
 //   .catch(err => console.log(err))
 // }
-// console.log(props);
+console.log(1,props.movie);
 // console.log(props.movie);
 
 onMounted(() => {
