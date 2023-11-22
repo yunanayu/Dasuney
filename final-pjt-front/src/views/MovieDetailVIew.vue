@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="movieDetail">
     <h1>{{ movieDetail.title }} 상세 정보</h1>
     <div v-if="movieDetail">
       <MovieInfo :movie-info="movieDetail"/>
