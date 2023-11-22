@@ -16,11 +16,9 @@ import { useCounterStore } from '../stores/counter';
 const store = useCounterStore()
 const router = useRouter()
 // const props = defineProps({
-//   movieDetail : Object
+//   movieDetail : Array
 // })
-const props = defineProps({
-  movieDetail : Array
-})
+const { movieDetail } = defineProps(['movieDetail']);
 
 const goMovieDetail = function (movieId) {
   router.push({name:'moviedetail', params:{ movieId: movieId }})
