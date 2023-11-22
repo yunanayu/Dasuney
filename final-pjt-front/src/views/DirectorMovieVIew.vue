@@ -1,14 +1,21 @@
 <template>
-  <div>
-    <h1>갬동님이 참여한 영화 상세정보 페이지 입니당....</h1>
-    <img :src="(`https://image.tmdb.org/t/p/w500/${directorInfo.profile_path}`)" alt="">
-    <p> 이름 : {{ route.query.directorname }}</p>
-    <button @click.prevent="likeDirector(directorInfo.name)">{{ isLiked ? '안조하여':'조아혀???'}}</button>
-    <!-- <p>{{ directorInfo }}</p> -->
-    <div v-for="credit in directorCredits">
-      <!-- {{ credit }} -->
-      <img :src="(`https://image.tmdb.org/t/p/w500/${credit.poster_path}`)" alt="">
-      <p>제목 : {{ credit.title }}</p>
+  <div class="container">
+    <div style="margin-top: 20px;">
+      <h1>감독님이 참여한 작품</h1>
+      <div class="director">
+        <img :src="(`https://image.tmdb.org/t/p/w500/${directorInfo.profile_path}`)" alt="">
+      </div>
+      <h4>{{ route.query.directorname }}</h4>
+      <div class="director-info">
+        <button @click.prevent="likeDirector(directorInfo.name)">{{ isLiked ? '좋아요 취소':'좋아요'}}</button>
+      </div>
+      
+      <div class="dircetor-movie">
+        <div v-for="credit in directorCredits">
+          <img :src="(`https://image.tmdb.org/t/p/w500/${credit.poster_path}`)" alt="">
+          <p>제목 : {{ credit.title }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -96,5 +103,33 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.director-info button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.director-info button:hover {
+  background-color: #2980b9;
+}
+.dircetor-movie {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 350px;
+  grid-gap: 40px;
+  margin-top: 100px;
+  text-align: center;
+}
+.dircetor-movie img {
+  width: 200px;
+}
+
+.director img {
+  width: 300px;
+  margin-top: 30px;
+}
 </style>
