@@ -36,10 +36,16 @@ export default {
 <script setup>
 import { useRouter } from 'vue-router';
 import { useCounterStore } from '@/stores/counter';
-
+import { onMounted } from 'vue';
 const store = useCounterStore()
+// console.log(store.temp)
 const router = useRouter()
+
+onMounted(()=>{
+  store.temp = false
+})
 const goIntro = function () {
+  store.temp = true
   router.push({name:'intro'})
 }
 </script>

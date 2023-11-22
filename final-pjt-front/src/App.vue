@@ -9,7 +9,7 @@ const store = useCounterStore()
 
 <template>
   <div id="app">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navtext">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navtext" v-show="store.temp">
       <div >
         <RouterLink class="navbar-brand" to="/home" style="font-size: 40px;" v-show="store.isAuthenticated">Dasuney+</RouterLink>
         <RouterLink class="navbar-brand" to="/intro" style="font-size: 40px;" v-show="!store.isAuthenticated">Dasuney+</RouterLink>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
+  const temp = true
   const tempUsername = ref('')
   const Token = ref('')
   const actors = ref([])
@@ -120,5 +121,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return {directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
+  return {temp,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
 }, { persist:true })
