@@ -7,7 +7,7 @@
         <MovieCard :movie-detail="movie" />
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">이전</span>
     </button>
@@ -53,5 +53,6 @@ const chunkedMovies = computed(() => {
 .carousel-inner {
   text-align: center;
 }
+
 
 </style>
