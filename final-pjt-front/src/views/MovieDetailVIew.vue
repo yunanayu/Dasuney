@@ -1,16 +1,16 @@
 <template>
-  <div v-if="movieDetail">
-    <h1>{{ movieDetail.title }} 상세 정보</h1>
+  <div class="container">
     <div v-if="movieDetail">
-      <MovieInfo :movie-info="movieDetail"/>
+      <div v-if="movieDetail">
+        <MovieInfo :movie-info="movieDetail"/>
+      </div>
+      <h3>감독</h3>
+      <Director v-for="director in directors" :director="director"/>
+      <hr>
+      <h3>Credits</h3>
+      <h4>출연진</h4>
+      <Actor v-for="cast in casts" :cast="cast"/>
     </div>
-    <h3>Credits</h3>
-    <h4>출연진</h4>
-    <Actor v-for="cast in casts" :cast="cast"/>
-    <hr>
-    <h5>감독</h5>
-    <Director v-for="director in directors" :director="director"/>
-
   </div>
 </template>
 

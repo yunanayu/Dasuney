@@ -1,42 +1,45 @@
 <template>
-  <div class="movie-detail">
-    <div class="header">
-      <img :src="`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`" alt="영화 포스터">
-      <div class="movie-info">
-        <h1>{{ movieInfo.title }}</h1>
-        <p class="release-date">{{ movieInfo.release_date }}</p>
-        <p class="runtime">{{ movieInfo.runtime }} 분</p>
-        <p class="tmdb-rating">TMDB 평점: {{ movieInfo.vote_average }}</p>
-        <div class="genres">
-          <h4>장르</h4>
-          <p v-for="genre in movieInfo.genres" :key="genre.id">{{ genre.name }}</p>
+  <div class="container">
+    <div class="movie-detail">
+      <h1>{{ movieInfo.title }} 상세 정보</h1>
+      <div class="header">
+        <img :src="`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`" alt="영화 포스터">
+        <div class="movie-info">
+          <button class="like-button" @click.prevent="hopeMovie">{{ isLiked ? '안 볼래영' : '보고 싶어요!' }}</button>
+          <h1>{{ movieInfo.title }}</h1>
+          <p class="release-date">{{ movieInfo.release_date }}</p>
+          <p class="runtime">{{ movieInfo.runtime }} 분</p>
+          <p class="tmdb-rating">TMDB 평점: {{ movieInfo.vote_average }}</p>
+          <div class="genres">
+            <h4>장르</h4>
+            <p v-for="genre in movieInfo.genres" :key="genre.id">{{ genre.name }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="rating-section">
-      <h2>이 영화 평가하기</h2>
-      <div class="rate">
-        <input type="radio" @click="reRateScore(10)" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
-        <input type="radio" @click="reRateScore(9)" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>
-        <input type="radio" @click="reRateScore(8)" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>
-        <input type="radio" @click="reRateScore(7)" id="rating7" name="rating" value="7"><label class="half" for="rating7" title="3.5점"></label>
-        <input type="radio" @click="reRateScore(6)" id="rating6" name="rating" value="6"><label for="rating6" title="3점"></label>
-        <input type="radio" @click="reRateScore(5)" id="rating5" name="rating" value="5"><label class="half" for="rating5" title="2.5점"></label>
-        <input type="radio" @click="reRateScore(4)" id="rating4" name="rating" value="4"><label for="rating4" title="2점"></label>
-        <input type="radio" @click="reRateScore(3)" id="rating3" name="rating" value="3"><label class="half" for="rating3" title="1.5점"></label>
-        <input type="radio" @click="reRateScore(2)" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
-        <input type="radio" @click="reRateScore(1)" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
+      <div class="rating-section">
+        <h2>이 영화 평가하기</h2>
+        <div class="rate">
+          <input type="radio" @click="reRateScore(10)" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
+          <input type="radio" @click="reRateScore(9)" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>
+          <input type="radio" @click="reRateScore(8)" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>
+          <input type="radio" @click="reRateScore(7)" id="rating7" name="rating" value="7"><label class="half" for="rating7" title="3.5점"></label>
+          <input type="radio" @click="reRateScore(6)" id="rating6" name="rating" value="6"><label for="rating6" title="3점"></label>
+          <input type="radio" @click="reRateScore(5)" id="rating5" name="rating" value="5"><label class="half" for="rating5" title="2.5점"></label>
+          <input type="radio" @click="reRateScore(4)" id="rating4" name="rating" value="4"><label for="rating4" title="2점"></label>
+          <input type="radio" @click="reRateScore(3)" id="rating3" name="rating" value="3"><label class="half" for="rating3" title="1.5점"></label>
+          <input type="radio" @click="reRateScore(2)" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
+          <input type="radio" @click="reRateScore(1)" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
+        </div>
+        <button @click="cancelRating" class="score-button">평가 취소</button>
+        
       </div>
-      <button @click="cancelRating" class="score-button">평가 취소</button>
-      <button class="like-button" @click.prevent="hopeMovie">{{ isLiked ? '안 볼래영' : '보고 싶어여!' }}</button>
+      <div class="plot-summary">
+        <h2>줄거리</h2>
+        <p>{{ movieInfo.overview }}</p>
+      </div>  
     </div>
-    <div class="plot-summary">
-      <h2>줄거리</h2>
-      <p>{{ movieInfo.overview }}</p>
-    </div>  
+    <hr>
   </div>
-  <hr>
-  
   </template>
   
   <script setup>
@@ -156,11 +159,6 @@
   });
   </script>
   
-  
-  
-  
-  
-  
   <style scoped>
   @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
   .rate { display: inline-block;border: 0;margin-right: 15px;}
@@ -192,6 +190,7 @@
   .header {
     display: flex;
     align-items: center;
+    margin-top: 30px;
   }
   
   .header img {
@@ -201,7 +200,7 @@
   }
   
   .movie-info {
-    color: #333;
+    color: white
   }
   
   .movie-info h1 {
@@ -239,7 +238,11 @@
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-bottom: 15px;
   }
+.like-button:hover {
+  background-color: #2980b9;
+}
   .score-button {
     background-color: #f01b14;
     color: #fff;
@@ -249,7 +252,9 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+  .score-button:hover {
+  background-color: #ee8d0f;
+}
   .like-button:hover {
     background-color: #2980b9;
   }

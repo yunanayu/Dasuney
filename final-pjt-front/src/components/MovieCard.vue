@@ -3,8 +3,7 @@
     <div class="array">
       <div v-for="movie in movieDetail">
         <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
-        
-    </div>
+      </div>
     </div>
   </div>
 </template>

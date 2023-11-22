@@ -1,9 +1,13 @@
 <template>
-  <div v-if="director">
-    <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="">
-    <p>{{ director.name }}</p>
-    <p>{{ director.id }}</p>
-    <button @click.prevent="likeDirector(director.name)">{{ isLiked ? '안조하여':'조아혀???'}}</button>
+  <div class="container">
+    <div v-if="director" class="director-detail">
+      <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="감독 프로필">
+      <div class="director-info">
+        <p>{{ director.name }}</p>
+        <p>{{ director.id }}</p>
+        <button @click.prevent="likeDirector(director.name)">{{ isLiked ? '좋아요 취소' : '좋아요'}}</button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,5 +53,28 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.director-detail {
+  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.director-detail img {
+  max-width: 200px;
+  margin-right: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+} 
+.director-info button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
+.director-info button:hover {
+  background-color: #2980b9;
+}
 </style>
