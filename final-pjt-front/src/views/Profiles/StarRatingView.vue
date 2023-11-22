@@ -24,7 +24,7 @@ onMounted(() => {
       }
   })
   .then((res) => {;
-    // console.log(res.data.score_set);
+    console.log(res.data.score_set);
     ratingMovies.value = res.data.score_set
     console.log(ratingMovies.value);
   })
