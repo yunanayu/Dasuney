@@ -85,4 +85,10 @@ onMounted(() => {
 .director-info button:hover {
   background-color: #2980b9;
 }
+
+img:hover {
+  /* 여기에 원하는 호버 효과 스타일을 추가하세요 */
+  border: 4px solid beige
+  /* 예: 테두리 추가 */
+}
 </style>

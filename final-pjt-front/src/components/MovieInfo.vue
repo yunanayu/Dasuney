@@ -5,7 +5,7 @@
       <div class="header">
         <img :src="`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`" alt="영화 포스터">
         <div class="movie-info">
-          <button class="like-button" @click.prevent="hopeMovie">{{ isLiked ? '안 볼래영' : '보고 싶어요!' }}</button>
+          <button class="like-button" @click.prevent="hopeMovie">{{ isLiked ? '보고 싶어요 취소' : '보고 싶어요!' }}</button>
           <h1>{{ movieInfo.title }}</h1>
           <p class="release-date">{{ movieInfo.release_date }}</p>
           <p class="runtime">{{ movieInfo.runtime }} 분</p>

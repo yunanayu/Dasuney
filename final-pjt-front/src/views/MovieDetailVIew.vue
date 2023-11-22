@@ -12,7 +12,9 @@
       <div style="margin-left: 170px;">
       <h3>배우</h3>
       </div>
-      <Actor v-for="cast in casts" :cast="cast"/>
+      <div class="actor">
+        <Actor v-for="cast in casts" :cast="cast"/>
+      </div>
     </div>
   </div>
 </template>
@@ -70,4 +72,9 @@ onMounted(()=> {
 </script>
 
 <style scoped>
+.actor {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-left: 150px;
+}
 </style>
