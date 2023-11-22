@@ -2,7 +2,7 @@
   <div>
     <br>
     <img :src="(`https://image.tmdb.org/t/p/w500/${actorInfo.profile_path}`)" alt="">
-    <p> 이름 : {{ actorInfo.name }}</p>
+    <p> {{ actorInfo.name }}</p>
   </div>
 </template>
 
@@ -34,6 +34,22 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+img {
+  width: 200px;
+  height: 250px;
+}
+
+img:hover {
+  /* 여기에 원하는 호버 효과 스타일을 추가하세요 */
+  border: 4px solid beige
+  /* 예: 테두리 추가 */
+}
+
+p {
+  text-align: center;
+  margin-right: 20px;
+  margin-top: 10px;
+}
 
 </style>
