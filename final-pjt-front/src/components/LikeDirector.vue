@@ -6,7 +6,7 @@
     {{ directorInfo }}
   </div>
   <hr>
-  <span @click.prevent="goDetail()">상세 정보 보기</span>
+  <span @click.prevent="goDetail(directorInfo.name)">상세 정보 보기</span>
   <hr>
 </template>
 
@@ -38,8 +38,8 @@ onMounted(() => {
     })
 })
 
-const goDetail = function () {
-  router.push({name:'directormovielist', params:{directorid:directorInfo.value.id}})
+const goDetail = function (directorname) {
+  router.push({name:'directormovielist', params:{directorid:directorInfo.value.id}, query:{directorname:directorname}})
 }
 </script>
 
