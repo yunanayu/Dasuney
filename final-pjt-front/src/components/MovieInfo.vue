@@ -9,6 +9,7 @@
     <p v-for="genre in movieInfo.genres" :key="genre.id">{{ genre.name }}</p>
     <h3>줄거리</h3>
     <p>{{ movieInfo.overview }}</p>
+    <p>{{ movieInfo }}</p>
     <button @click.prevent="hopeMovie">{{ isLiked ? '안볼래영' : '보고싶어여!!!!!!!!!!!!!!!!'}}</button>
     <hr>
     <div>
@@ -41,6 +42,8 @@ const props = defineProps(['movieInfo']);
 
 const isLiked = ref(false);
 const selectedScore = ref(-1);
+
+const moviescore = ref(null)
 
 const hopeMovie = function () {
   const movie = store.movies.find((m) => m.title === props.movieInfo.title);
@@ -83,27 +86,55 @@ const reRateScore = function (score) {
     }
   })
   .then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
+    moviescore.value = res.data
+    // console.log(score)
   })
   .catch((err) => console.log(err));
 };
 
 const cancelRating = function () {
-  // 평가 취소 버튼을 눌렀을 때 선택된 별 초기화
-  selectedScore.value = -1;
+  if (!moviescore.value) {
+    console.error('취소할 평점이 없습니다.')
+    window.alert('취소할 평점이 없습니다.')
+    return 
+  } else {
+    // 평가 취소 버튼을 눌렀을 때 선택된 별 초기화
+    selectedScore.value = -1;
+  
+    // 선택된 별이 없다면 초기화하는 로직을 추가할 수 있습니다.
+    const stars = document.querySelectorAll('input[name="rating"]');
+    stars.forEach((star, index) => {
+      star.checked = false;
+    });
+  
+    axios({
+      method :'delete',
+      url : `http://127.0.0.1:8000/movies/${moviescore.value.movie}/score/${moviescore.value.id}/`,
+      headers: {
+        Authorization: `Token ${store.Token}`
+      },
+    })
+    .then ((res) => {
+      console.log("평가가 취소되었습니다.");
+      window.alert("평가가 취소되었습니다.");
+    })
+  }
+}
 
-  // 선택된 별이 없다면 초기화하는 로직을 추가할 수 있습니다.
-  const stars = document.querySelectorAll('input[name="rating"]');
-  stars.forEach((star, index) => {
-    star.checked = false;
-  });
 
-  console.log("평가가 취소되었습니다.");
-};
 
 onMounted(() => {
+  store.getMovieList()
   const movie = store.movies.find((m) => m.title === props.movieInfo.title);
-
+  // console.log(movie);
+  if (movie.score_set.length > 0) {
+    moviescore.value = movie.score_set[0]
+    // console.log(moviescore.value)
+  } else {
+    moviescore.value = null
+  }
+  console.log(moviescore.value)
   axios({
     method: 'get',
     url: `http://127.0.0.1:8000/movies/${movie.id}/movielike/`,
@@ -117,6 +148,11 @@ onMounted(() => {
   .catch(err => console.log(err));
 });
 </script>
+
+
+
+
+
 
 <style scoped>
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
