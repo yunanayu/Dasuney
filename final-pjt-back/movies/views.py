@@ -82,6 +82,13 @@ def actor_list(req):
         serializer = ActorSerializer(actors, many=True)
         return Response(serializer.data)
 
+@api_view(['GET','POST'])
+def director_list(req):
+    if req.method == 'GET':
+        directors = get_list_or_404(Director)
+        serializer = DirectorSerializer(directors, many=True)
+        return Response(serializer.data)
+
 
 @api_view(['GET','POST'])
 def actor_add(req, movie_pk):
@@ -149,13 +156,20 @@ def director_update(req, movie_pk, director_pk):
     
 
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def actor_likes(req, actor_pk):
-    if req.method == 'POST':
+    if req.method == 'GET':
         actor = get_object_or_404(Actor, pk=actor_pk)
-        print(req.user)
-        print(req)
-        print(actor.pk)
+        if req.user in actor.like_users.all():
+            is_liked = True
+        else:
+            is_liked = False
+        context = {
+            'is_liked' : is_liked,
+        }
+        return JsonResponse(context)
+    elif req.method == 'POST':
+        actor = get_object_or_404(Actor, pk=actor_pk)
         if req.user in actor.like_users.all():
             actor.like_users.remove(req.user)
             is_liked = False
@@ -170,9 +184,20 @@ def actor_likes(req, actor_pk):
     
 
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def director_likes(req, director_pk):
-    if req.method == 'POST':
+    if req.method == 'GET':
+        director = get_object_or_404(Director, pk=director_pk)
+        if req.user in director.like_users.all():
+            is_liked = True
+        else:
+            is_liked = False
+        context = {
+            'is_liked' : is_liked,
+            'like_count' : director.like_users.count()
+        }
+        return JsonResponse(context)
+    elif req.method == 'POST':
         director = get_object_or_404(Director, pk=director_pk)
         if req.user in director.like_users.all():
             director.like_users.remove(req.user)
@@ -185,3 +210,4 @@ def director_likes(req, director_pk):
             'like_count' : director.like_users.count()
         }
         return JsonResponse(context)
+    

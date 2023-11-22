@@ -10,7 +10,8 @@ const store = useCounterStore()
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark navtext">
-      <RouterLink class="navbar-brand" to="/home" style="font-size: 40px;">Dasney+</RouterLink>
+      <RouterLink class="navbar-brand" to="/home" style="font-size: 40px;" v-show="store.isAuthenticated">Dasuney+</RouterLink>
+      <RouterLink class="navbar-brand" to="/intro" style="font-size: 40px;"  v-show="!store.isAuthenticated">Dasuney+</RouterLink>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto">
           <li class="nav-item" v-if="store.isAuthenticated">
@@ -34,5 +35,10 @@ const store = useCounterStore()
   font-family: disney;
   font-size: 30px;
 }
-
+.navbar-brand {
+  margin-left: 15px;
+}
+.btn-outline-light {
+  margin-right: 20px;
+}
 </style>

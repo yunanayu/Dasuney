@@ -1,29 +1,32 @@
 <template>
   <div>
-    <h1>갬동님 상세정보 페이지 입니당....</h1>
+    <br>
     <img :src="(`https://image.tmdb.org/t/p/w500/${directorInfo.profile_path}`)" alt="">
     <p> 이름 : {{ directorInfo.name }}</p>
-    <p>{{ directorInfo }}</p>
+    {{ directorInfo }}
   </div>
+  <hr>
+  <span @click.prevent="goDetail()">상세 정보 보기</span>
+  <hr>
 </template>
 
 <script setup>
 import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
-import { useRouter, useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 const router = useRouter()
 const store = useCounterStore()
-const route = useRoute()
-
-console.log(route.params.directorid);
+const props = defineProps ({
+  director : Object
+})
 
 const directorInfo = ref({})
 
 onMounted(() => {
   axios({
       method:'get',
-      url : `https://api.themoviedb.org/3/person/${route.params.directorid}`,
+      url : `https://api.themoviedb.org/3/person/${props.director.director_id}`,
       headers: {
         accept: 'application/json',
         Authorization: `Bearer ${store.TMDB_KEY}`
@@ -34,8 +37,12 @@ onMounted(() => {
       directorInfo.value = res.data
     })
 })
+
+const goDetail = function () {
+  router.push({name:'directormovielist', params:{directorid:directorInfo.value.id}})
+}
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

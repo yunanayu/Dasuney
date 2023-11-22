@@ -8,7 +8,6 @@
 <script setup>
 import { onMounted } from 'vue';
 import MovieList from '@/components/MovieList.vue';
-import { useMovieStore } from '../stores/movie';
 import { useCounterStore } from '../stores/counter';
 import { ref } from 'vue';
 import axios from 'axios';
@@ -26,15 +25,15 @@ onMounted(()=>{
       }
       })
       .then((res) => {
-        // console.log(res.data);
         movies.value = res.data
       })
       .catch(err=>console.log(err))
     
   store.getActors()
+  store.getDirectors()
 
 })
-// console.log(store.actors)
+
 </script>
 
 

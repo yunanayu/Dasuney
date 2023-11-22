@@ -56,7 +56,7 @@ onMounted(()=> {
       // console.log(res.data)
       // console.log(res.data.cast.slice(0,6));
       // console.log(res.data.crew.filter((crew)=>crew.job === 'Director'));
-      casts.value = res.data.cast.slice(0,6)
+      casts.value = res.data.cast.slice(0,5)
       directors.value = res.data.crew.filter((crew)=>crew.job === 'Director')
     })
     .catch(err=>console.log(err))

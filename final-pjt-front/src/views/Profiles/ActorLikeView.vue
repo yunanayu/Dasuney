@@ -2,6 +2,7 @@
   <div>
     <h3>좋아하는 배우 LIST</h3>
     <LikeActor v-for="actor in LikeActors" :actor="actor"/>
+    <!-- <Actor v-for="actor in LikeActors" :cast="actor"/> -->
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import LikeActor from '@/components/LikeActor.vue'
+import Actor from '../../components/Actor.vue';
 import { useCounterStore } from '../../stores/counter';
 import axios from 'axios';
 const route = useRoute()
