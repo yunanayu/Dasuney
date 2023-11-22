@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -22,7 +22,7 @@ import Actor from '../components/Actor.vue';
 import Director from '../components/Director.vue';
 
 const route = useRoute()
-const store = useCounterStore()
+// const store = useCounterStore()
 const key = import.meta.env.VITE_TMDB_API_KEY
 const movieInfo = ref({})
 const casts = ref([])
