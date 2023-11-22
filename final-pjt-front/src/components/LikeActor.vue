@@ -1,8 +1,9 @@
 <template>
   <div>
-    <br>
-    <img :src="(`https://image.tmdb.org/t/p/w500/${actorInfo.profile_path}`)" alt="">
-    <p> {{ actorInfo.name }}</p>
+    <div class="director-info" @click.prevent="goDetail(actorInfo.name)">
+      <img :src="(`https://image.tmdb.org/t/p/w500/${actorInfo.profile_path}`)" alt="">
+      <p> {{ actorInfo.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -10,13 +11,24 @@
 import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const store = useCounterStore()
 const props = defineProps ({
   actor : Object
 })
 
 const actorInfo = ref({})
+
+const goDetail = function (actorname) {
+  router.push({
+    name: 'actormovielist',
+    params: { actorid: actorInfo.value.id },
+    query: { actorname: actorname }
+  })
+}
+
 
 onMounted(() => {
   axios({
@@ -28,13 +40,16 @@ onMounted(() => {
         }
     })
     .then((res) =>{
-      // console.log(res.data);
       actorInfo.value = res.data
     })
 })
 </script>
 
 <style scoped>
+.director-info {
+  cursor: pointer;
+}
+
 img {
   width: 200px;
   height: 250px;
@@ -45,11 +60,4 @@ img:hover {
   border: 4px solid beige
   /* 예: 테두리 추가 */
 }
-
-p {
-  text-align: center;
-  margin-right: 20px;
-  margin-top: 10px;
-}
-
 </style>
