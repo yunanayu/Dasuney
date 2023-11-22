@@ -34,3 +34,6 @@ def profile(req, username):
                 'userId' : req.user.pk
             }
         return JsonResponse(context)
+
+
+        
