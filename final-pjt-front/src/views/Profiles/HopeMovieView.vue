@@ -1,6 +1,7 @@
 <template>
   <div>
-
+    <h1>보고싶은 영화 임니당....에....</h1>
+    
   </div>
 </template>
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { useCounterStore } from '../stores/counter'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '@/views/accounts/LoginView.vue'
 import SignupView from '@/views/accounts/SignupView.vue'
@@ -28,7 +29,8 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/login',
@@ -43,44 +45,64 @@ const router = createRouter({
     {
       path: '/moviedetail/:movieId',
       name: 'moviedetail',
-      component: MovieDetailView
+      component: MovieDetailView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/profile/:username',
       name: 'profile',
-      component: ProfileView
+      component: ProfileView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/actorlike/:username',
       name: 'actorlike',
-      component: ActorLikeView
+      component: ActorLikeView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/directorlike/:username',
       name: 'directorlike',
-      component: DirectorLikeView
+      component: DirectorLikeView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/hopemovie',
       name: 'hopemovie',
-      component: HopeMovieView
+      component: HopeMovieView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/starrating',
       name: 'starrating',
-      component: StarRatingView
+      component: StarRatingView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/actormovielist/:actorid',
       name: 'actormovielist',
-      component: ActorMovieView
+      component: ActorMovieView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/directormovielist/:directorid',
       name: 'directormovielist',
-      component: DirectorMovieView
+      component: DirectorMovieView,
+      meta: { requiresAuth: true }
     },
   ]
+})
+
+router.beforeEach((to, from) => {
+  const store = useCounterStore()
+  if ( to.meta.requiresAuth && !store.isAuthenticated) {
+    window.alert('로그인이 필요합니다.')
+    return {name:'intro'}
+  }
+  if ((to.name === 'signup' || to.name === 'login') && (store.isAuthenticated)) {
+    window.alert('이미 로그인이 되어있습니다.')
+    return {name:'home'}
+  }
 })
 
 export default router

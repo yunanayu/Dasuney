@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useRouter } from 'vue-router'
 
 export const useCounterStore = defineStore('counter', () => {
-  const temp = true
+  const navshow = true
   const tempUsername = ref('')
   const Token = ref('')
   const actors = ref([])
@@ -29,7 +29,7 @@ export const useCounterStore = defineStore('counter', () => {
       }
     })
     .then((res) => {
-      console.log(res)
+      // console.log(res)
       console.log('로그인 성공')
       Token.value = res.data.key
       tempUsername.value = username
@@ -121,5 +121,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return {temp,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
+  return {navshow,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
 }, { persist:true })

@@ -42,11 +42,15 @@ const store = useCounterStore()
 const router = useRouter()
 
 onMounted(()=>{
-  store.temp = false
+  store.navshow = false
 })
 const goIntro = function () {
-  store.temp = true
-  router.push({name:'intro'})
+  store.navshow = true
+  if (store.isAuthenticated == true) {
+    router.push({name:'home'})
+  } else {
+    router.push({name:'intro'})
+  }
 }
 </script>
 <style lang="scss" scoped>
