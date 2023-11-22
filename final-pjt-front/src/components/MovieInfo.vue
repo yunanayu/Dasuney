@@ -14,11 +14,11 @@
     <div>
       <h3>평점 주기</h3>
       <ul>
-        <li><a @click="reRateScore(0)" :style="{ color: scoreColor(0) }">☆</a></li>
-        <li><a @click="reRateScore(1)" :style="{ color: scoreColor(1) }">☆</a></li>
-        <li><a @click="reRateScore(2)" :style="{ color: scoreColor(2) }">☆</a></li>
-        <li><a @click="reRateScore(3)" :style="{ color: scoreColor(3) }">☆</a></li>
-        <li><a @click="reRateScore(4)" :style="{ color: scoreColor(4) }">☆</a></li>
+        <li><a @click="reRateScore(2)" :style="{ color: scoreColor(0) }">☆</a></li>
+        <li><a @click="reRateScore(4)" :style="{ color: scoreColor(1) }">☆</a></li>
+        <li><a @click="reRateScore(6)" :style="{ color: scoreColor(2) }">☆</a></li>
+        <li><a @click="reRateScore(8)" :style="{ color: scoreColor(3) }">☆</a></li>
+        <li><a @click="reRateScore(10)" :style="{ color: scoreColor(4) }">☆</a></li>
       </ul>
     </div>
   </div>
@@ -112,7 +112,7 @@ ul {
 li {
   margin-right: 3px;
   font-size: 30px;
-  background-color: ;
+
 }
 </style>
 

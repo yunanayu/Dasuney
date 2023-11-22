@@ -13,10 +13,12 @@ class LikeActorSerializer(serializers.ModelSerializer):
         model = Actor
         fields = '__all__'
 
+
 class LikeDirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
         fields = '__all__'
+
 
 class LikeMovieSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,10 +27,10 @@ class LikeMovieSerializer(serializers.ModelSerializer):
 
 
 class ScoreSerializer(serializers.ModelSerializer):
+    movie = LikeMovieSerializer (read_only=True)
     class Meta:
         model = Score
-        fields = ('movie','score',)
-
+        fields = '__all__'
 
 class FollowSerializer(serializers.ModelSerializer):
     score_set = ScoreSerializer(many=True, read_only = True)
