@@ -1,10 +1,15 @@
 <template>
   <div>
     <h1> 제가 평점을 준 영화입니다요...하하...</h1>
+    <HopeMovieCard 
+    v-for="movie in ratingMovies"
+    :movie-detail="movie.movie"
+    />
   </div>
 </template>
 
 <script setup>
+import HopeMovieCard from '../../components/HopeMovieCard.vue';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCounterStore } from '../../stores/counter';
@@ -24,7 +29,7 @@ onMounted(() => {
       }
   })
   .then((res) => {;
-    console.log(res.data.score_set);
+    // console.log(res.data.score_set);
     ratingMovies.value = res.data.score_set
     console.log(ratingMovies.value);
   })
