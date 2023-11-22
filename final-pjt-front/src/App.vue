@@ -15,11 +15,11 @@ const store = useCounterStore()
         <RouterLink class="navbar-brand" to="/intro" style="font-size: 40px;" v-show="!store.isAuthenticated">Dasuney+</RouterLink>
       </div>
       <div class="nav-item me-auto" v-if="store.isAuthenticated">
-        <RouterLink class="nav-link" :to="{name:'profile',params:{username:store.tempUsername}}">Profile</RouterLink>
+        <RouterLink class="nav-link" :to="{name:'profile',params:{username:store.tempUsername}}" style="font-size: 30px;">Profile</RouterLink>
       </div>
       <div class="collapse navbar-collapse" id="navbarNav"></div>
       <!-- 로그아웃 버튼은 화면이 작아졌을 때도 보이게 설정 -->
-      <button class="btn btn-outline-light" @click.prevent="store.logout()" v-if="store.isAuthenticated" style="font-size: 35px;">LogOut</button>
+      <button class="btn btn-outline-light" @click.prevent="store.logout()" v-if="store.isAuthenticated" style="font-size: 20px;">LogOut</button>
     </nav>
     <RouterView />
   </div>
@@ -33,13 +33,14 @@ const store = useCounterStore()
 }
 .navtext {
   font-family: disney;
-  font-size: 30px;
+  /* font-size: 30px; */
 }
 .navbar-brand {
   margin-left: 15px;
 }
 .btn-outline-light {
   margin-right: 20px;
+  font-family: 'Arial', sans-serif;
 }
 .nav-link {
   text-align: left;

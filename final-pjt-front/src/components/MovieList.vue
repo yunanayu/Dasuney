@@ -12,20 +12,12 @@
           <span v-if="showPrevButton" class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">이전</span>
         </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">다음</span>
-      </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next" @mouseover="showNextButton = true" @mouseleave="showNextButton = false">
+          <span v-if="showNextButton" class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">다음</span>
+        </button>
+      </div>
     </div>
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">이전</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">다음</span>
-    </button>
   </div>
 </template>
 
@@ -48,6 +40,7 @@ const chunkedMovies = computed(() => {
 })
 
 const showPrevButton = ref(false);
+const showNextButton = ref(false);
 </script>
 
 <style scoped>

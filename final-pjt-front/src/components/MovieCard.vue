@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="array">
       <div v-for="movie in movieDetail">
         <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
         
@@ -32,7 +32,7 @@ img {
   height: 300px;
 }
 
-.container {
+.array {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 350px;
@@ -43,7 +43,7 @@ img {
 /* 카드에 호버 효과를 추가하는 스타일 */
 img:hover {
   /* 여기에 원하는 호버 효과 스타일을 추가하세요 */
-  border: 5px solid rgb(67, 248, 224)
+  border: 4px solid beige
   /* 예: 테두리 추가 */
 }
 </style>
