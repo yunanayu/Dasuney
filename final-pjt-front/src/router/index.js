@@ -73,7 +73,7 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/starrating',
+      path: '/starrating/:username',
       name: 'starrating',
       component: StarRatingView,
       meta: { requiresAuth: true }
