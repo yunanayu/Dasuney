@@ -16,6 +16,7 @@ const movies = ref([])
 // console.log(store.Token);
 
 onMounted(()=>{
+  window.resizeTo(1000, 1000)
   // store.getMovieList
   axios({
       method : 'get',
