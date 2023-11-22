@@ -67,7 +67,7 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/hopemovie',
+      path: '/hopemovie/:username',
       name: 'hopemovie',
       component: HopeMovieView,
       meta: { requiresAuth: true }
