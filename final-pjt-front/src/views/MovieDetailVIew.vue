@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>영화 상세 정보 페이지</h1>
+    <h1>{{ movieDetail.title }} 상세 정보</h1>
     <div v-if="movieDetail">
       <MovieInfo :movie-info="movieDetail"/>
     </div>
