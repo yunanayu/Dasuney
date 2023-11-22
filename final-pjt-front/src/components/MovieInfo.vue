@@ -9,17 +9,16 @@
     <p v-for="genre in movieInfo.genres">{{ genre.name }}</p>
     <h3>줄거리</h3>
     <p>{{ movieInfo.overview }}</p>
-    <button @click.prevent="hopeMovie(movieInfo.title)">{{ isLiked ? '시류떡' : '조하여!!!!!!!!!!!!!!!!'}}</button>
+    <button @click.prevent="hopeMovie(movieInfo.title)">{{ isLiked ? '안볼래영' : '보고싶어여!!!!!!!!!!!!!!!!'}}</button>
     <hr>
     <div>
       <h3>평점 주기</h3>
       <ul>
-        <li><a @click="reRateScore(0)" style="color:pink;">☆☆☆☆☆</a></li>
-        <li><a @click="reRateScore(1)" style="color:pink;">★☆☆☆☆</a></li>
-        <li><a @click="reRateScore(2)" style="color:pink;">★★☆☆☆</a></li>
-        <li><a @click="reRateScore(3)" style="color:pink;">★★★☆☆</a></li>
-        <li><a @click="reRateScore(4)" style="color:pink;">★★★★☆</a></li>
-        <li><a @click="reRateScore(5)" style="color:pink;">★★★★★</a></li>
+        <li><a @click="reRateScore(0)" :style="{ color: scoreColor(0) }">☆</a></li>
+        <li><a @click="reRateScore(1)" :style="{ color: scoreColor(1) }">☆</a></li>
+        <li><a @click="reRateScore(2)" :style="{ color: scoreColor(2) }">☆</a></li>
+        <li><a @click="reRateScore(3)" :style="{ color: scoreColor(3) }">☆</a></li>
+        <li><a @click="reRateScore(4)" :style="{ color: scoreColor(4) }">☆</a></li>
       </ul>
     </div>
   </div>
@@ -53,6 +52,7 @@ const hopeMovie = function (movietitle) {
 
 
 const reRateScore = function (score) {
+  selectedScore.value = score;
   const movie = store.movies.find((movie) => movie.title == props.movieInfo.title)
   axios({
     method:'post',
@@ -85,9 +85,34 @@ onMounted(() => {
   .catch(err => console.log(err))
 })
 
+const scoreColor = (index) => {
+  const filledScore = Math.floor(selectedScore.value);
+  if (index <= filledScore) {
+    return 'gold';
+  } else if (index === filledScore + 1 && selectedScore.value % 1 !== 0) {
+    // Partially filled star
+    const gradient = (selectedScore.value % 1) * 100;
+    return `linear-gradient(90deg, gold ${gradient}%, white ${gradient}%)`;
+  } else {
+    return 'white';
+  }
+};
+
+let selectedScore = ref(-1);
+
+
 </script>
 
 <style scoped>
+ul {
+  list-style: none;
+  display: flex;
+}
 
+li {
+  margin-right: 3px;
+  font-size: 30px;
+  background-color: ;
+}
 </style>
 

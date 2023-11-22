@@ -54,8 +54,6 @@ const goIntro = function () {
 }
 </script>
 <style lang="scss" scoped>
-/* 필요한 스타일을 여기에 추가 */
-
 .wrapper {
   position: absolute;
   width: auto;
