@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from movies.models import Actor, Director, Movie
+from movies.models import Actor, Director, Movie, Score
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -24,7 +24,14 @@ class LikeMovieSerializer(serializers.ModelSerializer):
         fields = ('title', 'movie_id',)
 
 
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score
+        fields = ('movie','score',)
+
+
 class FollowSerializer(serializers.ModelSerializer):
+    score_set = ScoreSerializer(many=True, read_only = True)
     like_actor = LikeActorSerializer(many = True, read_only = True)
     like_director = LikeDirectorSerializer(many = True, read_only = True)
     like_movies = LikeMovieSerializer(many = True, read_only = True)

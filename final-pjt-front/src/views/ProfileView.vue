@@ -29,7 +29,7 @@
       </div>
     <div class="category">
       <nav>
-        <RouterLink to="/starrating">내 평가 ({{ ratingCount }})</RouterLink>
+        <RouterLink :to="{name:'starrating', params:{username:route.params.username}}">내 평가 ({{ ratingMovies.length }})</RouterLink>
         <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
         <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
         <RouterLink to="/hopemovie">보고싶어요 ({{ HopeMovies.length }})</RouterLink>
@@ -106,7 +106,7 @@ const LikeActors = ref([])
 const HopeMovies = ref([])
 const LikeDirectors = ref([])
 
-const ratingCount = ref(0);
+const ratingMovies = ref(0);
 
 onMounted(() => {
   axios({
@@ -117,12 +117,13 @@ onMounted(() => {
       }
   })
   .then((res) => {
-    // console.log(res);
+    console.log(res);
     followers.value = res.data.followers
     followings.value = res.data.followings
     LikeActors.value = res.data.like_actor
     LikeDirectors.value = res.data.like_director
     HopeMovies.value = res.data.like_movies
+    ratingMovies.value = res.data.score_set
     // console.log(LikeActors.value);
   })
   .catch(err=>console.log(err))

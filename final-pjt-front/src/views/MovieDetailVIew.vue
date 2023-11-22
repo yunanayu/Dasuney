@@ -1,17 +1,16 @@
 <template>
   <div>
     <h1>영화 상세 정보 페이지</h1>
-    <p>{{ movieDetail }}</p>
-    
+    <div v-if="movieDetail">
+      <MovieInfo :movie-info="movieDetail"/>
+    </div>
     <h3>Credits</h3>
     <h4>출연진</h4>
     <Actor v-for="cast in casts" :cast="cast"/>
     <hr>
     <h5>감독</h5>
     <Director v-for="director in directors" :director="director"/>
-    <div v-if="movieDetail">
-      <MovieInfo :movie="movieDetail"/>
-    </div>
+
   </div>
 </template>
 
@@ -43,7 +42,7 @@ onMounted(()=> {
     }
   })
   .then((res)=>{
-    console.log(res.data);
+    // console.log(res.data);
     movieDetail.value = res.data
   })
   // store.getCredits(route.params.movieId)

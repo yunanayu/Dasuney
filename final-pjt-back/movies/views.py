@@ -32,14 +32,14 @@ def movie_detail(req, movie_pk):
 
 
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def movie_likes(req, movie_pk):
     if req.method == 'GET':
         movie = get_object_or_404(Movie, pk=movie_pk)
         if req.user in movie.like_users.all():
-            is_liked = False
-        else:
             is_liked = True
+        else:
+            is_liked = False
         context = {
             'is_liked' : is_liked,
         }
