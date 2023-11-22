@@ -144,7 +144,7 @@
     } else {
       moviescore.value = null
     }
-    console.log(moviescore.value)
+    // console.log(moviescore.value)
     axios({
       method: 'get',
       url: `http://127.0.0.1:8000/movies/${movie.id}/movielike/`,

@@ -117,7 +117,7 @@ onMounted(() => {
       }
   })
   .then((res) => {
-    console.log(res);
+    // console.log(res);
     followers.value = res.data.followers
     followings.value = res.data.followings
     LikeActors.value = res.data.like_actor

@@ -32,7 +32,7 @@ onMounted(() => {
     }
   })
     .then((res) => {
-      console.log(res.data)
+      // console.log(res.data)
       hopeMovies.value = res.data.like_movies;
     })
     .catch((err) => console.log(err));
