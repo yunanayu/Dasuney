@@ -2,7 +2,7 @@
   <div class="container">
     <div class="actor-detail">
       <div class="grid">
-        <img :src="(`https://image.tmdb.org/t/p/w500/${cast.profile_path}`)" alt="배우 포스터">
+          <img :src="(`https://image.tmdb.org/t/p/w500/${cast.profile_path}`)" alt="배우 포스터"  @click.prevent="goDetail(cast.name)">
         <div class="actor-info">
           <p>{{ cast.name }}</p>
           <!-- <p>{{ cast.id }}</p> -->
@@ -17,18 +17,22 @@
 import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
-
-
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const store = useCounterStore()
 const props = defineProps({
   cast:Object
 })
-// console.log(props.cast)
-
 const isLiked = ref(false)
+const goDetail = function (actorname) {
+  const actor = store.actors.find((actor) => actor.actor_name === actorname)
+  console.log(actor)
+  router.push({name:'actormovielist', params : {actorid : actor.actor_id}, query : {actorname : actorname}})
+}
 
 const likeActor = function (actorname) {
     const actor = store.actors.find((actor) => actor.actor_name == actorname)
+    console.log(actor);
     axios({
       method : 'post',
       url : `http://127.0.0.1:8000/movies/actor/${actor.id}/actorlike/`,
@@ -37,7 +41,6 @@ const likeActor = function (actorname) {
       }
     })
     .then((res) => {
-      // const actor = store.actors.find((actor) => actor.name === props.cast.name)
       console.log(res.data)
       isLiked.value = res.data.is_liked
       // console.log(actor)
