@@ -4,11 +4,14 @@
       <div v-if="movieDetail">
         <MovieInfo :movie-info="movieDetail"/>
       </div>
-      <h3>감독</h3>
+      <div style="margin-left: 170px;">
+        <h3>감독</h3>
+      </div>
       <Director v-for="director in directors" :director="director"/>
       <hr>
-      <h3>Credits</h3>
-      <h4>출연진</h4>
+      <div style="margin-left: 170px;">
+      <h3>배우</h3>
+      </div>
       <Actor v-for="cast in casts" :cast="cast"/>
     </div>
   </div>
@@ -67,5 +70,4 @@ onMounted(()=> {
 </script>
 
 <style scoped>
-
 </style>

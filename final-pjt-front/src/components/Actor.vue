@@ -1,11 +1,13 @@
 <template>
   <div class="container">
     <div class="actor-detail">
-      <img :src="(`https://image.tmdb.org/t/p/w500/${cast.profile_path}`)" alt="배우 포스터">
-      <div class="actor-info">
-        <p>{{ cast.name }}</p>
-        <p>{{ cast.id }}</p>
-        <button @click.prevent="likeActor(cast.name)">{{ isLiked ? '좋아요 취소':'배우 좋아요'}}</button>
+      <div class="grid">
+        <img :src="(`https://image.tmdb.org/t/p/w500/${cast.profile_path}`)" alt="배우 포스터">
+        <div class="actor-info">
+          <p>{{ cast.name }}</p>
+          <!-- <p>{{ cast.id }}</p> -->
+          <button @click.prevent="likeActor(cast.name)">{{ isLiked ? '좋아요 취소':'배우 좋아요'}}</button>
+        </div>
       </div>
     </div>
   </div>
@@ -69,6 +71,7 @@ const likeActor = function (actorname) {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+  
 }
 
 .actor-detail img {
@@ -78,7 +81,7 @@ const likeActor = function (actorname) {
 }
 
 .actor-info {
-  color: #333;
+  color: #f6f5f5;
 }
 
 .actor-info p {

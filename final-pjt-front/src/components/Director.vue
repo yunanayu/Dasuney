@@ -4,7 +4,7 @@
       <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="감독 프로필">
       <div class="director-info">
         <p>{{ director.name }}</p>
-        <p>{{ director.id }}</p>
+        <!-- <p>{{ director.id }}</p> -->
         <button @click.prevent="likeDirector(director.name)">{{ isLiked ? '좋아요 취소' : '좋아요'}}</button>
       </div>
     </div>
