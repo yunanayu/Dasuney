@@ -9,13 +9,18 @@ class GenreSerializer(serializers.ModelSerializer):
         model = Genre
         fields = '__all__'
 
+class ScoreSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Score
+        fields = '__all__'
+        read_only_fields= ('movie', 'user',)
 
 class MovieListSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):
         class Meta:
             model = get_user_model()
             fields = ('id','username',)
-    
+    score_set  = ScoreSerializer(many=True, read_only = True)
     like_users = UserSerializer(many=True)
     genres = GenreSerializer(many=True)
     class Meta:
@@ -23,11 +28,8 @@ class MovieListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ScoreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Score
-        fields = '__all__'
-        read_only_fields= ('movie', 'user',)
+        
+        
 
 class ActorSerializer(serializers.ModelSerializer):
     class UserSerializer(serializers.ModelSerializer):

@@ -60,8 +60,11 @@ def movie_likes(req, movie_pk):
 
 
 
-@api_view(['POST', 'PUT', 'DELETE'])
+@api_view(['GET','POST', 'PUT', 'DELETE'])
 def score_create(req, movie_pk):
+    # if req.method == 'GET':
+    #     movie = get_object_or_404(Movie, pk=movie_pk)
+        
     if req.method == 'POST':
         movie = get_object_or_404(Movie, pk=movie_pk)
         serializer = ScoreSerializer(data = req.data)
