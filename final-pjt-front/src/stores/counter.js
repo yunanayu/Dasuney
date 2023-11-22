@@ -71,7 +71,22 @@ export const useCounterStore = defineStore('counter', () => {
     })
     .catch(err=>console.log(err))
   }
+  const movies = ref([])
 
+  const getMovieList = function () {
+    axios({
+      method : 'get',
+      url : 'http://127.0.0.1:8000/movies/',
+      headers : {
+        Authorization:`Token ${Token}`
+      }
+      })
+      .then((res) => {
+        movies.value = res.data
+      })
+      .catch(err=>console.log(err))
+    
+  }
   const getCredits = function(movieId) {
     axios({
       method:'get',
@@ -121,5 +136,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return {navshow,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername}
+  return {navshow,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername, getMovieList, movies}
 }, { persist:true })
