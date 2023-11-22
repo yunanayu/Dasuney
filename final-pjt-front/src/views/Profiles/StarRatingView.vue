@@ -1,10 +1,13 @@
 <template>
-  <div>
-    <h1> 제가 평점을 준 영화입니다요...하하...</h1>
-    <HopeMovieCard 
-    v-for="movie in ratingMovies"
-    :movie-detail="movie.movie"
-    />
+  <div class="container">
+    <h1 style="margin-top: 20px;">{{ route.params.username }}님의 평가</h1>
+    <h6>평가가 많을수록 {{ route.params.username }}님에게 맞는 영화를 추천해드려요 </h6>
+    <div class="array">
+      <HopeMovieCard 
+      v-for="movie in ratingMovies"
+      :movie-detail="movie.movie"
+      />
+    </div>
   </div>
 </template>
 
@@ -38,5 +41,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
+.array{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 350px;
+  grid-gap: 10px;
+  margin-top: 20px;
+}
 </style>

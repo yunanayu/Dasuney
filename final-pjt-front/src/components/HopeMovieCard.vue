@@ -32,11 +32,11 @@ img {
 }
 
 .array {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 350px;
-  grid-gap: 40px;
-  margin-top: 100px;
+  grid-gap: 40px; */
+  margin-top: 50px;
 }
 
 /* 카드에 호버 효과를 추가하는 스타일 */
