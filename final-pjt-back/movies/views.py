@@ -34,7 +34,17 @@ def movie_detail(req, movie_pk):
 @permission_classes([IsAuthenticated])
 @api_view(['POST'])
 def movie_likes(req, movie_pk):
-    if req.method == 'POST':
+    if req.method == 'GET':
+        movie = get_object_or_404(Movie, pk=movie_pk)
+        if req.user in movie.like_users.all():
+            is_liked = False
+        else:
+            is_liked = True
+        context = {
+            'is_liked' : is_liked,
+        }
+        return JsonResponse(context)
+    elif req.method == 'POST':
         movie = get_object_or_404(Movie, pk=movie_pk)
         if req.user in movie.like_users.all():
             movie.like_users.remove(req.user)

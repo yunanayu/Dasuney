@@ -18,7 +18,7 @@ const store = useCounterStore()
 const props = defineProps({
   cast:Object
 })
-// console.log(props.cast)
+console.log(props.cast)
 
 const isLiked = ref(false)
 

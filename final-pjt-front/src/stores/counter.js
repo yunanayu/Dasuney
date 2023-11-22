@@ -78,7 +78,7 @@ export const useCounterStore = defineStore('counter', () => {
       method : 'get',
       url : 'http://127.0.0.1:8000/movies/',
       headers : {
-        Authorization:`Token ${Token}`
+        Authorization:`Token ${Token.value}`
       }
       })
       .then((res) => {

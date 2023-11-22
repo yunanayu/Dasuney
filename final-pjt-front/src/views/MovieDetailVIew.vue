@@ -1,14 +1,17 @@
 <template>
   <div>
     <h1>영화 상세 정보 페이지</h1>
-    <!-- <p>{{ movieInfo }}</p> -->
-    <MovieInfo :movie-info="movieInfo"/>
+    <p>{{ movieDetail }}</p>
+    
     <h3>Credits</h3>
     <h4>출연진</h4>
     <Actor v-for="cast in casts" :cast="cast"/>
     <hr>
     <h5>감독</h5>
     <Director v-for="director in directors" :director="director"/>
+    <div v-if="movieDetail">
+      <MovieInfo :movie="movieDetail"/>
+    </div>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ import Director from '../components/Director.vue';
 const route = useRoute()
 // const store = useCounterStore()
 const key = import.meta.env.VITE_TMDB_API_KEY
-const movieInfo = ref({})
+const movieDetail = ref(null)
 const casts = ref([])
 const directors = ref({})
 // console.log(route.params);
@@ -40,8 +43,8 @@ onMounted(()=> {
     }
   })
   .then((res)=>{
-    // console.log(res.data);
-    movieInfo.value = res.data
+    console.log(res.data);
+    movieDetail.value = res.data
   })
   // store.getCredits(route.params.movieId)
   axios({
