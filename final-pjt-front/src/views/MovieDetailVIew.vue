@@ -12,7 +12,7 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
