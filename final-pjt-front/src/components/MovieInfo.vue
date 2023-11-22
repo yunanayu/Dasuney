@@ -59,31 +59,35 @@ const hopeMovie = function (movietitle) {
 
 
 const reRateScore = function (score) {
+// 이미 0점이 선택되어 있을 때 0점 버튼을 누르면 선택 해제
+if (selectedScore.value === 0) {
+  selectedScore.value = -1;
+} else {
   // 만약 선택된 점수가 0이면, 평가가 없음을 나타내기 위해 -1로 설정합니다
   selectedScore.value = score === 0 ? -1 : score;
+}
 
-  // 만약 점수가 -1(평가 없음)이면 요청을 보내지 않습니다
-  if (selectedScore.value === -1) {
-    console.log("0점으로 평가되지 않습니다.");
-    
-    return;
-  }
+// 만약 점수가 -1(평가 없음)이면 요청을 보내지 않습니다
+if (selectedScore.value === -1) {
+  console.log("0점으로 평가되지 않습니다.");
+  return;
+}
 
-  const movie = store.movies.find((movie) => movie.title == props.movieInfo.title);
-  axios({
-    method: 'post',
-    url: `http://127.0.0.1:8000/movies/${movie.id}/score/`,
-    headers: {
-      Authorization: `Token ${store.Token}`,
-    },
-    data: {
-      score: selectedScore.value,
-    },
+const movie = store.movies.find((movie) => movie.title == props.movieInfo.title);
+axios({
+  method: 'post',
+  url: `http://127.0.0.1:8000/movies/${movie.id}/score/`,
+  headers: {
+    Authorization: `Token ${store.Token}`,
+  },
+  data: {
+    score: selectedScore.value,
+  },
+})
+  .then((res) => {
+    console.log(res.data);
   })
-    .then((res) => {
-      console.log(res.data);
-    })
-    .catch((err) => console.log(err));
+  .catch((err) => console.log(err));
 };
 
 onMounted(() => {
