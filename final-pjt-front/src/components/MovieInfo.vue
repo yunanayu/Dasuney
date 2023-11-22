@@ -65,6 +65,7 @@ const reRateScore = function (score) {
   // 만약 점수가 -1(평가 없음)이면 요청을 보내지 않습니다
   if (selectedScore.value === -1) {
     console.log("0점으로 평가되지 않습니다.");
+    
     return;
   }
 
