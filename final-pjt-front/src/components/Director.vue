@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div v-if="director" class="director-detail">
-      <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="감독 프로필">
+      <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="감독 프로필"  @click.prevent="goDetail(director.name)">
       <div class="director-info">
         <p>{{ director.name }}</p>
         <!-- <p>{{ director.id }}</p> -->
@@ -15,11 +15,19 @@
 import axios from 'axios';
 import { ref,onMounted } from 'vue';
 import { useCounterStore } from '../stores/counter';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const store = useCounterStore()
 const props = defineProps({
   director:Object
 })
 const isLiked = ref(false)
+
+const goDetail = function (directorname) {
+  const director = store.directors.find((director) => director.director_name === directorname)
+  router.push({name:'directormovielist', params : {directorid : director.director_id}, query : {directorname : directorname}})
+}
+
 const likeDirector = function (directorname) {
   const director = store.directors.find((director) => director.director_name === directorname)
   axios({
