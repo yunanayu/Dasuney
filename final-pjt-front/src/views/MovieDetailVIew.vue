@@ -3,10 +3,12 @@
     <div v-if="movieDetail">
       <div v-if="movieDetail">
         <MovieInfo :movie-info="movieDetail"/>
-      </div>
-      <h3>리뷰 목록</h3>
-      <div v-if="movieReviews">
-        <ReviewCard  v-for="review in movieReviews" :review="review"/>
+        <div style="margin-left: 270px;">
+          <h3>리뷰 목록</h3>
+        </div>
+        <div v-if="movieReviews">
+          <ReviewCard  v-for="review in movieReviews" :review="review"/>
+        </div>
       </div>
       <div style="margin-left: 270px;">
         <h3>감독</h3>
