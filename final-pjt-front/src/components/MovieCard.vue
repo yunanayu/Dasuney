@@ -2,8 +2,8 @@
   <div>
     <div class="array">
       <div v-for="movie in movieDetail">
-        <span @click="goMovieDetail(movie.movie_id)">
-          <img :src="movie.poster_path" alt="" @mouseover="openTrailerModal(movie.movie_id)" />
+        <span @click="goMovieDetail(movie.movie_id)" @mouseover="openTrailerModal(movie.movie_id)">
+          <img :src="movie.poster_path" alt="" />
         </span>
       </div>
     </div>
@@ -57,7 +57,8 @@ img {
 /* 카드에 호버 효과를 추가하는 스타일 */
 img:hover {
   /* 여기에 원하는 호버 효과 스타일을 추가하세요 */
-  border: 4px solid beige
+  border: 4px solid beige;
   /* 예: 테두리 추가 */
+  cursor: pointer; /* 마우스 호버 시 커서를 포인터로 변경 */
 }
 </style>

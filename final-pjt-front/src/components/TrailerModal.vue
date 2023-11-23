@@ -52,9 +52,7 @@ const searchYouTubeTrailer = async () => {
 watch(movieId, searchYouTubeTrailer);
 
 // 선택적: 모달이 닫힐 때 (비디오 URL 지우기 등) 처리할 로직 추가
-onMounted(() => {
-  // 컴포넌트 마운트 시 추가적인 설정
-});
+onMounted(openModal);
 
 </script>
 
