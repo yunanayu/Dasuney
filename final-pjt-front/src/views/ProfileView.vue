@@ -73,6 +73,7 @@ const handleProfilePictureChange = (event) => {
     reader.readAsDataURL(file);
   }
 };
+
 // 팔로우 기능 
 
 const followers = ref([])
@@ -122,6 +123,7 @@ const LikeDirectors = ref([])
 const ratingMovies = ref(0);
 
 onMounted(() => {
+  console.log(route.params.username);
   axios({
     method : 'get',
     url : `http://127.0.0.1:8000/accounts/profile/${route.params.username}/`,

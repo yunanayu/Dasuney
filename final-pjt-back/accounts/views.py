@@ -36,4 +36,6 @@ def profile(req, username):
         return JsonResponse(context)
 
 
-        
+# @permission_classes([IsAuthenticated])
+# @api_view(['GET','POST'])
+# def upload_
