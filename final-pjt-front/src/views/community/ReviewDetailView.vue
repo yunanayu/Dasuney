@@ -21,10 +21,15 @@
         <span>{{ comment.content }}</span>
         <br>
         <span>작성자 : {{ comment.user.username }}</span> 
+        <button @click.prevent="deleteComment(comment.id)">댓글 삭제</button>
         <hr>
       </div>
-
     </div>
+    <h1>댓글 작성</h1>
+    <form @submit.prevent="createComment">
+      <input type="text" v-model="commentContent">
+      <input type="submit" value="댓글 작성">
+    </form>
   </div>
 </template>
 
@@ -38,6 +43,7 @@ const route = useRoute()
 const router  = useRouter()
 // console.log(route.params.reviewid)
 
+const commentContent = ref('')
 const commentList = ref([])
 const review = ref({})
 onMounted(() => {
@@ -92,6 +98,43 @@ const goUpdate = function () {
   router.push({name:'reviewupdate', params:{reviewid :route.params.reviewid}, query:{reviewTitle:review.value.title, reviewContent:review.value.content, movieId:review.value.movie.movie_id}})
 }
 
+// 댓글 작성
+const createComment = function () {
+  axios({
+    method : 'post',
+    url : `http://127.0.0.1:8000/community/reviews/${route.params.reviewid}/comments/`,
+    headers: {
+      Authorization: `Token ${store.Token}`
+    },
+    data : {
+      content : commentContent.value
+    } 
+  })
+  .then((res) => {
+    console.log(res.data);
+    commentList.value.push(res.data)
+    commentContent.value = ''
+  })
+  .catch(err => console.log(err))
+}
+
+// 댓글 삭제
+const deleteComment = function (commentId) {
+  axios({
+    method : 'delete',
+    url : `http://127.0.0.1:8000/community/reviews/${route.params.reviewid}/comments/`,
+    headers: {
+      Authorization: `Token ${store.Token}`
+    },
+    data : {
+      content : commentContent.value
+    } 
+  })
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch(err => console.log(err))
+}
 </script>
 
 <style lang="scss" scoped>
