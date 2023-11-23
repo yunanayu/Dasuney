@@ -1,6 +1,6 @@
 <template>
   <div @click.prevent="goReviewDetail(review.id)">
-    {{  review }}
+    <!-- {{  review }} -->
     <p>리뷰 타이틀 : {{ review.title }}</p>
     <p>리뷰 내용 : {{ review.content }}</p>
     <p>리뷰 작성자 ; {{  review.user.username }}</p>
@@ -14,8 +14,9 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import router from '../../router';
+// import router from '../../router';
 
+const router = useRouter()
 
 defineProps({
   review : Object

@@ -82,7 +82,7 @@ onMounted(()=> {
         },
     })
     .then((res)=>{
-      console.log(res.data);
+      // console.log(res.data);
       movieReviews.value = res.data
     })
     .catch((err)=>console.log(err))
