@@ -32,7 +32,11 @@ document.addEventListener('DOMContentLoaded', function() {
           enableKeystrokes: true 
           }
       );
+      
     });
+
+
+
 </script>
 <script setup>
 import { onMounted } from 'vue';
@@ -49,7 +53,6 @@ onMounted(() => {
 });
 
 const movieTitle = store.movies.find((movie) => movie.title === '너의 이름은.');
-console.log(movieTitle);
 </script>
 
 <style scoped>
