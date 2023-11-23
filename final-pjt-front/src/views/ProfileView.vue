@@ -37,11 +37,11 @@
       </div>
     <div class="category">
       <nav>
-        <RouterLink :to="{name:'starrating', params:{username:route.params.username}}">⭐내 평가 ({{ ratingMovies.length }})</RouterLink>
-        <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">💖좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
-        <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">💖좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
-        <RouterLink :to="{name:'hopemovie', params:{username:route.params.username}}">'🎬보고싶어요 ({{ HopeMovies.length }})</RouterLink>
-        <RouterLink :to="{name:'myreview', params:{username:route.params.username}}">'🎬나의 리뷰 ({{ myReview.length }})</RouterLink>
+        <RouterLink :to="{name:'starrating', params:{username:route.params.username}}">⭐내 평가 ({{ ratingMovies.length }})</RouterLink> |
+        <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">💖 배우 ({{ LikeActors.length }})</RouterLink> |
+        <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">💖 감독 ({{ LikeDirectors.length }})</RouterLink> |
+        <RouterLink :to="{name:'hopemovie', params:{username:route.params.username}}">'🎬 보고싶어요 ({{ HopeMovies.length }})</RouterLink> |
+        <RouterLink :to="{name:'myreview', params:{username:route.params.username}}">'📝 나의 리뷰 ({{ myReview.length }})</RouterLink>
       </nav>
     </div>
   </div>
@@ -225,8 +225,7 @@ button:hover {
 .category nav {
   margin-top: 50px;
   text-align: center;
-  background-color: gainsboro;
-
+  background-color: rgb(239, 209, 189);
 }
 
 

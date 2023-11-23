@@ -27,8 +27,11 @@ const store = useCounterStore()
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <p>&copy; Dasuney+</p>
+            <p>&copy; Dasuney+ 문신웅 | 정유나</p>
+            
           </div>
+          <!-- <div class="col-md-4">
+          </div> -->
           <div class="col-md-6 text-md-end">
             <a href="#">상단으로 올라가기</a>
           </div>

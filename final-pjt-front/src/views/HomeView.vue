@@ -9,10 +9,12 @@
         상황을 겪고 있다.<br /> 언제부턴가 더 이상 몸이 바뀌지 않자 자신들이 특별하게
         이어져있었음을 깨달은 타키는 미츠하를 만나러 가는데...
       </p>
-      <audio controls>
-        <source src="@/assets/yourname.mp3" type="audio/mp3" />
-        지원하지 않는 브라우저입니다.
-      </audio>
+      <div class="ready-player-1">
+        <audio crossorigin preload="none">
+          <source src="@/assets/yourname.mp3" type="audio/mp3" />
+          지원하지 않는 브라우저입니다.
+        </audio>
+      </div>
     </div>
   </div>
   <div class="back">
@@ -22,6 +24,16 @@
   </div>
 </template>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  new GreenAudioPlayer('.ready-player-1',
+          { showTooltips: true,  
+          enableKeystrokes: true 
+          }
+      );
+    });
+</script>
 <script setup>
 import { onMounted } from 'vue';
 import MovieList from '@/components/MovieList.vue';
@@ -73,11 +85,7 @@ console.log(movieTitle);
 .container {
   width: 4000px;
 }
-
-audio {
-  width: 100%;
-  max-width: 400px; /* 예시로 지정한 최대 너비 */
-  margin: 0 auto;
-
+.ready-player-1 {
+  background-color: transparent;
 }
 </style>
