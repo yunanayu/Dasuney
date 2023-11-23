@@ -14,8 +14,9 @@
 <script setup>
 import axios from 'axios';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router'
+import { routeLocationKey, useRoute } from 'vue-router'
 import { useCounterStore } from '../../stores/counter';
+import router from '../../router';
 const content = ref('')
 const store = useCounterStore()
 const title = ref('')
@@ -32,6 +33,14 @@ const createReview = function () {
       content : content.value
     }
   })
+  .then((res) => {
+    console.log(res.data)
+    window.alert('리뷰 작성이 완료되었습니다.')
+    title.value = ''
+    content.value = ''
+    router.push({name:'moviedetail', params : {movieId:route.query.movie_id}})
+  })
+  .catch(err => console.log(err))
 }
 </script>
 

@@ -49,12 +49,12 @@
   
   <script setup>
   import axios from 'axios';
-  import { ref, defineProps, onMounted } from 'vue';
+  import { ref, onMounted } from 'vue';
   import { useCounterStore } from '../stores/counter';
-  
+  import { useRouter } from 'vue-router';
   const store = useCounterStore();
   const props = defineProps(['movieInfo']);
-  
+  const router = useRouter()
   const isLiked = ref(false);
   const selectedScore = ref(-1);
   
@@ -138,7 +138,8 @@
   }
   
   const goReviewCreate = function () {
-    
+    const movie = store.movies.find((m) => m.title === props.movieInfo.title);
+    router.push({name:'reviewcreate', params : {movieid:movie.id}, query:{movie_id:movie.movie_id}})
   }
   
   onMounted(() => {

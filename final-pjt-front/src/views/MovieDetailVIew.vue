@@ -4,6 +4,10 @@
       <div v-if="movieDetail">
         <MovieInfo :movie-info="movieDetail"/>
       </div>
+      <h3>리뷰 목록</h3>
+      <div v-if="movieReviews">
+        <ReviewCard  v-for="review in movieReviews" :review="review"/>
+      </div>
       <div style="margin-left: 270px;">
         <h3>감독</h3>
       </div>
@@ -22,6 +26,7 @@
 </template>
 
 <script setup>
+import ReviewCard from '../components/community/ReviewCard.vue';
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
@@ -30,14 +35,15 @@ import MovieInfo from '../components/MovieInfo.vue';
 import Actor from '../components/Actor.vue';
 import Director from '../components/Director.vue';
 
+
+const store = useCounterStore()
 const route = useRoute()
-// const store = useCounterStore()
 const key = import.meta.env.VITE_TMDB_API_KEY
 const movieDetail = ref(null)
 const casts = ref([])
 const directors = ref({})
 // console.log(route.params);
-
+const movieReviews = ref([])
 
 onMounted(()=> {
   axios({
@@ -63,13 +69,23 @@ onMounted(()=> {
     })
     .then((res)=>{
       // console.log(res.data)
-      // console.log(res.data.cast.slice(0,6));
-      // console.log(res.data.crew.filter((crew)=>crew.job === 'Director'));
       casts.value = res.data.cast.slice(0,5)
       directors.value = res.data.crew.filter((crew)=>crew.job === 'Director')
     })
     .catch(err=>console.log(err))
-  
+    const moviePk = store.movies.find((movie) => movie.movie_id == route.params.movieId)
+    axios({
+      method : 'get',
+      url : `http://127.0.0.1:8000/community/reviews/movie/${moviePk.id}/`,
+      headers: {
+          Authorization: `Token ${store.Token}`
+        },
+    })
+    .then((res)=>{
+      console.log(res.data);
+      movieReviews.value = res.data
+    })
+    .catch((err)=>console.log(err))
 })
 </script>
 
@@ -79,7 +95,5 @@ onMounted(()=> {
   grid-template-columns: repeat(2, 1fr);
   margin-left: 240px;
 }
-.director {
-  
-}
+
 </style>
