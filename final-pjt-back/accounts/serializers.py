@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from .models import UserProfile
 from movies.models import Actor, Director, Movie, Score
+from community.models import Review
 from movies.serializers import MovieListSerializer
 
 class UserSerializer(serializers.ModelSerializer):
@@ -33,7 +34,16 @@ class ScoreSerializer(serializers.ModelSerializer):
         model = Score
         fields = '__all__'
 
+
+class ReviewSerializer(serializers.ModelSerializer):
+    movie = MovieListSerializer (read_only=True)
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
 class FollowSerializer(serializers.ModelSerializer):
+    review_set = ReviewSerializer(many=True, read_only = True)
     score_set = ScoreSerializer(many=True, read_only = True)
     like_actor = LikeActorSerializer(many = True, read_only = True)
     like_director = LikeDirectorSerializer(many = True, read_only = True)

@@ -16,7 +16,7 @@ import DirectorMovieView from '@/views/DirectorMovieView.vue'
 // import ReviewCreateView from '@/views/community/ReviewCreateView.vue'
 import ReviewUpdateView from '@/views/community/ReviewUpdateView.vue'
 import ReviewDetailView from '@/views/community/ReviewDetailView.vue'
-
+import MyReviewView from '@/views/Profiles/MyReviewView.vue'
 
 
 
@@ -83,6 +83,12 @@ const router = createRouter({
       path: '/starrating/:username',
       name: 'starrating',
       component: StarRatingView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/myreview/:username',
+      name: 'myreview',
+      component: MyReviewView,
       meta: { requiresAuth: true }
     },
     {

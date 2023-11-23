@@ -41,6 +41,7 @@
         <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">💖좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
         <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">💖좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
         <RouterLink :to="{name:'hopemovie', params:{username:route.params.username}}">'🎬보고싶어요 ({{ HopeMovies.length }})</RouterLink>
+        <RouterLink :to="{name:'myreview', params:{username:route.params.username}}">'🎬나의 리뷰 ({{ myReview.length }})</RouterLink>
       </nav>
     </div>
   </div>
@@ -58,7 +59,6 @@ import FollowList from '@/components/FollowList.vue';
 const route = useRoute()
 const store = useCounterStore()
 const profilePicture = ref('');
-
 
 const followingModal = ref(false)
 const followerModal = ref(false)
@@ -122,8 +122,10 @@ const LikeDirectors = ref([])
 
 const ratingMovies = ref(0);
 
+// 내 리뷰들 으하하
+const myReview = ref([])
 onMounted(() => {
-  console.log(route.params.username);
+  // console.log(route.params.username);
   axios({
     method : 'get',
     url : `http://127.0.0.1:8000/accounts/profile/${route.params.username}/`,
@@ -132,7 +134,8 @@ onMounted(() => {
       }
   })
   .then((res) => {
-    // console.log(res);
+    console.log(res);
+    myReview.value = res.data.review_set
     followers.value = res.data.followers
     followings.value = res.data.followings
     LikeActors.value = res.data.like_actor
