@@ -15,5 +15,6 @@ urlpatterns = [
     path('director/<int:director_pk>/directorlike/', views.director_likes),
     path('actors/', views.actor_list),
     path('directors/', views.director_list),
-
+    path('reviewlikerecommend/', views.recommend_by_review),
+    path('similaruserrecommend/', views.recommend_by_users),
 ]
