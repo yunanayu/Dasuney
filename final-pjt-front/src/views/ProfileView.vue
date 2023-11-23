@@ -25,7 +25,9 @@
       <div class="follow-count">
         <button @click="follow" v-show="followbutton">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
         <p class="count-follow">팔로우: {{ followings.length }}</p>
+        <FollowList />
         <p class="count-following">팔로워: {{ followers.length }}</p>
+        <FollowList />
       </div>
     <div class="category">
       <nav>
@@ -45,6 +47,8 @@ import { ref, onMounted, computed } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import { useCounterStore } from '../stores/counter';
 import { useRoute } from 'vue-router';
+import FollowList from '@/components/FollowList.vue';
+
 const route = useRoute()
 const store = useCounterStore()
 const profilePicture = ref('');
