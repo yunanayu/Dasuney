@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+      <!-- 슬라이드 안에 카드 넣기 -->
       <div class="carousel-inner" style="position: relative;">
         <h2 style="position: absolute; top: 50px; left: 5px;">평점 순위별 영화</h2>
         <div v-for="(movie, index) in chunkedMovies" :key="index" :class="{ 'carousel-item': true, 'active': index === 0 }">
@@ -8,10 +9,12 @@
         </div>
       </div>
       <div class="carousel-controls">
+        <!-- 이전 버튼 -->
         <button class="carousel-control-prev" type="button" data-bs-target="#movieCarousel" data-bs-slide="prev" @mouseover="showPrevButton = true" @mouseleave="showPrevButton = false">
           <span v-if="showPrevButton" class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="visually-hidden">이전</span>
         </button>
+        <!-- 다음 버튼 -->
         <button class="carousel-control-next" type="button" data-bs-target="#movieCarousel" data-bs-slide="next" @mouseover="showNextButton = true" @mouseleave="showNextButton = false">
           <span v-if="showNextButton" class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="visually-hidden">다음</span>
