@@ -11,8 +11,9 @@
         <button @click.prevent="likeActor(actorInfo.name)">{{ isLiked ? '좋아요 취소':'좋아요'}}</button>
       </div>
 
-      <div class="actor-movie">
-        <div v-for="credit in actorCredits">    
+      <div class="actor-movie" v-if="actorCredits">
+        <div v-for="credit in actorCredits" @click="goDetail(credit.id)">
+          <!-- {{ credit }}     -->
           <img :src="(`https://image.tmdb.org/t/p/w500/${credit.poster_path}`)" alt="">
           <p>{{ credit.title }}</p>
         </div>
@@ -81,7 +82,7 @@ onMounted(() => {
     })
     .then((res) =>{
       // console.log(res.data.cast);
-      const credits = res.data.cast.filter((cast) => cast.popularity > 60 && cast.overview != '')
+      const credits = res.data.cast.filter((cast) => cast.vote_average > 7 && cast.overview != '')
       actorCredits.value = credits
       console.log(credits)
       
@@ -102,7 +103,9 @@ onMounted(() => {
   .catch(err => console.log(err))
 })
 
-
+const goDetail = function (movieId) {
+  router.push({name:'moviedetail', params:{movieId:movieId}})
+}
 </script>
 
 <style scoped>

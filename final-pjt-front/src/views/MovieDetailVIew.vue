@@ -76,18 +76,22 @@ onMounted(()=> {
     })
     .catch(err=>console.log(err))
     const moviePk = store.movies.find((movie) => movie.movie_id == route.params.movieId)
-    axios({
-      method : 'get',
-      url : `http://127.0.0.1:8000/community/reviews/movie/${moviePk.id}/`,
-      headers: {
-          Authorization: `Token ${store.Token}`
-        },
-    })
-    .then((res)=>{
-      // console.log(res.data);
-      movieReviews.value = res.data
-    })
-    .catch((err)=>console.log(err))
+    if (moviePk) {
+      axios({
+        method : 'get',
+        url : `http://127.0.0.1:8000/community/reviews/movie/${moviePk.id}/`,
+        headers: {
+            Authorization: `Token ${store.Token}`
+          },
+      })
+      .then((res)=>{
+        // console.log(res.data);
+        movieReviews.value = res.data
+      })
+      .catch((err)=>console.log(err))
+    } else {
+      
+    }
 })
 </script>
 
