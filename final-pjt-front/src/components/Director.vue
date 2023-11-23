@@ -4,12 +4,10 @@
       <img :src="(`https://image.tmdb.org/t/p/w500/${director.profile_path}`)" alt="감독 프로필"  @click.prevent="goDetail(director.name)">
       <div class="director-info">
         <p>{{ director.name }}</p>
-        <!-- <p>{{ director.id }}</p> -->
         <button @click.prevent="likeDirector(director.name)">
           <span v-if="isLiked">💖</span>
           <span v-else>🤍</span>
         </button>
-
       </div>
     </div>
   </div>

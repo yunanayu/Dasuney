@@ -24,12 +24,14 @@
       </div>
       <div class="follow-count">
         <button @click="follow" v-show="followbutton">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
+        <!-- 팔로우 목록 -->
         <div>
-          <p class="count-follow" @click.prevent="followingModal = true">팔로우: {{ followings.length }}</p>
+          <button class="count-follow" @click.prevent="followingModal = true">팔로우: {{ followings.length }}</button>
           <FollowList :follows="followings" v-show="followingModal" @close-follow="followingModal = false"/>
         </div>
+        <!-- 팔로워 목록  -->
         <div>
-          <p class="count-following" @click.prevent="followerModal = true">팔로워: {{ followers.length }}</p>
+          <button class="count-following" @click.prevent="followerModal = true">팔로워: {{ followers.length }}</button>
           <FollowList :follows="followers" v-show="followerModal" @close-follow="followerModal = false"/>
         </div>
       </div>
@@ -155,6 +157,7 @@ h1 {
   font-family: disney;
   font-size: 100px;
   margin-bottom: 30px;
+  /* color: #4caf50; */
 }
 
 .myprofile {
@@ -177,8 +180,7 @@ h1 {
 }
 
 button {
-  margin-top: 10px;
-  padding: 10px 20px;
+  padding: 5px 20px;
   font-size: 16px;
   cursor: pointer;
   background-color: #4caf50;
@@ -189,7 +191,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #d7dbd7;
 }
 .follow-count {
   position: relative;
@@ -200,23 +202,26 @@ button:hover {
   left: 600px;
   font-size: 20px;
 }
+.count-follow button {
+  
+}
 .count-following {
   position: absolute;
   bottom: 150px;
   left: 600px;
   font-size: 20px;
+  background-color: #3498db;
 }
-button {
-  position: absolute;
-  bottom: 260px;
-  left: 590px;
-  font-size: 20px;
+.count-following button {
+  margin-top: 10px;
 }
+
 
 .category nav {
   margin-top: 50px;
   text-align: center;
   background-color: gainsboro;
+
 }
 
 
@@ -253,9 +258,12 @@ nav {
   object-fit: cover;
   margin-bottom: 10px;
   border: 2px solid #4caf50; 
+  transition: border-color 0.3s;
 }
 
-
+.profile-picture:hover {
+  border-color: #45a049; /* 마우스 오버 시 더 어두운 녹색 */
+}
 .profile-picture-label span {
   /* 사진 없을 때 */
   display: inline-block;
@@ -278,5 +286,9 @@ nav {
   text-align: center;
   font-size: 30px;
 
+}
+.profile-nonpicture:hover {
+  background-color: #45a049; /* 마우스 오버 시 더 어두운 녹색 */
+  color: #fff; /* 마우스 오버 시 흰색 텍스트 */
 }
 </style>

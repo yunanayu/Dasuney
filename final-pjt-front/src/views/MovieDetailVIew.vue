@@ -14,7 +14,7 @@
               <form @submit.prevent="createReview" class="message">
                 <div class="input-group">
                   <label for="content"></label>
-                  <textarea id="content" v-model="content" cols="35" rows="2"></textarea>
+                  <textarea id="content" v-model="content" cols="35" rows="2" placeholder="리뷰를 작성 해 주세요."></textarea>
                   <button type="submit" class="review-button">💌</button>
                 </div>
               </form>
@@ -23,14 +23,14 @@
         </div>
       </div>
       <hr>
-      <div style="margin-left: 270px;">
+      <div style="margin-left: 30px;">
         <h3>감독</h3>
       </div>
       <div class="director">
         <Director v-for="director in directors" :director="director"/>
       </div>
       <hr>
-      <div style="margin-left: 270px;">
+      <div style="margin-left: 30px;">
         <h3>배우</h3>
       </div>
       <div class="actor">
@@ -152,11 +152,11 @@ const createReview = function () {
 
 
 <style scoped>
-/* .actor {
+.actor {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  margin-left: 240px;
-} */
+  grid-template-columns: repeat(3, 1fr);
+  
+}
 
 .container {
   display: flex;

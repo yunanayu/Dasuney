@@ -57,15 +57,15 @@ const showNextButton = ref(false);
   display: none; /* Hide the icon when not needed */
 }
 .carousel-control-prev {
-  height: 100px;
+  height: 250px;
   width: 100px;
-  margin-top: 200px;
+  margin-top: 100px;
   /* margin-left: 20px; */
 }
 .carousel-control-next {
-  height: 100px;
+  height: 250px;
   width: 100px;
-  margin-top: 200px;
+  margin-top: 100px;
   /* margin-left: 100px; */
 }
 .carousel-control-prev:hover,

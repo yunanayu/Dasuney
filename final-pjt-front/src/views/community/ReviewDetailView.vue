@@ -1,35 +1,39 @@
 <template>
-  <div v-if="review.user">
-    <h1>리뷰 디테일 페이지이고 여기서 수정 삭제를 다 할거랍니다? 그리도 댓글도 달 수 있어요ㅕ. 우와!!</h1>
-    <!-- {{ review }} -->
-    <h3>{{ review.title }}</h3>
-    <hr>
-    <p>작성자 : {{ review.user.username }}</p>
-    <p>작성일 : {{ review.created_at }}</p>
-    <p>수정일 : {{ review.updated_at }}</p>
-    <hr>
-    <span>{{ review.content }}</span> 
-    <hr>
-    <button @click.prevent="goUpdate">수정</button>
-    <button @click.prevent="goDelete">삭제</button>
-    <hr>
-    <h1>댓글 목록</h1>
-    <hr>
-    <div v-if="commentList">
-      <div v-for="comment in commentList">
-        <!-- <p>{{ comment }}</p> -->
-        <span>{{ comment.content }}</span>
-        <br>
-        <span>작성자 : {{ comment.user.username }}</span> 
-        <button @click.prevent="deleteComment(comment.id)">댓글 삭제</button>
-        <hr>
+  <div class="review-detail" v-if="review.user">
+    <div class="header">
+      <h3>{{ review.title }}</h3>
+      <div class="metadata">
+        <p>{{ review.user.username }}</p>
+        <p>{{ review.created_at }}</p>
+        <!-- <p> 수정일 : {{ review.updated_at }} </p> -->
       </div>
     </div>
-    <h1>댓글 작성</h1>
-    <form @submit.prevent="createComment">
-      <input type="text" v-model="commentContent">
-      <input type="submit" value="댓글 작성">
-    </form>
+    <div class="content">
+      <hr>
+      <p>{{ review.content }}</p> 
+      <hr>
+      <div class="actions">
+        <button @click.prevent="goUpdate" class="action-button" style="margin-right: 10px;">수정</button>
+        <button @click.prevent="goDelete" class="action-button danger">삭제</button>
+      </div>
+    </div>
+    <div class="comments-section">
+      <form @submit.prevent="createComment" class="comment-form">
+        <input type="text" v-model="commentContent" placeholder="댓글을 입력하세요">
+        <button type="submit" class="action-button">댓글 작성</button>
+      </form>
+      <div class="comment-list" v-if="commentList">
+        <div v-for="comment in commentList" :key="comment.id" class="comment">
+          <span>{{ comment.content }}</span>
+          <div class="comment-metadata">
+            <span>작성자: {{ comment.user.username }}</span> 
+            <button @click.prevent="deleteComment(comment.id)" class="action-button danger">댓글 삭제</button>
+          </div>
+          <hr>
+        </div>
+      </div>
+
+    </div>
   </div>
 </template>
 
@@ -136,6 +140,94 @@ const deleteComment = function (commentId) {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+.review-detail {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  color: #0b1f35;
+}
 
+.header {
+  /* display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+}
+
+.metadata {
+  color: #8b8989;
+}
+
+.content {
+  margin-top: 20px;
+}
+
+.actions {
+  /* display: flex;
+  justify-content: space-between; */
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.action-button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #2980b9;
+}
+
+.danger {
+  background-color: #e74c3c;
+}
+
+.comment-list {
+  margin-top: 20px;
+}
+
+.comment {
+  margin-bottom: 10px;
+}
+
+.comment-metadata {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #777;
+}
+
+.comment-form {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.comment-form input {
+  padding: 10px;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.comment-form button {
+  padding: 10px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.comment-form button:hover {
+  background-color: #2980b9;
+}
 </style>

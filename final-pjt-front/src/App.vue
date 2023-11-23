@@ -22,6 +22,19 @@ const store = useCounterStore()
       <button class="btn btn-outline-light" @click.prevent="store.logout()" v-if="store.isAuthenticated" style="font-size: 20px;">LogOut</button>
     </nav>
     <RouterView />
+
+    <footer class="footer fixed-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <p>&copy; Dasuney+</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <a href="#">상단으로 올라가기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -46,4 +59,20 @@ const store = useCounterStore()
   text-align: left;
 }
 
+.footer {
+  background-color: #0b1f35;
+  padding: 10px 0;
+  /* margin-bottom: 20px; */
+  color: white;
+  height: 50px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: underline;
+}
+
+.footer a:hover {
+  color: #ddd;
+}
 </style>
