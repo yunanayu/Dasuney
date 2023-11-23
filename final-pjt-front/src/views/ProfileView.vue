@@ -24,10 +24,14 @@
       </div>
       <div class="follow-count">
         <button @click="follow" v-show="followbutton">{{ isFollowing ? '언팔로우' : '팔로우' }}</button>
-        <p class="count-follow">팔로우: {{ followings.length }}</p>
-        <FollowList />
-        <p class="count-following">팔로워: {{ followers.length }}</p>
-        <FollowList />
+        <div>
+          <p class="count-follow" @click.prevent="followingModal = true">팔로우: {{ followings.length }}</p>
+          <FollowList :follows="followings" v-show="followingModal" @close-follow="followingModal = false"/>
+        </div>
+        <div>
+          <p class="count-following" @click.prevent="followerModal = true">팔로워: {{ followers.length }}</p>
+          <FollowList :follows="followers" v-show="followerModal" @close-follow="followerModal = false"/>
+        </div>
       </div>
     <div class="category">
       <nav>
@@ -53,6 +57,9 @@ const route = useRoute()
 const store = useCounterStore()
 const profilePicture = ref('');
 
+
+const followingModal = ref(false)
+const followerModal = ref(false)
 // 프로필 사진 선택
 const handleProfilePictureChange = (event) => {
   const file = event.target.files[0];

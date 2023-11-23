@@ -46,3 +46,4 @@ class FollowSerializer(serializers.ModelSerializer):
         # include = ('id','username','followings','followers',)
         # fields = '__all__'
         exclude = ('password', 'last_login', 'is_superuser', 'first_name','last_name', 'email', 'is_staff', 'is_active', 'date_joined','groups','user_permissions',)
+        read_only_fields = ('profile_path',)
