@@ -111,7 +111,7 @@ const createComment = function () {
     } 
   })
   .then((res) => {
-    console.log(res.data);
+    // console.log(res.data);
     commentList.value.push(res.data)
     commentContent.value = ''
   })
@@ -122,16 +122,15 @@ const createComment = function () {
 const deleteComment = function (commentId) {
   axios({
     method : 'delete',
-    url : `http://127.0.0.1:8000/community/reviews/${route.params.reviewid}/comments/`,
+    url : `http://127.0.0.1:8000/community/comments/${commentId}/`,
     headers: {
       Authorization: `Token ${store.Token}`
     },
-    data : {
-      content : commentContent.value
-    } 
   })
   .then((res) => {
-    console.log(res.data);
+    window.alert('댓글 삭제 완료!')
+    const index = commentList.value.findIndex((comment) => comment.id == commentId)
+    commentList.value.splice(index, 1)
   })
   .catch(err => console.log(err))
 }
