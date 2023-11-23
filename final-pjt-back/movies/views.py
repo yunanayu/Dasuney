@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework import status
 from .models import Movie,Genre, Score, Actor, Director
 from .serializers import MovieListSerializer, GenreSerializer, MovieListSerializer,ScoreSerializer,ActorSerializer,DirectorSerializer
-
+from django.contrib.auth import get_user_model
 # permission Decorators
 from rest_framework.decorators import permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -224,3 +224,41 @@ def director_likes(req, director_pk):
         }
         return JsonResponse(context)
     
+    
+    
+# 리뷰와 좋아요(보고싶어요) 기반으로 영화 추천
+# def recommend_by_review(req):
+#     user = req.user
+#     reviews = get_user_model().review_set.all()
+#     likes = get_user_model().like_movies.all()
+    
+#     if not reviews and not likes:
+#         return Response([], status=status.HTTP_200_OK)
+
+#     genres = {
+#         '액션': {'score': 0, 'count': 0},
+#         "모험": {'score': 0, 'count': 0},
+#         "애니메이션": {'score': 0, 'count': 0},
+#         "코미디": {'score': 0, 'count': 0},
+#         "범죄": {'score': 0, 'count': 0},
+#         "다큐멘터리": {'score': 0, 'count': 0},
+#         "드라마": {'score': 0, 'count': 0},
+#         "가족": {'score': 0, 'count': 0},
+#         "판타지": {'score': 0, 'count': 0},
+#         "역사": {'score': 0, 'count': 0},
+#         "공포": {'score': 0, 'count': 0},
+#         "음악": {'score': 0, 'count': 0},
+#         "미스터리": {'score': 0, 'count': 0},
+#         "로맨스": {'score': 0, 'count': 0},
+#         "SF": {'score': 0, 'count': 0},
+#         "TV 영화": {'score': 0, 'count': 0},
+#         "스릴러": {'score': 0, 'count': 0},
+#         "전쟁": {'score': 0, 'count': 0},
+#         "서부": {'score': 0, 'count': 0},
+#     }
+
+#     review_movies = []
+#     for review in reviews:
+#         review_movies.append(review.movie.title)
+#         for genre in review.movie.genres.all():
+#             genres

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from .models import UserProfile
 from movies.models import Actor, Director, Movie, Score
 from movies.serializers import MovieListSerializer
 
@@ -46,4 +47,11 @@ class FollowSerializer(serializers.ModelSerializer):
         # include = ('id','username','followings','followers',)
         # fields = '__all__'
         exclude = ('password', 'last_login', 'is_superuser', 'first_name','last_name', 'email', 'is_staff', 'is_active', 'date_joined','groups','user_permissions',)
-        read_only_fields = ('profile_path',)
+
+        
+        
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+        read_only_fiels = ('user',)

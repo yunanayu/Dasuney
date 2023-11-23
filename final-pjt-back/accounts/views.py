@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework import status
-from .serializers import UserSerializer, FollowSerializer
+from .serializers import UserSerializer, FollowSerializer, ProfileSerializer
 # Create your views here.
 
 # permission Decorators
@@ -36,6 +36,11 @@ def profile(req, username):
         return JsonResponse(context)
 
 
-# @permission_classes([IsAuthenticated])
-# @api_view(['GET','POST'])
-# def upload_
+@permission_classes([IsAuthenticated])
+@api_view(['GET','POST'])
+def upload_picture(req):
+    if req.method == 'POST':
+        serializer = ProfileSerializer(data = req.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save(user=req.user)
+            return Response(status=status.HTTP_201_CREATED)
