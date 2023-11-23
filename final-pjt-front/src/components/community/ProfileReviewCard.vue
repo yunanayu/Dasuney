@@ -1,24 +1,14 @@
 <template>
-  <!-- <div class="container">
-    <div class="chat-list">
-      <div class="chat-base">
-      </div>
-    </div>
-  </div> -->
-  <div class="chat-item">
-    <!-- {{ review.movie }} -->
-    <div @click.prevent="goMoviewDetail(review.movie.movie_id)" >
-      <img :src="review.movie.poster_path" alt="">
-      <p>제목 : {{ review.movie.title }}</p>
-    </div>
-    <div  @click.prevent="goReviewDetail(review.id)" >
-      <p class="chat-content">{{ review.content }}</p>
-      <p>생성 시간 {{ review.created_at }}</p>
-      <p>수정 시간 ㅋㅎ{{ review.updated_at }}</p>
-    </div>
-    <!-- <p class="chat-author" style="text-align: right;">{{ review.user.username }}</p> -->
-    <hr class="chat-divider">
+<div class="chat-item">
+  <div class="image-container" @click.prevent="goMoviewDetail(review.movie.movie_id)">
+    <img :src="review.movie.poster_path" alt="">
   </div>
+  <div class="text-container" @click.prevent="goReviewDetail(review.id)">
+    <p class="title">제목: {{ review.movie.title }}</p>
+    <p class="chat-content">{{ review.content }}</p>
+  </div>
+  <hr class="chat-divider">
+</div>
 </template>
 
 <script setup>
@@ -46,8 +36,42 @@ const goMoviewDetail = function (movieId) {
   margin: 0 auto;
   
 }
+.chat-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Adjust margin as needed */
+}
 
-.chat-list {
+.image-container {
+  cursor: pointer;
+  margin-right: 20px; /* Adjust margin as needed */
+}
+
+.image-container img {
+  width: 150px; /* Adjust width as needed */
+  height: auto;
+}
+
+.text-container {
+  flex: 1;
+}
+
+.title {
+  font-weight: bold;
+  margin-bottom: 5px; /* Adjust margin as needed */
+}
+
+.chat-content {
+  margin: 0;
+}
+
+.chat-divider {
+  margin-top: 20px; 
+}
+.chat-item:hover {
+  background-color: #484545;
+}
+/* .chat-list {
   padding: 20px;
   width: 400px;
   position: relative;
@@ -57,10 +81,11 @@ const goMoviewDetail = function (movieId) {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
-.chat-item:hover {
-  background-color: #f5f5f5;
+.chat-item img {
+  width: 200px;
 }
+
+
 
 .chat-content {
   margin-bottom: 5px;
@@ -74,8 +99,6 @@ const goMoviewDetail = function (movieId) {
 .chat-divider {
   margin-top: 10px;
   border: 1px solid #ddd;
-}
-.chat-base {
+} */
 
-}
 </style>

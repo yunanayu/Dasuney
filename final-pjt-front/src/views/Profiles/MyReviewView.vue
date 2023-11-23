@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="pageTitle">{{ route.params.username }}님이 작성한 리뷰</h1>
-    <h6 class="subtitle">보고싶은 영화가 많을수록 {{ route.params.username }}님에게 맞는 영화를 추천해드려요</h6>
+    <h6 class="subtitle">클릭하면 리뷰의 내용을 수정할 수 있어요.</h6>
     <div class="array">
       <ProfileReviewCard 
       v-for="review in reviews"
@@ -47,6 +47,7 @@ onMounted(() => {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
+  
 }
 
 .pageTitle {
@@ -60,11 +61,6 @@ onMounted(() => {
 }
 
 .array {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-auto-rows: 350px;
-  grid-gap: 20px;
-  margin-top: 20px;
-  margin-left: 40px;
+
 }
 </style>

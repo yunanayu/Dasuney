@@ -2,10 +2,12 @@
   <div class="container">
     <div class="chat-list">
       <div class="chat-base">
-      <div @click.prevent="goReviewDetail(review.id)" class="chat-item">
-        <p class="chat-content">{{ review.content }}</p>
-        <p class="chat-author" style="text-align: right;">{{ review.user.username }}</p>
-        <hr class="chat-divider">
+        <div @click.prevent="goReviewDetail(review.id)" class="chat-item">
+          <div class="content-container">
+            <p class="chat-content clamp-lines">{{ review.content }}</p>
+          </div>
+          <p class="chat-author" style="text-align: right;">{{ review.user.username }}</p>
+          <hr class="chat-divider">
         </div>
       </div>
     </div>
@@ -62,7 +64,15 @@ const goReviewDetail = function (reviewId) {
   margin-top: 10px;
   border: 1px solid #ddd;
 }
-.chat-base {
+.clamp-lines {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 3; /* 필요에 따라 줄 수를 조정하세요. */
+  }
 
-}
+  .content-container {
+    max-height: calc(3 * 1.6em); /* 1.2em은 줄 높이입니다. */
+    overflow: hidden;
+  }
 </style>
