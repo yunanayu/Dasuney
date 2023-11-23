@@ -34,6 +34,7 @@ const goMovieDetail = function (movieId) {
 const selectedMovieId = ref(null);
 
 const openTrailerModal = (movieId) => {
+  console.log('dmgkgkgkgk')
   selectedMovieId.value = movieId;
   showModal.value = true;
 };
