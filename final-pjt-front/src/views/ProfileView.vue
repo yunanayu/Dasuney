@@ -225,7 +225,7 @@ button:hover {
 .category nav {
   margin-top: 50px;
   text-align: center;
-  background-color: rgb(239, 209, 189);
+  background-color: rgb(245, 244, 244);
 }
 
 
