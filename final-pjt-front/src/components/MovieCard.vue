@@ -28,14 +28,15 @@ const goMovieDetail = function (movieId) {
 <style scoped>
 img {
   width: 200px;
-  height: 300px;
+  height: 250px;
+  border-radius: 10%;
 }
 
 .array {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 350px;
-  grid-gap: 40px;
+  grid-gap: 10px;
   margin-top: 100px;
 }
 

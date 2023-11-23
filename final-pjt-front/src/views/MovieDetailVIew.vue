@@ -4,12 +4,14 @@
       <div v-if="movieDetail">
         <MovieInfo :movie-info="movieDetail"/>
       </div>
-      <div style="margin-left: 170px;">
+      <div style="margin-left: 270px;">
         <h3>감독</h3>
       </div>
-      <Director v-for="director in directors" :director="director"/>
+      <div class="director">
+        <Director v-for="director in directors" :director="director"/>
+      </div>
       <hr>
-      <div style="margin-left: 170px;">
+      <div style="margin-left: 270px;">
       <h3>배우</h3>
       </div>
       <div class="actor">
@@ -75,6 +77,9 @@ onMounted(()=> {
 .actor {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  margin-left: 150px;
+  margin-left: 240px;
+}
+.director {
+  
 }
 </style>

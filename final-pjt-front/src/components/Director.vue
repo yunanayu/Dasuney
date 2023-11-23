@@ -5,7 +5,11 @@
       <div class="director-info">
         <p>{{ director.name }}</p>
         <!-- <p>{{ director.id }}</p> -->
-        <button @click.prevent="likeDirector(director.name)">{{ isLiked ? '좋아요 취소' : '좋아요'}}</button>
+        <button @click.prevent="likeDirector(director.name)">
+          <span v-if="isLiked">💖</span>
+          <span v-else>🤍</span>
+        </button>
+
       </div>
     </div>
   </div>

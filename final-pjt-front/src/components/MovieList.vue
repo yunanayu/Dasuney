@@ -60,16 +60,20 @@ const showNextButton = ref(false);
   height: 100px;
   width: 100px;
   margin-top: 200px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 .carousel-control-next {
   height: 100px;
   width: 100px;
   margin-top: 200px;
-  margin-left: 100px;
+  /* margin-left: 100px; */
 }
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
   background-color: black; /* Change the background color on hover */
+}
+
+.carousel-item {
+  
 }
 </style>
