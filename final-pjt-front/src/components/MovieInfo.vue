@@ -41,7 +41,8 @@
         <h2>줄거리</h2>
         <p>{{ movieInfo.overview }}</p>
       </div>  
-      <button @click="goReviewCreate">리뷰 작성하기</button>
+      
+      
     </div>
     <hr>
   </div>
@@ -49,6 +50,7 @@
   </template>
   
   <script setup>
+
   import axios from 'axios';
   import { ref, onMounted } from 'vue';
   import { useCounterStore } from '../stores/counter';
@@ -138,10 +140,7 @@
     }
   }
   
-  const goReviewCreate = function () {
-    const movie = store.movies.find((m) => m.title === props.movieInfo.title);
-    router.push({name:'reviewcreate', params : {movieid:movie.id}, query:{movie_id:movie.movie_id}})
-  }
+
   
   onMounted(() => {
     store.getMovieList()
