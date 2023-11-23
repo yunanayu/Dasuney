@@ -18,7 +18,8 @@
     </div>
   </div>
   <div class="back">
-    <div class="container">
+    <div class="container" style="position: relative;">
+      <h2 style="position: absolute; top: 50px; left: 5px;">평점 순위별 영화</h2>
       <MovieList :movies="store.movies" />
     </div>
   </div>

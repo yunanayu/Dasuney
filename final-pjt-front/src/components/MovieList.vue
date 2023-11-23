@@ -2,8 +2,7 @@
   <div class="container">
     <div id="movieCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
       <!-- 슬라이드 안에 카드 넣기 -->
-      <div class="carousel-inner" style="position: relative;">
-        <h2 style="position: absolute; top: 50px; left: 5px;">평점 순위별 영화</h2>
+      <div class="carousel-inner">
         <div v-for="(movie, index) in chunkedMovies" :key="index" :class="{ 'carousel-item': true, 'active': index === 0 }">
           <MovieCard :movie-detail="movie" />
         </div>
