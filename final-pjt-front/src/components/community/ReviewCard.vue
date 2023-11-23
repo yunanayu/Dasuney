@@ -1,16 +1,12 @@
 <template>
   <div class="container">
-    <div class="review-list">
-      <div @click.prevent="goReviewDetail(review.id)">
-        <!-- {{  review }} -->
-        <!-- <p>리뷰 타이틀 : {{ review.title }}</p> -->
-        <p>리뷰 내용 : {{ review.content }}</p>
-        <p>리뷰 작성자 ; {{  review.user.username }}</p>
-        <hr>
-
-        <!-- <h1>고 리뷰 디테일</h1>
-          <p>리뷰 수정 버튼</p>
-          <p>리뷰 </p> -->
+    <div class="chat-list">
+      <div class="chat-base">
+      <div @click.prevent="goReviewDetail(review.id)" class="chat-item">
+        <p class="chat-content">{{ review.content }}</p>
+        <p class="chat-author" style="text-align: right;">{{ review.user.username }}</p>
+        <hr class="chat-divider">
+        </div>
       </div>
     </div>
   </div>
@@ -18,27 +14,54 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-// import router from '../../router';
 
-const router = useRouter()
+const router = useRouter();
 
 defineProps({
-  review : Object
-})
-
+  review: Object,
+});
 
 const goReviewDetail = function (reviewId) {
-  router.push({name:'reviewDetail', params:{reviewid:reviewId}})   
-}
-
-
+  router.push({ name: 'reviewDetail', params: { reviewid: reviewId } });
+};
 </script>
 
 <style scoped>
-.review-list {
+.container {
   font-family: 'Arial', sans-serif;
   max-width: 800px;
   margin: 0 auto;
+  
+}
+
+.chat-list {
   padding: 20px;
+  width: 300px;
+}
+
+.chat-item {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-item:hover {
+  background-color: #f5f5f5;
+}
+
+.chat-content {
+  margin-bottom: 5px;
+}
+
+.chat-author {
+  font-style: italic;
+  color: #888;
+}
+
+.chat-divider {
+  margin-top: 10px;
+  border: 1px solid #ddd;
+}
+.chat-base {
+  border: 1px solid black;
 }
 </style>
