@@ -29,10 +29,10 @@
       </div>
     <div class="category">
       <nav>
-        <RouterLink :to="{name:'starrating', params:{username:route.params.username}}">내 평가 ({{ ratingMovies.length }})</RouterLink>
-        <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
-        <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
-        <RouterLink :to="{name:'hopemovie', params:{username:route.params.username}}">보고싶어요 ({{ HopeMovies.length }})</RouterLink>
+        <RouterLink :to="{name:'starrating', params:{username:route.params.username}}">⭐내 평가 ({{ ratingMovies.length }})</RouterLink>
+        <RouterLink :to="{name:'actorlike', params:{username:route.params.username}}">💖좋아하는 배우 ({{ LikeActors.length }})</RouterLink>
+        <RouterLink :to="{name:'directorlike', params:{username:route.params.username}}">💖좋아하는 감독 ({{ LikeDirectors.length }})</RouterLink>
+        <RouterLink :to="{name:'hopemovie', params:{username:route.params.username}}">'🎬보고싶어요 ({{ HopeMovies.length }})</RouterLink>
       </nav>
     </div>
   </div>
@@ -203,9 +203,11 @@ button {
 }
 
 .category nav {
-  margin-top: 20px;
+  margin-top: 50px;
   text-align: center;
+  background-color: gainsboro;
 }
+
 
 .category nav a {
   margin: 0 20px;

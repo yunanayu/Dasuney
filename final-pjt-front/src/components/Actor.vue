@@ -6,7 +6,11 @@
         <div class="actor-info">
           <p>{{ cast.name }}</p>
           <!-- <p>{{ cast.id }}</p> -->
-          <button @click.prevent="likeActor(cast.name)">{{ isLiked ? '좋아요 취소':'좋아요'}}</button>
+          <button @click.prevent="likeActor(cast.name)">
+            <span v-if="isLiked">💖</span>
+            <span v-else>🤍</span>
+          </button>
+
         </div>
       </div>
     </div>

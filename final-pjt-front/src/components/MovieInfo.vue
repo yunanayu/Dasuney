@@ -5,7 +5,11 @@
       <div class="header">
         <img :src="`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`" alt="영화 포스터">
         <div class="movie-info">
-          <button class="like-button" @click.prevent="hopeMovie">{{ isLiked ? '보고 싶어요 취소' : '보고 싶어요!' }}</button>
+          <button class="like-button" @click.prevent="hopeMovie">
+            <span v-if="isLiked">🚫</span> <!-- 여기에 보고 싶어요 취소 아이콘을 넣어도 좋습니다 -->
+            <span v-else>🎬</span> <!-- 여기에 보고 싶어요 아이콘을 넣어도 좋습니다 -->
+            {{ isLiked ? '보고 싶어요 취소' : '보고 싶어요!' }}
+          </button>
           <h1>{{ movieInfo.title }}</h1>
           <p class="release-date">{{ movieInfo.release_date }}</p>
           <p class="runtime">{{ movieInfo.runtime }} 분</p>
@@ -16,7 +20,7 @@
           </div>
         </div>
       </div>
-      <div class="rating-section">
+      <div class="rating-section" style="position: relative;">
         <h2>이 영화 평가하기</h2>
         <div class="rate">
           <input type="radio" @click="reRateScore(10)" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
@@ -30,9 +34,9 @@
           <input type="radio" @click="reRateScore(2)" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
           <input type="radio" @click="reRateScore(1)" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
         </div>
-        <button @click="cancelRating" class="score-button">평가 취소</button>
-        
+        <button @click="cancelRating" class="score-button" style="position: absolute; bottom: 25px;">❌ 평가 취소</button>
       </div>
+
       <div class="plot-summary">
         <h2>줄거리</h2>
         <p>{{ movieInfo.overview }}</p>
