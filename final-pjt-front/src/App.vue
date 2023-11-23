@@ -2,9 +2,17 @@
 import axios from 'axios';
 import { RouterLink, RouterView } from 'vue-router'
 import { useCounterStore } from './stores/counter';
-
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
 const store = useCounterStore()
-
+const router = useRouter()
+const search = ref('')
+const goDetail = function () {
+  const searchMovie = store.movies.find((movie) => movie.title == search.value)
+  // console.log(searchMovie);
+  router.push({name:'moviedetail', params:{movieId:searchMovie.movie_id}})
+  search.value = ''
+}
 </script>
 
 <template>
@@ -16,6 +24,13 @@ const store = useCounterStore()
       </div>
       <div class="nav-item me-auto" v-if="store.isAuthenticated">
         <RouterLink class="nav-link" :to="{name:'profile',params:{username:store.tempUsername}}" style="font-size: 30px;">Profile</RouterLink>
+      </div>
+      <!-- 검색기능입니당 우하하 -->
+      <div class="mt-4">
+        <form class="form-inline my-2 my-lg-0" @submit.prevent="goDetail">
+          <input class="form-control mr-sm-2" type="search" placeholder="영화 제목을 입력하세요" aria-label="Search" id="searchInput"  v-model="search">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button">검색</button>
+        </form>
       </div>
       <div class="collapse navbar-collapse" id="navbarNav"></div>
       <!-- 로그아웃 버튼은 화면이 작아졌을 때도 보이게 설정 -->
