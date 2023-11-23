@@ -37,6 +37,7 @@
         <h2>줄거리</h2>
         <p>{{ movieInfo.overview }}</p>
       </div>  
+      <button @click="goReviewCreate">리뷰 작성하기</button>
     </div>
     <hr>
   </div>
@@ -132,7 +133,9 @@
     }
   }
   
-  
+  const goReviewCreate = function () {
+    
+  }
   
   onMounted(() => {
     store.getMovieList()

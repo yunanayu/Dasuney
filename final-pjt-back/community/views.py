@@ -66,40 +66,55 @@ def comment_list(request, review_pk):
         # return Response(serializer.errors, status=400)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def comment_detail(request, review_pk, comment_pk):
-    review = get_object_or_404(Review, pk=review_pk)
-    comment = get_object_or_404(Comment, pk=comment_pk, review=review)
+def comment_detail(request, comment_pk):
+    comment = get_object_or_404(Comment, pk=comment_pk)
 
     if request.method == 'GET':
         serializer = CommentSerializer(comment)
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        serializer = CommentSerializer(comment, data=request.data, partial=True)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        if request.user.pk == comment.user.id:
+            serializer = CommentSerializer(comment, data=request.data, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=400)
     
     elif request.method == 'DELETE':
-        comment.delete()
-        return Response(status=204)
+        if request.user.pk == comment.user.id:
+            comment.delete()
+            return Response(status=204)
 
 
 
 @permission_classes([IsAuthenticated])
-@api_view(['POST'])
+@api_view(['GET','POST'])
 def review_likes(req, review_pk):
-    if req.method == 'POST':
+    if req.method == 'GET':
         review = get_object_or_404(Review, pk=review_pk)
         if req.user in review.user_likes.all():
-            review.like_users.remove(req.user)
-            is_liked = False
-        else:
-            review.user_likes.add(req.user)
             is_liked = True
+        else:
+            is_liked = False
         context = {
             'is_liked' : is_liked,
             'like_count' : review.user_likes.count()
         }
         return JsonResponse(context)
+    elif req.method == 'POST':
+        review = get_object_or_404(Review, pk=review_pk)
+        if req.user.pk != review.user.id:
+            if req.user in review.user_likes.all():
+                review.user_likes.remove(req.user)
+                is_liked = False
+            else:
+                review.user_likes.add(req.user)
+                is_liked = True
+            context = {
+                'is_liked' : is_liked,
+                'like_count' : review.user_likes.count()
+            }
+            return JsonResponse(context)
+        else:
+            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)

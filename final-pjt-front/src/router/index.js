@@ -13,6 +13,13 @@ import IntroView from '@/views/accounts/IntroView.vue'
 import AniView from '@/views/accounts/AniView.vue'
 import ActorMovieView from '@/views/ActorMovieView.vue'
 import DirectorMovieView from '@/views/DirectorMovieView.vue'
+import ReviewCreateView from '@/views/community/ReviewCreateView.vue'
+import ReviewUpdateView from '@/views/community/ReviewUpdateView.vue'
+import ReviewDetailView from '@/views/community/ReviewDetailView.vue'
+
+
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -88,6 +95,24 @@ const router = createRouter({
       path: '/directormovielist/:directorid',
       name: 'directormovielist',
       component: DirectorMovieView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/reviewcreate/:movieid/',
+      name: 'reviewcreate',
+      component: ReviewCreateView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/reviewupdate/:reviewid',
+      name: 'reviewupdate',
+      component: ReviewUpdateView,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/reviewDetail/:reviewid',
+      name: 'reviewDetail',
+      component: ReviewDetailView,
       meta: { requiresAuth: true }
     },
   ]
