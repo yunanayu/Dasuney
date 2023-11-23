@@ -37,6 +37,7 @@ const goReviewDetail = function (reviewId) {
 .chat-list {
   padding: 20px;
   width: 300px;
+  position: relative;
 }
 
 .chat-item {
@@ -62,6 +63,6 @@ const goReviewDetail = function (reviewId) {
   border: 1px solid #ddd;
 }
 .chat-base {
-  border: 1px solid black;
+
 }
 </style>

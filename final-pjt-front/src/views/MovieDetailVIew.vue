@@ -1,15 +1,22 @@
 <template>
   <div class="container">
     <div v-if="movieDetail">
+      <div v-if="movieReviews">
+        <h3 style="margin-left: 270px;">리뷰 목록</h3>
+        <ReviewCard  v-for="review in movieReviews" :review="review"/>
+      <form @submit.prevent="createReview" class="message">
+        <div class="input-group" style="margin-left: 270px;">
+          <label for="content">내용</label>
+          <textarea id="content" v-model="content" cols="30" rows="3"></textarea>
+          <button type="submit">리뷰 작성</button>
+        </div>
+      </form>
+    </div>
+      </div>
       <div v-if="movieDetail">
         <MovieInfo :movie-info="movieDetail"/>
-        <div style="margin-left: 270px;">
-          <h3>리뷰 목록</h3>
-        </div>
-        <div v-if="movieReviews">
-          <ReviewCard  v-for="review in movieReviews" :review="review"/>
-        </div>
       </div>
+
       <div style="margin-left: 270px;">
         <h3>감독</h3>
       </div>
@@ -24,28 +31,36 @@
         <Actor v-for="cast in casts" :cast="cast"/>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>
 import ReviewCard from '../components/community/ReviewCard.vue';
 import axios from 'axios';
 import { ref, onMounted } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { useCounterStore } from '../stores/counter';
 import MovieInfo from '../components/MovieInfo.vue';
 import Actor from '../components/Actor.vue';
 import Director from '../components/Director.vue';
 
-
+const router = useRouter()
 const store = useCounterStore()
 const route = useRoute()
 const key = import.meta.env.VITE_TMDB_API_KEY
 const movieDetail = ref(null)
 const casts = ref([])
 const directors = ref({})
+// const title = ref('')
+const content = ref('')
+// const moviePK = ref('')
 // console.log(route.params);
 const movieReviews = ref([])
+
+// 리뷰 작성하기 버튼
+// const goReviewCreate = function () {
+//     const movie = store.movies.find((m) => m.title === movieDetail.value.title);
+//     router.push({name:'reviewcreate', params : {movieid:movie.id}, query:{movie_id:movieDetail.value.id}})
+//   }
 
 onMounted(()=> {
   axios({
@@ -93,6 +108,38 @@ onMounted(()=> {
       
     }
 })
+
+// ㄹㅣ뷰 작성하기
+const createReview = function () {
+  const movie = store.movies.find((m) => m.title === movieDetail.value.title);
+  axios({
+    method : 'post',
+    url : `http://127.0.0.1:8000/community/reviews/movie/${movie.id}/`,
+    headers : {
+        Authorization:`Token ${store.Token}`
+      },
+    data : {
+      title : '제목',
+      content : content.value
+    }
+  })
+  .then((res) => {
+    // console.log(res.data)
+    window.alert('리뷰 작성이 완료되었습니다.')
+    movieReviews.value.push(res.data)
+    title.value = ''
+    content.value = ''
+    // router.push({name:'moviedetail', params : {movieId:route.query.movie_id}})
+  })
+  .catch((err) => {
+    console.log(err)
+    if (title.value == '') {
+      window.alert('제목을 작성해주세요')
+    } else if (content.value == '') {
+      window.alert('내용을 작성해주세요')
+    }
+  })
+}
 </script>
 
 <style scoped>

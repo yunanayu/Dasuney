@@ -28,9 +28,9 @@ import { ref } from 'vue';
 import { routeLocationKey, useRoute } from 'vue-router'
 import { useCounterStore } from '../../stores/counter';
 import router from '../../router';
-const content = ref('')
 const store = useCounterStore()
 const title = ref('')
+const content = ref('')
 const route = useRoute()
 const createReview = function () {
   axios({
