@@ -328,6 +328,8 @@ def recommend_by_review(req):
 
 
 
+# 비슷한 취향을 가진 사람들이 본 영화
+# 좋아요 유사 사용자 추천 알고리즘으로 추천된 영화 리스트
 
 @api_view(['GET'])
 def recommend_by_users(request):
