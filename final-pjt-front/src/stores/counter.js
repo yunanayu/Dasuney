@@ -31,12 +31,15 @@ export const useCounterStore = defineStore('counter', () => {
     })
     .then((res) => {
       // console.log(res)
-      console.log('로그인 성공')
+      window.alert('로그인 성공')
       Token.value = res.data.key
       tempUsername.value = username
       router.push({name:'home'})
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      window.alert('존재하지않는 회원입니다.')
+    })
   }
 
   const SignUp = function (payload) {
@@ -51,11 +54,16 @@ export const useCounterStore = defineStore('counter', () => {
       }
     })
     .then((res) => {
-      console.log(res)
-      console.log('회원가입 완료')
+      // console.log(res)
+      window.alert('회원가입 완료')
       router.push({name:'login'})
     })
-    .catch(err => console.log(err))
+    .catch((err) => {
+      console.log(err)
+      if (password1 != password2) {
+        window.alert('비밀번호가 다릅니다.')
+      }
+    })
   }
 
   const logout = function () {
@@ -107,10 +115,9 @@ export const useCounterStore = defineStore('counter', () => {
     axios({
       method:'get',
       url:'http://127.0.0.1:8000/movies/actors/',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${TMDB_KEY}`
-        }
+      headers : {
+        Authorization:`Token ${Token.value}`
+      }
     })
     .then((res) => {
       // console.log(res.data)
@@ -125,10 +132,9 @@ export const useCounterStore = defineStore('counter', () => {
     axios({
       method:'get',
       url:'http://127.0.0.1:8000/movies/directors/',
-      headers: {
-        accept: 'application/json',
-        Authorization: `Bearer ${TMDB_KEY}`
-        }
+      headers : {
+        Authorization:`Token ${Token.value}`
+      }
     })
     .then((res) => {
       // console.log(res.data)

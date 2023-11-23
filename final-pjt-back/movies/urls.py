@@ -17,4 +17,5 @@ urlpatterns = [
     path('directors/', views.director_list),
     path('reviewlikerecommend/', views.recommend_by_review),
     path('similaruserrecommend/', views.recommend_by_users),
+    path('sort/<int:sort_num>/', views.movie_sort), # 필터링 조회
 ]

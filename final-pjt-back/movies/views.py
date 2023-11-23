@@ -4,18 +4,19 @@ from rest_framework.response import Response
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from django.db.models import Sum, Avg
+from datetime import date
 from rest_framework import status
 from .models import Movie,Genre, Score, Actor, Director
 from .serializers import MovieListSerializer, GenreSerializer, MovieListSerializer,ScoreSerializer,ActorSerializer,DirectorSerializer
 from django.contrib.auth import get_user_model
 # permission Decorators
 from rest_framework.decorators import permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 
 
 # Create your views here.
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly]) # 인증된 사용자는 모든 요청 가능, 아닐 시 조회만
 def movie_list(req):
     if req.method == 'GET':
         movies = get_list_or_404(Movie)
@@ -23,8 +24,67 @@ def movie_list(req):
         return Response(serializer.data)
 
 
+# 영화 필터링 후 조회하기
+@api_view(['GET'])
+@permission_classes([IsAuthenticatedOrReadOnly]) # 인증된 사용자는 모든 요청 가능, 인증되지 않은 사용자는 GET만 가능
+def movie_sort(request, sort_num):
+    movies = Movie.objects.all()
+    if sort_num == 1: # 관객수(popularity)
+        sort_movies = movies.order_by('-popularity')[:30]
+    elif sort_num == 2: # 최신순(개봉한 영화만)
+        sort_movies = movies.filter(release_date__lte=date.today()).order_by('-release_date')[:30]
+    elif sort_num == 3: # 개봉예정작 : 빠른 개봉 순으로
+        sort_movies = movies.filter(release_date__gt=date.today()).order_by('release_date')[:30]
+    elif sort_num == 4: # 리뷰 많은 순(개봉한 영화만), 최신순
+        sort_movies = movies.filter(release_date__lte=date.today()).order_by('-review_movie_count', '-release_date')[:30]
+    elif sort_num == 5: # 평점순(vote_average/개봉한 영화)
+        sort_movies = movies.filter(release_date__lte=date.today()).order_by('-vote_average') [:30] 
+    # 장르 포함
+    elif sort_num == 12: # 모험
+        sort_movies = movies.filter(genres=12).order_by('-release_date')[:30]
+    elif sort_num == 14: # 판타지
+        sort_movies = movies.filter(genres=14).order_by('-release_date')[:30]
+    elif sort_num == 16: # 애니메이션
+        sort_movies = movies.filter(genres=16).order_by('-release_date')[:30]
+    elif sort_num == 18: # 드라마
+        sort_movies = movies.filter(genres=18).order_by('-release_date')[:30]
+    elif sort_num == 27: # 공포
+        sort_movies = movies.filter(genres=27).order_by('-release_date')[:30]
+    elif sort_num == 28: # 액션
+        sort_movies = movies.filter(genres=28).order_by('-release_date')[:30]
+    elif sort_num == 35: # 코미디
+        sort_movies = movies.filter(genres=35).order_by('-release_date')[:30]
+    elif sort_num == 36: # 역사
+        sort_movies = movies.filter(genres=36).order_by('-release_date')[:30]
+    elif sort_num == 37: # 서부
+        sort_movies = movies.filter(genres=37).order_by('-release_date')[:30]
+    elif sort_num == 53: # 스릴러
+        sort_movies = movies.filter(genres=53).order_by('-release_date')[:30]
+    elif sort_num == 80: # 범죄
+        sort_movies = movies.filter(genres=80).order_by('-release_date')[:30]
+    elif sort_num == 99: #다큐멘터리
+        sort_movies = movies.filter(genres=99).order_by('-release_date')[:30]
+    elif sort_num == 878: # SF
+        sort_movies = movies.filter(genres=878).order_by('-release_date')[:30]
+    elif sort_num == 9648: # 미스터리
+        sort_movies = movies.filter(genres=9648).order_by('-release_date')[:30]
+    elif sort_num == 10402: # 음악
+        sort_movies = movies.filter(genres=10402).order_by('-release_date')[:30]
+    elif sort_num == 10749: # 로맨스
+        sort_movies = movies.filter(genres=10749).order_by('-release_date')[:30]
+    elif sort_num == 10751: # 가족
+        sort_movies = movies.filter(genres=10751).order_by('-release_date')[:30]
+    elif sort_num == 10752: # 전쟁
+        sort_movies = movies.filter(genres=10752).order_by('-release_date')[:30]
+    elif sort_num == 10770: # TV 영화
+        sort_movies = movies.filter(genres=10770).order_by('-release_date')[:30]
+    serializer = MovieListSerializer(sort_movies, many=True)
+    return Response(serializer.data)
+
+
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def movie_detail(req, movie_pk):
     if req.method == 'GET':
         movie = get_object_or_404(Movie, pk=movie_pk)
@@ -32,7 +92,7 @@ def movie_detail(req, movie_pk):
         return Response(serializer.data)
 
 
-@permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticatedOrReadOnly])
 @api_view(['GET','POST'])
 def movie_likes(req, movie_pk):
     if req.method == 'GET':
@@ -62,6 +122,7 @@ def movie_likes(req, movie_pk):
 
 
 @api_view(['GET','POST', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def score_create(req, movie_pk):
     # if req.method == 'GET':
     #     movie = get_object_or_404(Movie, pk=movie_pk)
@@ -75,6 +136,7 @@ def score_create(req, movie_pk):
 
 
 @api_view(['POST', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def score_update(req, movie_pk, score_pk):
     if req.method == 'PUT':
         score = get_object_or_404(Score, pk= score_pk)
@@ -90,6 +152,7 @@ def score_update(req, movie_pk, score_pk):
     
 
 @api_view(['GET','POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def actor_list(req):
     if req.method == 'GET':
         actors = get_list_or_404(Actor)
@@ -97,6 +160,7 @@ def actor_list(req):
         return Response(serializer.data)
 
 @api_view(['GET','POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def director_list(req):
     if req.method == 'GET':
         directors = get_list_or_404(Director)
@@ -105,6 +169,7 @@ def director_list(req):
 
 
 @api_view(['GET','POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def actor_add(req, movie_pk):
     if req.method == 'POST':
         movie = get_object_or_404(Movie, pk= movie_pk)
