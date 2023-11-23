@@ -2,18 +2,26 @@
   <div>
     <div class="array">
       <div v-for="movie in movieDetail">
-        <span @click="goMovieDetail(movie.movie_id)"><img :src="movie.poster_path" alt=""></span>
+        <span @click="goMovieDetail(movie.movie_id)">
+          <img :src="movie.poster_path" alt="" @mouseover="openTrailerModal(movie.movie_id)" />
+        </span>
       </div>
     </div>
+
+    <!-- TrailerModal 컴포넌트를 포함시킵니다. -->
+    <TrailerModal v-if="showModal" :movieId="selectedMovieId" />
   </div>
 </template>
 
 <script setup>
 import axios from 'axios';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useCounterStore } from '../stores/counter';
+import TrailerModal from '@/components/TrailerModal.vue';
 const store = useCounterStore()
 const router = useRouter()
+const showModal = ref(false)
 // const props = defineProps({
 //   movieDetail : Array
 // })
@@ -23,6 +31,12 @@ const goMovieDetail = function (movieId) {
   router.push({name:'moviedetail', params:{ movieId: movieId }})
 }
 
+const selectedMovieId = ref(null);
+
+const openTrailerModal = (movieId) => {
+  selectedMovieId.value = movieId;
+  showModal.value = true;
+};
 </script>
 
 <style scoped>
@@ -34,7 +48,7 @@ img {
 
 .array {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-auto-rows: 350px;
   grid-gap: 10px;
   margin-top: 100px;

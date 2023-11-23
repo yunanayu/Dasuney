@@ -45,6 +45,7 @@
     </div>
     <hr>
   </div>
+
   </template>
   
   <script setup>
@@ -169,6 +170,10 @@
   
   <style scoped>
   @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
+
+
   .rate { display: inline-block;border: 0;margin-right: 15px;}
   .rate > input {display: none;}
   .rate > label {float: right;color: #ddd}
@@ -223,7 +228,7 @@
   .genres {
     margin-top: 15px;
   }
-  
+
   .genres h4 {
     margin-bottom: 5px;
   }

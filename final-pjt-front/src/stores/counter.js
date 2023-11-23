@@ -17,6 +17,7 @@ export const useCounterStore = defineStore('counter', () => {
   })
   const router = useRouter()
   const TMDB_KEY = import.meta.env.VITE_TMDB_API_KEY
+  const YOUTUBE_KEY = import.meta.env.YOUR_YOUTUBE_API_KEY
   const LogIn = function (payload) {
     const { username, password } = payload
     
@@ -136,5 +137,5 @@ export const useCounterStore = defineStore('counter', () => {
     .catch((err)=>{console.log(err);})
   }
 
-  return {navshow,directors,getDirectors ,TMDB_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername, getMovieList, movies}
+  return {navshow,directors,getDirectors ,TMDB_KEY, YOUTUBE_KEY, LogIn, Token, SignUp, logout, getCredits, isAuthenticated, getActors, actors, tempUsername, getMovieList, movies}
 }, { persist:true })
