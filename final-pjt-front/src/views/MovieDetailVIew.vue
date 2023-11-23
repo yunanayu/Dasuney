@@ -14,7 +14,7 @@
               <form @submit.prevent="createReview" class="message">
                 <div class="input-group">
                   <label for="content"></label>
-                  <textarea id="content" v-model="content" cols="35" rows="2" placeholder="리뷰를 작성 해 주세요."></textarea>
+                  <textarea id="content" v-model="content" cols="35" rows="2" placeholder="리뷰를 작성 해 주세요." style="white-space: pre-line;"></textarea>
                   <button type="submit" class="review-button">💌</button>
                 </div>
               </form>
