@@ -1,22 +1,28 @@
 <template>
   <div class="container">
     <div v-if="movieDetail">
-      <div v-if="movieReviews">
-        <h3 style="margin-left: 270px;">리뷰 목록</h3>
-        <ReviewCard  v-for="review in movieReviews" :review="review"/>
-      <form @submit.prevent="createReview" class="message">
-        <div class="input-group" style="margin-left: 270px;">
-          <label for="content">내용</label>
-          <textarea id="content" v-model="content" cols="30" rows="3"></textarea>
-          <button type="submit">리뷰 작성</button>
+      <div class="movie-details">
+        <div class="movie-info">
+          <MovieInfo :movie-info="movieDetail"/>
         </div>
-      </form>
-    </div>
-      </div>
-      <div v-if="movieDetail">
-        <MovieInfo :movie-info="movieDetail"/>
-      </div>
 
+        <div class="review-section">
+          <div v-if="movieReviews">
+            <div class="review" ref="reviewContainer">
+              <h3 style="margin-left: 130px;">Review List</h3>
+              <ReviewCard v-for="review in movieReviews" :review="review" :key="review.id" />
+              <form @submit.prevent="createReview" class="message">
+                <div class="input-group">
+                  <label for="content"></label>
+                  <textarea id="content" v-model="content" cols="35" rows="2"></textarea>
+                  <button type="submit" class="review-button">💌</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
       <div style="margin-left: 270px;">
         <h3>감독</h3>
       </div>
@@ -25,12 +31,13 @@
       </div>
       <hr>
       <div style="margin-left: 270px;">
-      <h3>배우</h3>
+        <h3>배우</h3>
       </div>
       <div class="actor">
         <Actor v-for="cast in casts" :cast="cast"/>
       </div>
     </div>
+  </div>
 </template>
 
 <script setup>
@@ -119,7 +126,7 @@ const createReview = function () {
         Authorization:`Token ${store.Token}`
       },
     data : {
-      title : '제목',
+      title :`${movieDetail.value.title} 리뷰`,
       content : content.value
     }
   })
@@ -127,7 +134,7 @@ const createReview = function () {
     // console.log(res.data)
     window.alert('리뷰 작성이 완료되었습니다.')
     movieReviews.value.push(res.data)
-    title.value = ''
+    // title.value = ''
     content.value = ''
     // router.push({name:'moviedetail', params : {movieId:route.query.movie_id}})
   })
@@ -140,13 +147,54 @@ const createReview = function () {
     }
   })
 }
+
 </script>
 
+
 <style scoped>
-.actor {
+/* .actor {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-left: 240px;
+} */
+
+.container {
+  display: flex;
+}
+
+.movie-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.movie-info {
+  flex: 2;
+  margin-right: 20px; /* Adjust the margin as needed */
+}
+
+.review-section {
+  flex: 1;
+}
+.review{
+  margin-top: 70px;
+  border: 1px solid ;
+}
+.input-group {
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+.input-group button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  
+}
+.input-group button:hover{
+  background-color: #2980b9;
 }
 
 </style>
