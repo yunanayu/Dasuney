@@ -28,6 +28,7 @@ const goDetail = function () {
         <!-- 검색기능입니당 우하하 -->
         <div v-show="store.isAuthenticated">
           <div class="search">
+<!-- <<<<<<< HEAD -->
             <form class="form-inline my-2 my-lg-0" @submit="goDetail">
           <div class="input-group">
             <input class="form-control textarea" type="search" placeholder="영화 제목을 입력 해 주세요." aria-label="Search" id="searchInput" v-model="search">
@@ -36,6 +37,16 @@ const goDetail = function () {
             </div>
           </div>
         </form>
+<!-- =======
+            <form class="form-inline" @submit.prevent="goDetail">
+              <div class="input-group">
+                <input class="form-control textarea" type="search" placeholder="영화 제목을 입력 해 주세요." aria-label="Search" id="searchInput" v-model="search">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="button">🔍</button>
+                </div>
+              </div>
+            </form>
+>>>>>>> 3ed837188027ab63cef155e85a287292dfb92d19 -->
           </div>
         </div>
         </div>
