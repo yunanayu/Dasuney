@@ -26,7 +26,7 @@ const goDetail = function () {
           <RouterLink class="nav-link" :to="{name:'profile',params:{username:store.tempUsername}}" style="font-size: 30px;">Profile</RouterLink>
         </div>
         <!-- 검색기능입니당 우하하 -->
-        <div v-show="  store.isAuthenticated">
+        <div v-show="store.isAuthenticated">
           <div class="search">
             <form class="form-inline my-2 my-lg-0" @submit="goDetail">
           <div class="input-group">
@@ -101,7 +101,7 @@ const goDetail = function () {
   color: #ddd;
 }
 .search {
-  width: 400px;
+  width: 700px;
   font-size: 20px;
   font-family: 'Arial', sans-serif;
 }
