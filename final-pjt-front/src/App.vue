@@ -26,16 +26,16 @@ const goDetail = function () {
           <RouterLink class="nav-link" :to="{name:'profile',params:{username:store.tempUsername}}" style="font-size: 30px;">Profile</RouterLink>
         </div>
         <!-- 검색기능입니당 우하하 -->
-        <div v-show="  store.isAuthenticated">
+        <div v-show="store.isAuthenticated">
           <div class="search">
-            <form class="form-inline my-2 my-lg-0" @submit.prevent="goDetail">
-          <div class="input-group">
-            <input class="form-control textarea" type="search" placeholder="영화 제목을 입력 해 주세요." aria-label="Search" id="searchInput" v-model="search">
-            <div class="input-group-append">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="button">🔍</button>
-            </div>
-          </div>
-        </form>
+            <form class="form-inline" @submit.prevent="goDetail">
+              <div class="input-group">
+                <input class="form-control textarea" type="search" placeholder="영화 제목을 입력 해 주세요." aria-label="Search" id="searchInput" v-model="search">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-success my-2 my-sm-0" type="button">🔍</button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
         </div>
@@ -101,7 +101,7 @@ const goDetail = function () {
   color: #ddd;
 }
 .search {
-  width: 400px;
+  width: 700px;
   font-size: 20px;
   font-family: 'Arial', sans-serif;
 }
