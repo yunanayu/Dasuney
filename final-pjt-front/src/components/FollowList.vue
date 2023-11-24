@@ -22,9 +22,10 @@ const closeFollow = function () {
   emit('closeFollow');
 };
 
-const goProfile = function (username) {
-  router.push({ name: 'profile', params: { username: username } });
-};
+const goProfile = function (user) {
+  console.log(user)
+  router.replace({ name: 'profile', params: { username: user } });
+}; 
 </script>
 
 <style lang="scss" scoped>

@@ -22,7 +22,7 @@
       </div>
       <div class="rating-section" style="position: relative;">
         <h2>이 영화 평가하기</h2>
-        <div class="rate">
+        <div class="rate" v-if="!moviescore">
           <input type="radio" @click="reRateScore(10)" id="rating10" name="rating" value="10"><label for="rating10" title="5점"></label>
           <input type="radio" @click="reRateScore(9)" id="rating9" name="rating" value="9"><label class="half" for="rating9" title="4.5점"></label>
           <input type="radio" @click="reRateScore(8)" id="rating8" name="rating" value="8"><label for="rating8" title="4점"></label>
@@ -34,20 +34,24 @@
           <input type="radio" @click="reRateScore(2)" id="rating2" name="rating" value="2"><label for="rating2" title="1점"></label>
           <input type="radio" @click="reRateScore(1)" id="rating1" name="rating" value="1"><label class="half" for="rating1" title="0.5점"></label>
         </div>
-        <button @click="cancelRating" class="score-button" style="position: absolute; bottom: 25px;">❌ 평가 취소</button>
+        <div v-else>
+          <div class="user-rating">
+          <h2>내 평점 : {{ moviescore.score }} 점 </h2>
+          <!-- <span v-for="i in moviescore.score / 2" :key="i" class="active">★</span>
+          <span v-for="i in (10 - moviescore.score) / 2" :key="i" class="inactive">☆</span> -->
+        </div>
       </div>
+      <button v-if="moviescore" @click="cancelRating" class="score-button">❌ 평가 취소</button>
+    </div>
 
-      <div class="plot-summary">
-        <h2>줄거리</h2>
-        <p>{{ movieInfo.overview }}</p>
-      </div>  
-      
-      
+    <div class="plot-summary">
+      <h2>줄거리</h2>
+      <p>{{ movieInfo.overview }}</p>
     </div>
     <hr>
   </div>
-
-  </template>
+  </div>
+</template>
   
   <script setup>
 
@@ -56,7 +60,10 @@
   import { useCounterStore } from '../stores/counter';
   import { useRouter } from 'vue-router';
   const store = useCounterStore();
-  const props = defineProps(['movieInfo']);
+  // const props = defineProps(['movieInfo']);
+  const props = defineProps({
+    movieInfo : Object
+  });
   const router = useRouter()
   const isLiked = ref(false);
   const selectedScore = ref(-1);
@@ -106,9 +113,14 @@
     .then((res) => {
       // console.log(res.data);
       moviescore.value = res.data
+      window.alert('평가완료되었습니다.!')
       // console.log(score)
+      console.log(moviescore.value);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err)
+      window.alert('이미 평가하셨습니다.')
+    });
   };
   
   const cancelRating = function () {
@@ -135,7 +147,9 @@
       })
       .then ((res) => {
         console.log("평가가 취소되었습니다.");
+        moviescore.value = null
         window.alert("평가가 취소되었습니다.");
+        console.log(moviescore.value);
       })
     }
   }
@@ -145,10 +159,10 @@
   onMounted(() => {
     store.getMovieList()
     const movie = store.movies.find((m) => m.title === props.movieInfo.title);
-    // console.log(movie);
+    console.log(movie);
     if (movie.score_set.length > 0) {
       moviescore.value = movie.score_set[0]
-      // console.log(moviescore.value)
+      console.log(moviescore.value)
     } else {
       moviescore.value = null
     }
@@ -293,6 +307,19 @@
     .header img {
       margin-bottom: 10px;
     }
+  }
+    /* 스타일링을 위한 CSS를 여기에 추가하세요 */
+  .user-rating {
+    color: gold; /* 별의 색상을 조절하세요 */
+    font-size: 50px; /* 별의 크기를 100px로 조절 */
+  }
+
+  .user-rating span {
+    margin-right: 5px; /* 별 사이의 간격을 조절하세요 */
+  }
+
+  .user-rating .inactive {
+    color: lightgray; /* 선택되지 않은 별의 색상을 조절하세요 */
   }
   </style>
   

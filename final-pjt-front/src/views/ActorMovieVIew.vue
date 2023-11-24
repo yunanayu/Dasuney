@@ -8,7 +8,12 @@
       </div>
       <h4>{{ route.query.actorname }}</h4>
       <div class="actor-info">
-        <button @click.prevent="likeActor(actorInfo.name)">{{ isLiked ? '좋아요 취소':'좋아요'}}</button>
+        <button @click.prevent="likeActor(actorInfo.name)">
+          <!-- {{ isLiked ? '좋아요 취소':'좋아요'}}
+           -->
+           <span v-if="isLiked">💖</span>
+            <span v-else>🤍</span>
+        </button>
       </div>
 
       <div class="actor-movie" v-if="actorCredits">
@@ -49,7 +54,7 @@ const likeActor = function (actorname) {
     }
   })
   .then((res) => {
-    // console.log(res.data)
+    console.log(res.data)
     isLiked.value = res.data.is_liked
   })
   .catch(err => console.log(err))
@@ -92,12 +97,13 @@ onMounted(() => {
   const actor = store.actors.find((actor) => actor.actor_id == route.params.actorid)
   axios({
     method : 'get',
-    url : `http://127.0.0.1:8000/movies/director/${actor.id}/directorlike/`,
+    url : `http://127.0.0.1:8000/movies/actor/${actor.id}/actorlike/`,
     headers : {
       Authorization:`Token ${store.Token}`
     }
   })
   .then((res) => {
+    console.log(res.data)
     isLiked.value = res.data.is_liked
   })
   .catch(err => console.log(err))

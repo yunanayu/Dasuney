@@ -62,17 +62,72 @@ const profilePicture = ref('');
 
 const followingModal = ref(false)
 const followerModal = ref(false)
+
 // 프로필 사진 선택
+// const handleProfilePictureChange = (event) => {
+//   const file = event.target.files[0];
+//   if (file) {
+//     const reader = new FileReader();
+//     reader.onload = (e) => {
+//       profilePicture.value = e.target.result;
+//     };
+//     reader.readAsDataURL(file);
+//     axios({
+//       method : 'post',
+//       url : `http://127.0.0.1:8000/accounts/profile/${store.tempUsername}/picture/`,
+//       headers : {
+//           Authorization:`Token ${store.Token}`
+//         },
+//       data : {
+//         profile_picture : file
+//       }
+//     })
+//     .then((res) => {
+//       console.log(res);
+//     })
+//   }
+// };
+
+
+// ------------------
 const handleProfilePictureChange = (event) => {
   const file = event.target.files[0];
+
   if (file) {
     const reader = new FileReader();
     reader.onload = (e) => {
+      // Assuming profilePicture is a ref or reactive property
       profilePicture.value = e.target.result;
     };
     reader.readAsDataURL(file);
+
+    // Create FormData to handle file upload
+    const formData = new FormData();
+    formData.append('profile_picture', file);
+
+    // Add CSRF token if needed
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    axios({
+      method: 'post',
+      url: `http://127.0.0.1:8000/accounts/profile/${store.tempUsername}/picture/`,
+      headers: {
+        Authorization: `Token ${store.Token}`,
+        'Content-Type': 'multipart/form-data', // Specify content type for file upload
+      },
+      data: formData,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error('Error uploading profile picture', error);
+      });
   }
 };
+
+// ----------------------------
+
 
 // 팔로우 기능 
 
@@ -125,7 +180,7 @@ const ratingMovies = ref(0);
 // 내 리뷰들 으하하
 const myReview = ref([])
 onMounted(() => {
-  // console.log(route.params.username);
+  console.log(route.params.username);
   axios({
     method : 'get',
     url : `http://127.0.0.1:8000/accounts/profile/${route.params.username}/`,

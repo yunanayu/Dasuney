@@ -7,7 +7,11 @@
       </div>
       <h4>{{ route.query.directorname }}</h4>
       <div class="director-info">
-        <button @click.prevent="likeDirector(directorInfo.name)">{{ isLiked ? '좋아요 취소':'좋아요'}}</button>
+        <button @click.prevent="likeDirector(directorInfo.name)">
+          <!-- {{ isLiked ? '좋아요 취소':'좋아요'}} -->
+          <span v-if="isLiked">💖</span>
+          <span v-else>🤍</span>
+        </button>
       </div>
       
       <div class="dircetor-movie" v-if="directorCredits">

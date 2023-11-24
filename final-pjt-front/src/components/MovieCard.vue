@@ -9,7 +9,7 @@
     </div>
 
     <!-- TrailerModal 컴포넌트를 포함시킵니다. -->
-    <TrailerModal v-if="showModal" :movieId="selectedMovieId" />
+    <!-- <TrailerModal v-if="showModal" :movieId="selectedMovieId" /> -->
   </div>
 </template>
 

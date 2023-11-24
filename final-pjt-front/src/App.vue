@@ -28,7 +28,7 @@ const goDetail = function () {
         <!-- 검색기능입니당 우하하 -->
         <div v-show="  store.isAuthenticated">
           <div class="search">
-            <form class="form-inline my-2 my-lg-0" @submit.prevent="goDetail">
+            <form class="form-inline my-2 my-lg-0" @submit="goDetail">
           <div class="input-group">
             <input class="form-control textarea" type="search" placeholder="영화 제목을 입력 해 주세요." aria-label="Search" id="searchInput" v-model="search">
             <div class="input-group-append">
@@ -43,7 +43,7 @@ const goDetail = function () {
         <!-- 로그아웃 버튼은 화면이 작아졌을 때도 보이게 설정 -->
         <button class="btn btn-outline-light" @click.prevent="store.logout()" v-if="store.isAuthenticated" style="font-size: 20px;">LogOut</button>
       </nav>
-      <RouterView />
+      <RouterView :key="$route.path" />
 
       <!-- <footer class="footer fixed-bottom">
         <div class="container">

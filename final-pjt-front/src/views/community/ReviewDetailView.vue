@@ -13,8 +13,8 @@
       <p>{{ review.content }}</p> 
       <hr>
       <div class="actions">
-        <button @click.prevent="goUpdate" class="action-button" style="margin-right: 10px;">수정</button>
-        <button @click.prevent="goDelete" class="action-button danger">삭제</button>
+        <button @click.prevent="goUpdate" class="action-button" style="margin-right: 10px;" v-show="review.user.username == store.tempUser">수정</button>
+        <button @click.prevent="goDelete" class="action-button danger" v-show="review.user.username == store.tempUser">삭제</button>
       </div>
     </div>
     <div class="comments-section">
@@ -27,7 +27,7 @@
           <span>{{ comment.content }}</span>
           <div class="comment-metadata">
             <span>작성자: {{ comment.user.username }}</span> 
-            <button @click.prevent="deleteComment(comment.id)" class="action-button danger">댓글 삭제</button>
+            <button @click.prevent="deleteComment(comment.id)" class="action-button danger" v-show="comment.user.username == store.tempUsername">댓글 삭제</button>
           </div>
           <hr>
         </div>
