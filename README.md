@@ -31,7 +31,7 @@
 |정유나|백엔드 영화추천알고리즘, 영화, 배우, 감독 조회, 좋아요, 프로필 기능 구현,  프론트 기능 구현 |
 
 ### 계획표
-<img src='final_result/plan.png'>
+<img src='final_result/plan.PNG'>
 
 
 ## 2. 목표 서비스 구현 및 실제 구현 정도
@@ -56,54 +56,54 @@
 
 ## 5. 서비스 대표 기능에 대한 설명
 ### intro
-<img src='final_result/intro.png'>
+<img src='final_result/intro.PNG'>
 
 ### 로그인하지 않았을 때
-<img src='final_result/intro`.png'> 
+<img src='final_result/intro`.PNG'> 
 
 ### 로그인 상태일때
-<img src='final_result/home1.png'>
+<img src='final_result/home1.PNG'>
 
 ### home 화면에서 영화 조회
-<img src='final_result/home2.png'>
-<img src='final_result/home3.png'>
+<img src='final_result/home2.PNG'>
+<img src='final_result/home3.PNG'>
 
 ### home 화면서에 알고리즘에 따른 추천 영화 조회
-<img src='final_result/recommend.png'>
+<img src='final_result/recommend.PNG'>
 
 ### 영화 상세 조회 
-<img src='final_result/detail1.png'>
+<img src='final_result/detail1.PNG'>
 
 - 평점기능
 - 보고싶어요 선택 가능
 - 영화 참여한 감독과 배우 조회 및 좋아요 기능 
 - 감독 or 배우 클릭 시 해당 인물 상세 조회 가능
 
-<img src='final_result/actordetail.png'>
+<img src='final_result/actordetail.PNG'>
 
 ### 커뮤니티 기능
 - 해당 영화에 대한 리뷰 작성 가능
 - 내가 작성한 리뷰와 다른사람이 작성한 리뷰 모두 조회 가능
-<img src='final_result/reviewlist.png'>
+<img src='final_result/reviewlist.PNG'>
 
 - 리뷰 클릭시 상세 조회 및 댓글 작성 가능
 - 작성자만 리뷰 수정, 삭제 가능
 - 댓글 작성자만 해당 댓글 삭제 가능
-<img src='final_result/review1.png'>
-<img src='final_result/review2.png'>
+<img src='final_result/review1.PNG'>
+<img src='final_result/review2.PNG'>
 
 
 ### 프로필 기능
-<img src='final_result/profile2.png'>
+<img src='final_result/profile2.PNG'>
 
 - 팔로우 기능 제공
 - 팔로우 , 팔로워 리스트 조회 가능, 해당 사용자 프로필로 바로가기 가능
 - 유저가 평가한 영화, 좋아요 누른 배우, 감독, 영화 조회 가능 , 리뷰 쓴 영화 목록과 리뷰 내용 조회 가능
 
-<img src='final_result/actorlike.png'>
-<img src='final_result/movielike.png'>
-<img src='final_result/directorlike.png'>
-<img src='final_result/reviewmovie.png'>
+<img src='final_result/actorlike.PNG'>
+<img src='final_result/movielike.PNG'>
+<img src='final_result/directorlike.PNG'>
+<img src='final_result/reviewmovie.PNG'>
 
 ## 7. 기타(느낀점, 후기 등)
 ### 배운점
