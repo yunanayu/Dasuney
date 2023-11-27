@@ -13,8 +13,8 @@
       <p>{{ review.content }}</p> 
       <hr>
       <div class="actions">
-        <button @click.prevent="goUpdate" class="action-button" style="margin-right: 10px;" v-show="review.user.username == store.tempUser">수정</button>
-        <button @click.prevent="goDelete" class="action-button danger" v-show="review.user.username == store.tempUser">삭제</button>
+        <button @click.prevent="goUpdate" class="action-button" style="margin-right: 10px;" v-show="review.user.username == store.tempUsername">수정</button>
+        <button @click.prevent="goDelete" class="action-button danger" v-show="review.user.username == store.tempUsername">삭제</button>
       </div>
     </div>
     <div class="comments-section">
